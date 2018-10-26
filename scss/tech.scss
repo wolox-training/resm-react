@@ -4,34 +4,42 @@ $tech-box-padding: 15px;
 $tech-box-border-radius: 10px;
 $tech-text-margin: 20px;
 $tech-logo-size: 100px;
-$tech-box-content-displace: 10px;
+$tech-box-content-displace: 20px;
 
 .tech-box {
-  height: $tech-box-height;
+  float:left;
+  height: $tech-box-height + ($tech-box-content-displace * 2);
+  margin-left: 10px;
   padding: $tech-box-padding;
+  position: relative;
   text-align: center;
-  width: $tech-box-width;
-  border: 1px solid red;
+  width: $tech-box-width + ($tech-box-content-displace * 2);
+
+  &::before {
+    content: '';
+    background-color: $white;
+    border: 1px solid $green;
+    border-radius: $tech-box-border-radius;    
+    height: $tech-box-height;
+    left:0;
+    position: absolute;
+    top:0;
+    width: $tech-box-width;
+  }
 
   .tech-box-content {
+    align-content: flex-start;
     background-color: $green;
     border: 0;
     border-radius: $tech-box-border-radius;
-    height: 100%;
-    padding: $tech-box-padding + 10px;
     display: flex;
     flex-direction: column;
-    // justify-content: flex-start;
-
-    &::before {
-      content: '';
-      // display: block;
-      background-color: $white;
-      border: 1px solid $green;
-      border-radius: $tech-box-border-radius;    
-      height: $tech-box-height;
-      z-index: -1;
-    }
+    height: $tech-box-height;
+    left: $tech-box-content-displace;
+    padding: $tech-box-padding + 10px;
+    position: absolute;
+    top: $tech-box-content-displace;
+    width: $tech-box-width;
   }
 
   .tech-box-logo {
