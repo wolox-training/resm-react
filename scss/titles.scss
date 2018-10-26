@@ -2,18 +2,18 @@ $title-decoration-height: 90px;
 $title-decoration-width: 70px;
 
 .title {
+  align-items: center;
   color: $black;
+  display: flex;
   font-size: $font-title-size;
-  margin-top: 50px;
+  padding: 50px;
+  position: relative;
 
   &::before{
-    content: url(assets/triangle.svg);
-    display: block;
-    float: left;
+    content: url('assets/triangle.svg');
     height: $title-decoration-height;
-    left: 19px;
-    position: relative;
-    top: -35px; //TODO: how to do it without negative values?
+    left: 0px;
+    position: absolute;
     width: $title-decoration-width;
     z-index: -1;
   }
