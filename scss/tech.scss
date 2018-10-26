@@ -7,38 +7,31 @@ $tech-logo-size: 100px;
 $tech-box-content-displace: 10px;
 
 .tech-box {
-  display: flex;
-  flex-direction: column;
   height: $tech-box-height;
-  justify-content: flex-start;
   padding: $tech-box-padding;
   text-align: center;
   width: $tech-box-width;
-
-  .tech-box-border {
-    background-color: $white;
-    border: 1px solid $green;
-    border-radius: $tech-box-border-radius;    
-    height: $tech-box-height;
-    z-index: -1;
-  }
+  border: 1px solid red;
 
   .tech-box-content {
     background-color: $green;
     border: 0;
     border-radius: $tech-box-border-radius;
-    height: $tech-box-height;
-    left: $tech-box-content-displace;
+    height: 100%;
     padding: $tech-box-padding + 10px;
-    position: relative;
-    text-align: center;
-    top: $tech-box-content-displace;
-  }
-
-  .tech-box-info {
-    align-items: center;
     display: flex;
     flex-direction: column;
+    // justify-content: flex-start;
+
+    &::before {
+      content: '';
+      // display: block;
+      background-color: $white;
+      border: 1px solid $green;
+      border-radius: $tech-box-border-radius;    
+      height: $tech-box-height;
+      z-index: -1;
+    }
   }
 
   .tech-box-logo {
