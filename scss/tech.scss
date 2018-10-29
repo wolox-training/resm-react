@@ -1,5 +1,5 @@
 $tech-box-border-radius: 10px;
-$tech-box-height: 470px;
+$tech-box-height: 480px;
 $tech-box-width: 300px;
 $tech-logo-size: 100px;
 $tech-text-margin: 20px;
@@ -10,45 +10,33 @@ $tech-text-margin: 20px;
   padding-left: 50px;
 
   .tech-box {
+    background-color: $green;
+    border-radius: $tech-box-border-radius;  
     display: flex;
     flex-direction: column;
-    float: left;
-    height: $tech-box-height + 20;
-    margin: 15px;
-    padding: 40px;
+    height: $tech-box-height;
+    margin: 35px;
+    padding: 30px;
     position: relative;
     text-align: center;
-    width: $tech-box-width + 20;
+    width: $tech-box-width;
 
     &::before {
       content: '';
       background-color: $white;
       border: 1px solid $green;
       border-radius: $tech-box-border-radius;    
+      bottom: 10px;
       height: $tech-box-height;
-      left: 0;
       position: absolute;
-      top: 0;
+      right: 10px;
       transition: transform 0.5s ease;
       width: $tech-box-width;
       z-index: -2;
     }
 
     &:hover:before {
-      transform: translate(40px, 40px);
-    }
-
-    &::after {
-      content: '';
-      background-color: $green;
-      border: 0;
-      border-radius: $tech-box-border-radius;    
-      bottom: 0;
-      height: $tech-box-height;
-      position: absolute;
-      right: 0;
-      width: $tech-box-width;
-      z-index: -1;
+      transform: translate(20px, 20px);
     }
 
     .tech-box-logo {
