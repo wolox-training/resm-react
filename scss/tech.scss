@@ -1,54 +1,66 @@
 $tech-box-border-radius: 10px;
-$tech-box-height: 450px;
+$tech-box-height: 480px;
 $tech-box-width: 300px;
 $tech-logo-size: 100px;
 $tech-text-margin: 20px;
 
-.tech-box {
-  background-color: $green;
-  border-radius: $tech-box-border-radius;  
+.tech-box-list {
   display: flex;
-  flex-direction: column;
-  height: $tech-box-height;
-  margin: 35px;
-  padding: 40px;
-  position: relative;
-  text-align: center;
-  width: $tech-box-width;
+  flex-wrap: wrap;
+  padding-left: 50px;
 
-  &::before {
-    content: '';
-    background-color: $white;
-    border: 1px solid $green;
-    border-radius: $tech-box-border-radius;    
-    bottom: 10px;
+  .tech-box {
+    background-color: $green;
+    border-radius: $tech-box-border-radius;  
+    display: flex;
+    flex-direction: column;
     height: $tech-box-height;
-    position: absolute;
-    right: 10px;
+    margin: 35px;
+    padding: 30px;
+    position: relative;
+    text-align: center;
     width: $tech-box-width;
-    z-index: -1;
-  }
 
-  .tech-box-logo {
-    margin: 0 auto $tech-text-margin;
-    width: $tech-logo-size;
-  }
+    &::before {
+      content: '';
+      background-color: $white;
+      border: 1px solid $green;
+      border-radius: $tech-box-border-radius;    
+      bottom: 10px;
+      height: $tech-box-height;
+      position: absolute;
+      right: 10px;
+      transition: transform 0.5s ease;
+      width: $tech-box-width;
+      z-index: -1;
+    }
 
-  .tech-box-title {
-    color: $black;
-    font-size: $box-title-size;
-    margin: 0 auto $tech-text-margin;
-  }
+    &:hover:before {
+      transform: translate(20px, 20px);
+    }
 
-  .tech-box-launch {
-    color: $black;
-    font-size: $box-launch-text-size;
-    font-weight: bold;
-    margin: 0 auto ($tech-text-margin * 2);
-  }
+    .tech-box-logo {
+      height: $tech-logo-size;
+      margin: 0 auto $tech-text-margin;
+      width: $tech-logo-size;
+    }
+    
+    .tech-box-title {
+      color: $black;
+      font-size: $box-title-size;
+      margin: 0 auto $tech-text-margin;
+    }
 
-  .tech-box-text {
-    color: $black;
-    font-size: $box-text-size;
+    .tech-box-launch {
+      color: $black;
+      font-size: $box-launch-text-size;
+      font-weight: bold;
+      margin: 0 auto ($tech-text-margin * 2);
+    }
+
+    .tech-box-text {
+      color: $black;
+      font-size: $box-text-size;
+    }
   }
 }
