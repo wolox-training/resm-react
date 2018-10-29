@@ -1,19 +1,19 @@
-$tech-box-width: 300px;
-$tech-box-height: 450px;
-$tech-box-padding: 15px;
 $tech-box-border-radius: 10px;
-$tech-text-margin: 20px;
+$tech-box-height: 450px;
+$tech-box-width: 300px;
 $tech-logo-size: 100px;
-$tech-box-content-displace: 20px;
+$tech-text-margin: 20px;
 
 .tech-box {
-  float:left;
-  height: $tech-box-height + ($tech-box-content-displace * 2);
+  display: flex;
+  flex-direction: column;
+  float: left;
+  height: $tech-box-height + 20;
   margin-left: 10px;
-  padding: $tech-box-padding;
+  padding: 40px;
   position: relative;
   text-align: center;
-  width: $tech-box-width + ($tech-box-content-displace * 2);
+  width: $tech-box-width + 20;
 
   &::before {
     content: '';
@@ -21,29 +21,27 @@ $tech-box-content-displace: 20px;
     border: 1px solid $green;
     border-radius: $tech-box-border-radius;    
     height: $tech-box-height;
-    left:0;
+    left: 0;
     position: absolute;
-    top:0;
+    top: 0;
     width: $tech-box-width;
+    z-index: -2;
   }
 
-  .tech-box-content {
-    align-content: flex-start;
+  &::after {
+    content: '';
     background-color: $green;
     border: 0;
-    border-radius: $tech-box-border-radius;
-    display: flex;
-    flex-direction: column;
+    border-radius: $tech-box-border-radius;    
+    bottom: 0;
     height: $tech-box-height;
-    left: $tech-box-content-displace;
-    padding: $tech-box-padding + 10px;
     position: absolute;
-    top: $tech-box-content-displace;
+    right: 0;
     width: $tech-box-width;
+    z-index: -1;
   }
 
   .tech-box-logo {
-    height: auto;
     margin: 0 auto $tech-text-margin;
     width: $tech-logo-size;
   }
