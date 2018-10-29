@@ -1,0 +1,26 @@
+$nav-height: 90px;
+$nav-logo-height: 30px;
+
+.navbar {
+  align-items: center;
+  background: $white;
+  border-bottom: 3px solid $grey;
+  display: flex;
+  flex-direction: row;
+  height: $nav-height;
+  justify-content: space-between;
+  padding: 20px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+
+  .navbar-logo {
+    height: $nav-logo-height;
+  }
+  
+  .navbar-text {
+    font-size: $text-big;
+  }
+}
