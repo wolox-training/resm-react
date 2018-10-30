@@ -7,9 +7,8 @@ $title-decoration-width: 70px;
   display: flex;
   font-size: $font-title-size;
   margin: 0 20px;
-  padding: 50px;
+  padding: 0 50px;
   position: relative;
-  margin-left: 20px;
 
   &::before{
     content: url('assets/triangle.svg');
