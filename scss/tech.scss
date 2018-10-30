@@ -5,6 +5,7 @@ $tech-logo-size: 100px;
 $tech-text-margin: 10px;
 
 .tech-box {
+  align-items: center;
   background-color: $green;
   border-radius: $tech-box-border-radius;  
   display: flex;
@@ -15,8 +16,6 @@ $tech-text-margin: 10px;
   position: relative;
   text-align: center;
   width: $tech-box-width;
-  align-items: center;
-  float: left;
 
   &::before {
     content: '';
@@ -32,8 +31,8 @@ $tech-text-margin: 10px;
 }
 
 .tech-box-logo {
-  width: $tech-logo-size;
   margin: 10px;
+  width: $tech-logo-size;
 }
 
 .tech-box-title {
