@@ -2,7 +2,7 @@ $tech-box-border-radius: 10px;
 $tech-box-height: 450px;
 $tech-box-width: 300px;
 $tech-logo-size: 100px;
-$tech-text-margin: 20px;
+$tech-text-margin: 10px;
 
 .tech-box {
   background-color: $green;
@@ -15,10 +15,11 @@ $tech-text-margin: 20px;
   position: relative;
   text-align: center;
   width: $tech-box-width;
+  align-items: center;
+  float: left;
 
   &::before {
     content: '';
-    background-color: $white;
     border: 1px solid $green;
     border-radius: $tech-box-border-radius;    
     bottom: 10px;
@@ -28,27 +29,30 @@ $tech-text-margin: 20px;
     width: $tech-box-width;
     z-index: -1;
   }
+}
 
-  .tech-box-logo {
-    margin: 0 auto $tech-text-margin;
-    width: $tech-logo-size;
-  }
+.tech-box-logo {
+  width: $tech-logo-size;
+  margin: 10px;
+}
 
-  .tech-box-title {
-    color: $black;
-    font-size: $box-title-size;
-    margin: 0 auto $tech-text-margin;
-  }
+.tech-box-title {
+  font-size: $box-title-size;
+  margin-bottom: $tech-text-margin;
+}
 
-  .tech-box-launch {
-    color: $black;
-    font-size: $box-launch-text-size;
-    font-weight: bold;
-    margin: 0 auto ($tech-text-margin * 2);
-  }
+.tech-box-launch {
+  font-size: $box-launch-text-size;
+  font-weight: bold;
+  margin-bottom: $tech-text-margin;
+}
 
-  .tech-box-text {
-    color: $black;
-    font-size: $box-text-size;
-  }
+.tech-box-text {
+  font-size: $box-text-size;
+}
+
+.tech-box-title, 
+.text-box-launch, 
+.tech-box-text { 
+  color: $black; 
 }
