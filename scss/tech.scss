@@ -7,9 +7,11 @@ $tech-text-margin: 10px;
 .tech-box-list {
   display: flex;
   flex-wrap: wrap;
-  padding-left: 50px;
+  padding: 0 50px;
 }
+
 .tech-box {
+  align-items: center;
   background-color: $green;
   border-radius: $tech-box-border-radius;  
   display: flex;
@@ -41,7 +43,8 @@ $tech-text-margin: 10px;
 }
 
 .tech-box-logo {
-  margin: 10px;
+  height: $tech-logo-size;
+  margin-bottom: $tech-text-margin;
   width: $tech-logo-size;
 }
 
