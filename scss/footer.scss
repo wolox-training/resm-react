@@ -3,7 +3,6 @@
   background: $blue;
   display: flex;
   flex-direction: column;
-  height: 150px;
   justify-content: space-between;
   padding: 20px;
   width: 100%;
@@ -16,6 +15,7 @@
 
   .foot-logo {
     height: 45px;
+    margin: 15px;
   }
 
   .foot-copy {
