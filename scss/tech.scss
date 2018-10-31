@@ -2,7 +2,7 @@ $tech-box-border-radius: 10px;
 $tech-box-height: 480px;
 $tech-box-width: 300px;
 $tech-logo-size: 100px;
-$tech-text-margin: 20px;
+$tech-text-margin: 10px;
 
 .tech-box-list {
   display: flex;
@@ -25,7 +25,6 @@ $tech-text-margin: 20px;
 
   &::before {
     content: '';
-    background-color: $white;
     border: 1px solid $green;
     border-radius: $tech-box-border-radius;    
     bottom: 10px;
