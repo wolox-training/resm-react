@@ -10,7 +10,9 @@
 }
 
 .main {
-  align-content: center;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
   grid-row: 2;
   padding: 20px;
 }

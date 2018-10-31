@@ -3,11 +3,12 @@ $tech-text-margin: 10px;
 
 .tech-box-list {
   align-items: start;
+  align-self: center;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  margin: 0 auto 80px; 
-  width: 70%; //arbitrary value
+  margin-bottom: 80px;
+  width: 1100px; //arbitrary value
 }
 
 .tech-box {
