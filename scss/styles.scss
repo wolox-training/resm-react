@@ -3,5 +3,16 @@
 }
 
 .app-container {
-  padding: ($nav-height + 40px) 0 0;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: $nav-height 1fr auto;
+}
+
+.main {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  grid-row: 2;
+  padding: 20px;
 }
