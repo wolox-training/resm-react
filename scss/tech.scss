@@ -58,3 +58,27 @@ $tech-text-margin: 10px;
 .tech-box-launch {
   margin-bottom: $tech-text-margin;
 }
+
+@media only screen and (max-width: 1024px) {
+  .tech-box-list {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    width: 100%;
+  }
+
+  .tech-box {
+    border-bottom: 2px solid $green; 
+    margin: 20px 60px;
+  }
+
+  .tech-box:first-child {
+    border-right: 0; 
+    grid-column: auto;
+    grid-row: auto;
+    justify-content: center;
+  }
+
+  .tech-box:last-child {
+    border-bottom: 0;
+  }
+}

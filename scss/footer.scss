@@ -24,3 +24,18 @@
   color: $white;
   font-size: $text-small;
 }
+
+@media only screen and (max-width: 1024px) {
+  .foot {
+    padding: 40px;
+  }
+
+  .foot-logo {
+    height: 45px;
+    margin: 15px 15px 45px;
+  }
+
+  .foot-copy {
+    align-self: center;
+  }
+}

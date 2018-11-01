@@ -19,3 +19,9 @@ $title-decoration-width: 70px;
     z-index: -1;
   }
 }
+
+@media only screen and (max-width: 1024px) {
+  .title {
+    margin: 5rem 3rem 2rem;
+  }
+}
