@@ -22,3 +22,8 @@ export function copy(obj) {
   }
   return newObj;
 }
+
+export function reverseMerge(array1, array2) {
+  const newArray = [...array2, ...array1];
+  return newArray;
+}
