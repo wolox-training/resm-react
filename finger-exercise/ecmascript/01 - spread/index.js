@@ -13,7 +13,12 @@ export function min(...args) {
   return Math.min(...args);
 }
 
-export function copy(objList) {
-  const newObj = { ...objList };
+export function copy(obj) {
+  let newObj;
+  if (isArray(obj)) {
+    newObj = [...obj];
+  } else {
+    newObj = { ...obj };
+  }
   return newObj;
 }
