@@ -27,3 +27,10 @@ export function reverseMerge(array1, array2) {
   const newArray = [...array2, ...array1];
   return newArray;
 }
+
+export function filterAttribs(obj) {
+  const newObj = { ...obj };
+  delete newObj.a;
+  delete newObj.b;
+  return newObj;
+}
