@@ -2,8 +2,6 @@
 // export default
 // Would you like to fix this issue ?
 
-export function isArray(aPossibleArray) {
+export default function isArray(aPossibleArray) {
   return aPossibleArray.constructor === Array;
 }
-
-// export default isArray;
