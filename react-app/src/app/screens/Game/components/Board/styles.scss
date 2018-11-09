@@ -1,0 +1,7 @@
+@import '../../../../../scss/colors';
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
