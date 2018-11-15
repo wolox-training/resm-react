@@ -26,6 +26,11 @@ function reducer(state = initialState, action) {
         ...state,
         favoriteBook: action.payload.favoriteBook
       };
+    case actions.ADD_READ_BOOK:
+      return {
+        ...state,
+        readBooks: state.readBooks.concat(action.payload.title)
+      };
     default:
       return state;
   }

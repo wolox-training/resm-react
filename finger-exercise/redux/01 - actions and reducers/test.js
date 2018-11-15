@@ -15,7 +15,7 @@ describe('Actions', () => {
     expect(store.getState().books.favoriteBook).toEqual('The Metamorphosis');
   });
 
-  xit('adds a book', () => {
+  it('adds a book', () => {
     /*
     Look at the actionCreators object in actions.js
     It knows how to dispatch an action with type actions.ADD_READ_BOOK.
