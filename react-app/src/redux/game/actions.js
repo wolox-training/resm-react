@@ -1,0 +1,27 @@
+export const actionNames = {
+  jumpTo: 'JUMP-TO',
+  toggleMark: 'TOGGLE-MARK',
+  updateStatus: 'UPDATE-STATUS'
+};
+
+export const jumpTo = (stepNumber, xIsNext) => ({
+  type: actionNames.jumpTo,
+  stepNumber,
+  xIsNext
+});
+
+export const toggleMark = (history, stepNumber, xIsNext) => ({
+  type: actionNames.toggleMark,
+  history,
+  stepNumber,
+  xIsNext
+});
+
+export const updateStatus = status => ({
+  type: actionNames.updateStatus,
+  status
+});
+
+export const actionCreators = { jumpTo, toggleMark, updateStatus };
+
+export default actionCreators;
