@@ -38,7 +38,7 @@ describe('Actions', () => {
     expect(store.getState().books.mostHatedBook).toEqual('Introduction to Linear Algebra');
   });
 
-  xit('logs in', () => {
+  it('logs in', () => {
     /*
     Let's use the other store branch.
     We don't want a branch's actions to affect the other one.
