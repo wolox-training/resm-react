@@ -17,11 +17,18 @@ This is our actionCreators object. https://redux.js.org/basics/actions#action-cr
 The purpose of this object is to have all the action-creating logic in a single
 place. All actions types must only be used inside an actionCreator.
 */
+
 export default {
   addReadBook: title => ({
     type: actions.ADD_READ_BOOK,
     payload: {
       title
+    }
+  }),
+  setFavoriteBook: favoriteBook => ({
+    type: actions.SET_FAVORITE_BOOK,
+    payload: {
+      favoriteBook
     }
   })
 };
