@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { jumpTo, toggleMark, updateStatus } from '../../../redux/Game/actions';
+import { toggleMark, updateStatus } from '../../../redux/Game/actions';
 
 import calculateWinner from './utils';
 import Board from './components/Board';
+import Moves from './components/Moves';
 import style from './styles.scss';
 
 class Game extends Component {
@@ -25,20 +26,6 @@ class Game extends Component {
     );
   };
 
-  createHistoryButton(move) {
-    const desc = move ? `Go to move # ${move}` : 'Go to game start';
-    const history = this.props.history.slice(0, move + 1);
-    const current = history[history.length - 1];
-    const squares = current.squares.asMutable().slice();
-    return (
-      <li key={move.toString()}>
-        <button onClick={() => this.props.jumpTo(move, move % 2 === 0, calculateWinner(squares))}>
-          {desc}
-        </button>
-      </li>
-    );
-  }
-
   updateStatus() {
     if (this.props.winner) {
       this.props.updateStatus(`Winner: ${this.props.winner}`);
@@ -50,7 +37,6 @@ class Game extends Component {
   render() {
     const history = this.props.history;
     const current = history[this.props.stepNumber];
-    const moves = history.map((step, move) => this.createHistoryButton(move));
 
     this.updateStatus();
 
@@ -61,7 +47,7 @@ class Game extends Component {
         </div>
         <div className={style.gameInfo}>
           <div>{this.props.status}</div>
-          <ol>{moves}</ol>
+          <Moves />
         </div>
       </div>
     );
@@ -74,7 +60,6 @@ Game.propTypes = {
   xIsNext: PropTypes.bool,
   status: PropTypes.string,
   winner: PropTypes.string,
-  jumpTo: PropTypes.func,
   toggleMark: PropTypes.func,
   updateStatus: PropTypes.func
 };
@@ -88,9 +73,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  jumpTo: (stepNumber, xIsNext) => {
-    dispatch(jumpTo(stepNumber, xIsNext));
-  },
   toggleMark: (history, stepNumber, xIsNext, winner) => {
     dispatch(toggleMark(history, stepNumber, xIsNext, winner));
   },
