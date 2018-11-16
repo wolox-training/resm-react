@@ -8,6 +8,7 @@
     "react-redux": "^5.1.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
+    "seamless-immutable": "^7.1.4",
     "wolox-react-scripts": "1.2.1"
   },
   "scripts": {

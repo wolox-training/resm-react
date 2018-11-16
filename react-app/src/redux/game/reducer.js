@@ -1,36 +1,32 @@
-// import merge from 'lodash.merge';
+import Immutable from 'seamless-immutable';
 
 import { actionNames } from './actions';
 
-const initialState = {
+const initialState = Immutable({
   history: [{ squares: Array(9).fill(null) }],
   stepNumber: 0,
   xIsNext: true,
   status: '',
-  winner: []
-};
+  winner: null
+});
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionNames.jumpTo:
-      return {
-        ...state,
+      return state.merge({
         stepNumber: action.stepNumber,
-        xIsNext: action.xIsNext
-      };
+        xIsNext: action.xIsNext,
+        winner: action.winner
+      });
     case actionNames.toggleMark:
-      return {
-        ...state,
+      return state.merge({
         history: action.history,
         stepNumber: action.stepNumber,
         xIsNext: action.xIsNext,
         winner: action.winner
-      };
+      });
     case actionNames.updateStatus:
-      return {
-        ...state,
-        status: action.status
-      };
+      return state.merge({ status: action.status });
     default:
       return state;
   }

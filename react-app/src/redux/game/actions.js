@@ -4,10 +4,11 @@ export const actionNames = {
   updateStatus: 'UPDATE-STATUS'
 };
 
-export const jumpTo = (stepNumber, xIsNext) => ({
+export const jumpTo = (stepNumber, xIsNext, winner) => ({
   type: actionNames.jumpTo,
   stepNumber,
-  xIsNext
+  xIsNext,
+  winner
 });
 
 export const toggleMark = (history, stepNumber, xIsNext, winner) => ({

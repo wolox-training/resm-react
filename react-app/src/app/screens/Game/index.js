@@ -12,8 +12,8 @@ class Game extends Component {
   handleClick = i => {
     const history = this.props.history.slice(0, this.props.stepNumber + 1);
     const current = history[history.length - 1];
-    const squares = current.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
+    const squares = current.squares.asMutable().slice();
+    if (this.props.winner || squares[i]) {
       return;
     }
     squares[i] = this.props.xIsNext ? 'X' : 'O';
@@ -27,11 +27,24 @@ class Game extends Component {
 
   createHistoryButton(move) {
     const desc = move ? `Go to move # ${move}` : 'Go to game start';
+    const history = this.props.history.slice(0, move + 1);
+    const current = history[history.length - 1];
+    const squares = current.squares.asMutable().slice();
     return (
       <li key={move.toString()}>
-        <button onClick={() => this.props.jumpTo(move, move % 2 === 0)}>{desc}</button>
+        <button onClick={() => this.props.jumpTo(move, move % 2 === 0, calculateWinner(squares))}>
+          {desc}
+        </button>
       </li>
     );
+  }
+
+  updateStatus() {
+    if (this.props.winner) {
+      this.props.updateStatus(`Winner: ${this.props.winner}`);
+    } else {
+      this.props.updateStatus(`Next player: ${this.props.xIsNext ? 'X' : 'O'}`);
+    }
   }
 
   render() {
@@ -39,11 +52,7 @@ class Game extends Component {
     const current = history[this.props.stepNumber];
     const moves = history.map((step, move) => this.createHistoryButton(move));
 
-    if (this.props.winner) {
-      this.props.updateStatus(`Winner: ${this.props.winner}`);
-    } else {
-      this.props.updateStatus(`Next player: ${this.props.xIsNext ? 'X' : 'O'}`);
-    }
+    this.updateStatus();
 
     return (
       <div className={style.game}>
@@ -64,7 +73,7 @@ Game.propTypes = {
   stepNumber: PropTypes.number,
   xIsNext: PropTypes.bool,
   status: PropTypes.string,
-  winner: PropTypes.arrayOf(PropTypes.string),
+  winner: PropTypes.string,
   jumpTo: PropTypes.func,
   toggleMark: PropTypes.func,
   updateStatus: PropTypes.func
