@@ -9,7 +9,8 @@ related to @@BOOKS for easier debugging.
 */
 export const actions = {
   SET_FAVORITE_BOOK: '@@BOOKS/SET_FAVORITE_BOOK',
-  ADD_READ_BOOK: '@@BOOKS/ADD_READ_BOOK'
+  ADD_READ_BOOK: '@@BOOKS/ADD_READ_BOOK',
+  SET_MOST_HATED_BOOK: '@@BOOKS/SET_MOST_HATED_BOOK'
 };
 
 /*
@@ -17,11 +18,24 @@ This is our actionCreators object. https://redux.js.org/basics/actions#action-cr
 The purpose of this object is to have all the action-creating logic in a single
 place. All actions types must only be used inside an actionCreator.
 */
+
 export default {
   addReadBook: title => ({
     type: actions.ADD_READ_BOOK,
     payload: {
       title
+    }
+  }),
+  setFavoriteBook: favoriteBook => ({
+    type: actions.SET_FAVORITE_BOOK,
+    payload: {
+      favoriteBook
+    }
+  }),
+  setMostHatedBook: mostHatedBook => ({
+    type: actions.SET_MOST_HATED_BOOK,
+    payload: {
+      mostHatedBook
     }
   })
 };
