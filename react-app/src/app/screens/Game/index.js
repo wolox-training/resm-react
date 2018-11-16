@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import gameActions from '../../../redux/game/actions';
+import { jumpTo, toggleMark, updateStatus } from '../../../redux/Game/actions';
 
 import calculateWinner from './utils';
 import Board from './components/Board';
@@ -17,7 +17,12 @@ class Game extends Component {
       return;
     }
     squares[i] = this.props.xIsNext ? 'X' : 'O';
-    this.props.toggleMark(history.concat([{ squares }]), history.length, !this.props.xIsNext);
+    this.props.toggleMark(
+      history.concat([{ squares }]),
+      history.length,
+      !this.props.xIsNext,
+      calculateWinner(squares)
+    );
   };
 
   createHistoryButton(move) {
@@ -32,11 +37,10 @@ class Game extends Component {
   render() {
     const history = this.props.history;
     const current = history[this.props.stepNumber];
-    const winner = calculateWinner(current.squares);
     const moves = history.map((step, move) => this.createHistoryButton(move));
 
-    if (winner) {
-      this.props.updateStatus(`Winner: ${winner}`);
+    if (this.props.winner) {
+      this.props.updateStatus(`Winner: ${this.props.winner}`);
     } else {
       this.props.updateStatus(`Next player: ${this.props.xIsNext ? 'X' : 'O'}`);
     }
@@ -60,23 +64,31 @@ Game.propTypes = {
   stepNumber: PropTypes.number,
   xIsNext: PropTypes.bool,
   status: PropTypes.string,
+  winner: PropTypes.arrayOf(PropTypes.string),
   jumpTo: PropTypes.func,
   toggleMark: PropTypes.func,
   updateStatus: PropTypes.func
 };
 
-function mapStateToProps(state) {
-  return {
-    history: state.game.history,
-    stepNumber: state.game.stepNumber,
-    xIsNext: state.game.xIsNext,
-    status: state.game.status
-  };
-}
+const mapStateToProps = state => ({
+  history: state.game.history,
+  stepNumber: state.game.stepNumber,
+  xIsNext: state.game.xIsNext,
+  status: state.game.status,
+  winner: state.game.winner
+});
 
-const mapDispatchToProps = {
-  ...gameActions
-};
+const mapDispatchToProps = dispatch => ({
+  jumpTo: (stepNumber, xIsNext) => {
+    dispatch(jumpTo(stepNumber, xIsNext));
+  },
+  toggleMark: (history, stepNumber, xIsNext, winner) => {
+    dispatch(toggleMark(history, stepNumber, xIsNext, winner));
+  },
+  updateStatus: status => {
+    dispatch(updateStatus(status));
+  }
+});
 
 export default connect(
   mapStateToProps,

@@ -1,10 +1,13 @@
+// import merge from 'lodash.merge';
+
 import { actionNames } from './actions';
 
 const initialState = {
   history: [{ squares: Array(9).fill(null) }],
   stepNumber: 0,
   xIsNext: true,
-  status: ''
+  status: '',
+  winner: []
 };
 
 export const reducer = (state = initialState, action) => {
@@ -20,7 +23,8 @@ export const reducer = (state = initialState, action) => {
         ...state,
         history: action.history,
         stepNumber: action.stepNumber,
-        xIsNext: action.xIsNext
+        xIsNext: action.xIsNext,
+        winner: action.winner
       };
     case actionNames.updateStatus:
       return {

@@ -10,11 +10,12 @@ export const jumpTo = (stepNumber, xIsNext) => ({
   xIsNext
 });
 
-export const toggleMark = (history, stepNumber, xIsNext) => ({
+export const toggleMark = (history, stepNumber, xIsNext, winner) => ({
   type: actionNames.toggleMark,
   history,
   stepNumber,
-  xIsNext
+  xIsNext,
+  winner
 });
 
 export const updateStatus = status => ({
