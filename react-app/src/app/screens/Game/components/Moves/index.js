@@ -37,11 +37,6 @@ Moves.propTypes = {
   jumpTo: PropTypes.func
 };
 
-const mapStateToProps = state => ({
-  history: state.game.history,
-  stepNumber: state.game.stepNumber
-});
-
 const mapDispatchToProps = dispatch => ({
   jumpTo: (stepNumber, xIsNext, winner) => {
     dispatch(jumpTo(stepNumber, xIsNext, winner));
@@ -49,6 +44,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(Moves);

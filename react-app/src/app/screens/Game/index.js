@@ -47,7 +47,7 @@ class Game extends Component {
         </div>
         <div className={style.gameInfo}>
           <div>{this.props.status}</div>
-          <Moves />
+          <Moves history={this.props.history} />
         </div>
       </div>
     );
