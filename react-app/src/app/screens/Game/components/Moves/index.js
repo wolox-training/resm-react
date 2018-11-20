@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Move from '../Move';
+import Move from './components/Move';
 
 class Moves extends Component {
   render() {
