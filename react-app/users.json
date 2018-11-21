@@ -1,8 +1,8 @@
 {
   "users": [
-    { "id": 1, "username": "rsuescun@gmail.com", "name": "Raul Suescun", "pass": "rsuescun+pass" },
-    { "id": 2, "username": "pperez@gmail.com", "name": "Pedro Perez", "pass": "pperez+pass" },
-    { "id": 3, "username": "mmontoya@outlook.com", "name": "Maria Montoya", "pass": "mmontoya+pass" },
-    { "id": 4, "username": "mmarin@hotmail.com", "name": "Viviana Marin", "pass": "rsuescun+pass" }
+    { "id": 1, "email": "rsuescun@gmail.com", "name": "Raul Suescun", "pass": "rsuescun+pass" },
+    { "id": 2, "email": "pperez@gmail.com", "name": "Pedro Perez", "pass": "pperez+pass" },
+    { "id": 3, "email": "mmontoya@outlook.com", "name": "Maria Montoya", "pass": "mmontoya+pass" },
+    { "id": 4, "email": "mmarin@hotmail.com", "name": "Viviana Marin", "pass": "mmarin+pass" }
   ]
 }
