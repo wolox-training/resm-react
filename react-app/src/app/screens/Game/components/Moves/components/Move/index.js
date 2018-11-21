@@ -9,22 +9,27 @@ import style from './styles.scss';
 
 class Move extends Component {
   state = {
-    history: this.props.history,
     squares: [],
     winner: null,
-    desc: this.props.move ? `Go to move # ${this.props.move}` : `Go to game start`
+    desc: ''
   };
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.history !== prevState.history) {
-      const current = nextProps.history[nextProps.history.length - 1];
-      const currentSquares = current.squares.asMutable().slice();
-      return {
+    let newState = null;
+    const newDesc = nextProps.move ? `Go to move # ${nextProps.move}` : `Go to game start`;
+    const current = nextProps.history[nextProps.history.length - 1];
+    const newSquares = current.squares.asMutable().slice();
+    if (newDesc !== prevState.desc) {
+      newState = { desc: newDesc };
+    }
+    if (newSquares !== prevState.squares) {
+      newState = {
+        ...newState,
         history: nextProps.history,
-        squares: currentSquares,
-        winner: calculateWinner(currentSquares)
+        squares: newSquares,
+        winner: calculateWinner(newSquares)
       };
     }
-    return null;
+    return newState;
   }
   jumpTo = () => {
     this.props.jumpTo(this.props.move, this.props.move % 2 === 0, this.state.winner);
@@ -41,7 +46,6 @@ class Move extends Component {
 }
 
 Move.propTypes = {
-  history: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)),
   move: PropTypes.number,
   jumpTo: PropTypes.func
 };
