@@ -8,21 +8,32 @@ import calculateWinner from '../../../../utils';
 import style from './styles.scss';
 
 class Move extends Component {
+  state = {
+    history: this.props.history,
+    squares: [],
+    winner: null,
+    desc: this.props.move ? `Go to move # ${this.props.move}` : `Go to game start`
+  };
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.history !== prevState.history) {
+      const current = nextProps.history[nextProps.history.length - 1];
+      const currentSquares = current.squares.asMutable().slice();
+      return {
+        history: nextProps.history,
+        squares: currentSquares,
+        winner: calculateWinner(currentSquares)
+      };
+    }
+    return null;
+  }
+  jumpTo = () => {
+    this.props.jumpTo(this.props.move, this.props.move % 2 === 0, this.state.winner);
+  };
   render() {
-    const desc = this.props.move ? `Go to move # ${this.props.move}` : 'Go to game start';
-    const history = this.props.history.slice(0, this.props.move + 1);
-    const current = history[history.length - 1];
-    const squares = current.squares.asMutable().slice();
-
     return (
       <li>
-        <button
-          className={style.move}
-          onClick={() => {
-            this.props.jumpTo(this.props.move, this.props.move % 2 === 0, calculateWinner(squares));
-          }}
-        >
-          {desc}
+        <button className={style.move} onClick={this.jumpTo}>
+          {this.state.desc}
         </button>
       </li>
     );
