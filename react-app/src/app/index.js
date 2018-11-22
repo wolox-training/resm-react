@@ -24,7 +24,6 @@ class App extends Component {
               <Route path="/app" component={Game} />
               <Redirect to="/login" />
             </Switch>
-            {/* <Game /> */}
           </div>
         </BrowserRouter>
       </Provider>

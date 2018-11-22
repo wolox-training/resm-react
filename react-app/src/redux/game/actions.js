@@ -1,18 +1,18 @@
 export const actionNames = {
-  jumpTo: 'JUMP-TO',
-  toggleMark: 'TOGGLE-MARK',
-  updateStatus: 'UPDATE-STATUS'
+  JUMP_TO: 'JUMP_TO',
+  TOGGLE_MARK: 'TOGGLE_ARK',
+  UPDATE_STATUS: 'UPDATE_STATUS'
 };
 
 export const jumpTo = (stepNumber, xIsNext, winner) => ({
-  type: actionNames.jumpTo,
+  type: actionNames.JUMP_TO,
   stepNumber,
   xIsNext,
   winner
 });
 
 export const toggleMark = (history, stepNumber, xIsNext, winner) => ({
-  type: actionNames.toggleMark,
+  type: actionNames.TOGGLE_MARK,
   history,
   stepNumber,
   xIsNext,
@@ -20,7 +20,7 @@ export const toggleMark = (history, stepNumber, xIsNext, winner) => ({
 });
 
 export const updateStatus = status => ({
-  type: actionNames.updateStatus,
+  type: actionNames.UPDATE_STATUS,
   status
 });
 

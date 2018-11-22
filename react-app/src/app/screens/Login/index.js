@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import LoginForm from './components/LoginForm';
 
 class Login extends Component {
-  state = {
-    submitted: false
-  };
-  submitForm = () => this.setState({ submitted: true });
-  cleanForm = () => this.setState({ submitted: false });
-
   render() {
-    const submitted = this.state.submitted;
     return (
       <div className="login-layout">
-        {submitted ? <div>Logged</div> : <LoginForm onSubmit={this.submitForm} />}
+        {this.props.logged ? <Redirect to="/app" /> : <Route path="/login" component={LoginForm} />}
       </div>
     );
   }
 }
 
-export default Login;
+Login.propTypes = {
+  logged: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+  logged: state.auth.logged
+});
+
+export default connect(mapStateToProps)(Login);

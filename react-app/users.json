@@ -1,8 +1,28 @@
 {
   "users": [
-    { "id": 1, "email": "rsuescun@gmail.com", "name": "Raul Suescun", "pass": "rsuescun+pass" },
-    { "id": 2, "email": "pperez@gmail.com", "name": "Pedro Perez", "pass": "pperez+pass" },
-    { "id": 3, "email": "mmontoya@outlook.com", "name": "Maria Montoya", "pass": "mmontoya+pass" },
-    { "id": 4, "email": "mmarin@hotmail.com", "name": "Viviana Marin", "pass": "mmarin+pass" }
+    {
+      "id": 1,
+      "email": "rsuescun@gmail.com",
+      "name": "Raul Suescun",
+      "pass": "rsuescunpass"
+    },
+    {
+      "id": 2,
+      "email": "pperez@gmail.com",
+      "name": "Pedro Perez",
+      "pass": "pperezpass"
+    },
+    {
+      "id": 3,
+      "email": "mmontoya@outlook.com",
+      "name": "Maria Montoya",
+      "pass": "mmontoyapass"
+    },
+    {
+      "id": 4,
+      "email": "mmarin@hotmail.com",
+      "name": "Viviana Marin",
+      "pass": "mmarinpass"
+    }
   ]
 }
