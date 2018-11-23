@@ -6,32 +6,30 @@ export const actionNames = {
   GET_USER_FAILURE: 'GET_USER_FAILURE'
 };
 
+const responseBad = (message, dispatch) => {
+  dispatch({
+    type: actionNames.GET_USER_FAILURE,
+    messageLogin: message
+  });
+};
+
+const responseOk = (data, dispatch) => {
+  if (data.length > 0) {
+    dispatch({
+      type: actionNames.GET_USER_SUCCESS
+    });
+  } else {
+    responseBad('Username or password incorrect.', dispatch);
+  }
+};
+
 export const getUser = (email, pass) => async dispatch => {
   dispatch({ type: actionNames.GET_USER });
   const response = await authService.getUser(email, pass);
   if (response.ok) {
-    // TODO
-    // eslint-disable-next-line
-    alert(`token: ${response.data.token}`);
-    if (response.data.length > 0) {
-      dispatch({
-        type: actionNames.GET_USER_SUCCESS
-      });
-    } else {
-      // TODO
-      // eslint-disable-next-line
-      alert('Username or password not correct.');
-      dispatch({
-        type: actionNames.GET_USER_FAILURE
-      });
-    }
+    responseOk(response.data, dispatch);
   } else {
-    // TODO
-    // eslint-disable-next-line
-    alert('Problem to query user or password from api.');
-    dispatch({
-      type: actionNames.GET_USER_FAILURE
-    });
+    responseBad('Problem to query user or password from api.', dispatch);
   }
 };
 

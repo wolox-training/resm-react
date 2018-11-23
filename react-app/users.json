@@ -3,24 +3,28 @@
     {
       "id": 1,
       "email": "rsuescun@gmail.com",
+      "username": "rsuescun",
       "name": "Raul Suescun",
       "pass": "rsuescunpass"
     },
     {
       "id": 2,
       "email": "pperez@gmail.com",
+      "username": "pperez",
       "name": "Pedro Perez",
       "pass": "pperezpass"
     },
     {
       "id": 3,
       "email": "mmontoya@outlook.com",
+      "username": "mmontoya",
       "name": "Maria Montoya",
       "pass": "mmontoyapass"
     },
     {
       "id": 4,
       "email": "mmarin@hotmail.com",
+      "username": "mmarin",
       "name": "Viviana Marin",
       "pass": "mmarinpass"
     }

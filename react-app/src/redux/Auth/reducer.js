@@ -4,7 +4,8 @@ import { actionNames } from './actions';
 
 const initialState = Immutable({
   loading: false,
-  logged: false
+  logged: false,
+  messageLogin: ''
 });
 
 export const reducer = (state = initialState, action) => {
@@ -21,7 +22,8 @@ export const reducer = (state = initialState, action) => {
     case actionNames.GET_USER_FAILURE:
       return state.merge({
         loading: false,
-        logged: false
+        logged: false,
+        messageLogin: action.messageLogin
       });
     default:
       return state;

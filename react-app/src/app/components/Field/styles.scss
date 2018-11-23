@@ -1,8 +1,19 @@
 @import '../scss/colors.scss';
+@import '../scss/fonts.scss';
+
+.error {
+  color: $red;
+  font-size: $font-label-size;
+  text-align: left;
+}
 
 .field-container {
-  align-items: center;
+  align-content: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   margin-bottom: 10px;
+}
+
+.field-label {
+  text-align: left;
 }
