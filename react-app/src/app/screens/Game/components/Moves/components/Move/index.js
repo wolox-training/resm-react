@@ -9,27 +9,24 @@ import style from './styles.scss';
 
 class Move extends Component {
   state = {
+    move: null,
     squares: [],
     winner: null,
     desc: ''
   };
   static getDerivedStateFromProps(nextProps, prevState) {
-    let newState = null;
-    const newDesc = nextProps.move ? `Go to move # ${nextProps.move}` : `Go to game start`;
-    const current = nextProps.history[nextProps.history.length - 1];
-    const newSquares = current.squares.asMutable().slice();
-    if (newDesc !== prevState.desc) {
-      newState = { desc: newDesc };
-    }
-    if (newSquares !== prevState.squares) {
-      newState = {
-        ...newState,
-        history: nextProps.history,
+    if (nextProps.move !== prevState.move) {
+      const newDesc = nextProps.move ? `Go to move # ${nextProps.move}` : `Go to game start`;
+      const current = nextProps.history[nextProps.history.length - 1];
+      const newSquares = current.squares.asMutable().slice();
+      return {
+        move: nextProps.move,
         squares: newSquares,
-        winner: calculateWinner(newSquares)
+        winner: calculateWinner(newSquares),
+        desc: newDesc
       };
     }
-    return newState;
+    return null;
   }
   jumpTo = () => {
     this.props.jumpTo(this.props.move, this.props.move % 2 === 0, this.state.winner);
