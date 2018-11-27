@@ -7,7 +7,7 @@ class Moves extends Component {
   render() {
     const history = this.props.history;
     const moves = history.map((step, move) => (
-      <Move key={move.toString()} history={this.props.history} move={move} />
+      <Move key={move.toString()} history={history.slice(0, move + 1)} move={move} />
     ));
     return <ol>{moves}</ol>;
   }
