@@ -1,0 +1,96 @@
+@import '../scss/colors.scss';
+@import '../scss/fonts.scss';
+
+.topbar {
+  display: grid;
+  grid-column-gap: 10px;
+  grid-template-columns: 50px 1fr 2fr 40px;
+  grid-template-rows: 1fr;
+  grid-template-areas: "logo title nav user";
+  padding: 10px;
+}
+
+.topbar-logo {
+  grid-area: logo;
+  height: 50px;
+  width: 50px;
+}
+
+.topbar-title {
+  grid-area: title;
+  font-size: $font-title-app-size;
+  text-align: left;
+}
+
+.topbar-nav {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  grid-area: nav;
+  justify-self: flex-end;
+}
+
+.topbar-link {
+  background: $white;
+  padding: 10px;
+  text-decoration: none;
+
+  &:hover {
+    background: $black;
+    color: $white;
+  }
+}
+
+.topbar-active {
+  color: $white;
+}
+
+.topbar-user {
+  align-self: center;
+  border: solid 2px $white;
+  border-radius: 50%;
+  box-sizing: border-box;
+  font-size: $font-topbar-user;
+  grid-area: user;
+  height: 40px;
+  padding: 2px 0;
+  text-transform: uppercase;
+  width: 40px;
+}
+
+.topbar-active,
+.topbar-user {
+  background: $malibu;
+}
+
+.topbar-nav,
+.topbar-link,
+.topbar-user {
+  color: $black;
+}
+
+@media only screen and (max-width: 1024px) {
+  .topbar {
+    grid-template-areas: 
+      "logo title"
+      "user user"
+      "nav nav";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    justify-items: center;
+  }
+
+  .topbar-logo {
+    justify-self: end;
+  }
+
+  .topbar-title {
+    justify-self: start;
+  }
+
+  .topbar-nav,
+  .topbar-user
+   {
+    justify-self: center;
+  }
+}

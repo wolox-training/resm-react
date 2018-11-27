@@ -5,28 +5,32 @@
       "email": "rsuescun@gmail.com",
       "username": "rsuescun",
       "name": "Raul Suescun",
-      "pass": "rsuescunpass"
+      "pass": "rsuescunpass",
+      "token": "rsuescun@rsuescunpass"
     },
     {
       "id": 2,
       "email": "pperez@gmail.com",
       "username": "pperez",
       "name": "Pedro Perez",
-      "pass": "pperezpass"
+      "pass": "pperezpass",
+      "token": "pperez@pperezpass"
     },
     {
       "id": 3,
       "email": "mmontoya@outlook.com",
       "username": "mmontoya",
       "name": "Maria Montoya",
-      "pass": "mmontoyapass"
+      "pass": "mmontoyapass",
+      "token": "mmontoya@mmontoyapass"
     },
     {
       "id": 4,
       "email": "mmarin@hotmail.com",
       "username": "mmarin",
       "name": "Viviana Marin",
-      "pass": "mmarinpass"
+      "pass": "mmarinpass",
+      "token": "mmarin@mmarinpass"
     }
   ]
 }

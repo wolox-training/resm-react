@@ -1,0 +1,35 @@
+@import '../scss/colors.scss';
+@import '../scss/fonts.scss';
+
+.userbar-nav {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  grid-area: nav;
+  justify-content: center;
+  justify-self: flex-end;
+  margin-right: 10px;
+}
+
+.userbar-link {
+  background: $white;
+  border: solid 0.5px $dusty-gray;
+  height: 35px;
+  padding: 12px 12px 0;
+  text-decoration: none;
+
+  &:hover {
+    background: $black;
+    color: $white;
+  }
+}
+
+.userbar-active {
+  background: $malibu;
+  color: $white;
+}
+
+.userbar-nav,
+.userbar-link {
+  color: $black;
+}
