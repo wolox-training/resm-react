@@ -6,11 +6,13 @@ import { connect } from 'react-redux';
 import { LINKS } from './constants';
 import style from './styles.scss';
 import Topbar from './components/Topbar';
+import RestrictRoute from './components/RestrictRoute';
 import Game from './screens/Game';
 import Login from './screens/Login';
 import User from './screens/User';
 import Help from './screens/Help';
 
+// TODO: react-router-redux implementation
 class App extends Component {
   render() {
     // TODO: delete div with sessions vars
@@ -41,8 +43,8 @@ class App extends Component {
           />
           <Switch>
             <Route path="/login" component={Login} />
-            <Route path="/app" component={Game} />
-            <Route path="/user" component={User} />
+            <RestrictRoute path="/app" component={Game} />
+            <RestrictRoute path="/user" component={User} />
             <Route path="/help" component={Help} />
             <Redirect to="/login" />
           </Switch>

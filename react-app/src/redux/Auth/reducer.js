@@ -1,17 +1,23 @@
 import Immutable from 'seamless-immutable';
 
+import { loadState } from '../localStorage';
+
 import { actionNames } from './actions';
 
-const initialState = Immutable({
+const defaultInitialState = Immutable({
   loading: false,
   logged: false,
+  token: '',
   messageLogin: '',
   user: {
+    id: null,
     name: '',
     username: '',
     email: ''
   }
 });
+
+const initialState = loadState('auth', defaultInitialState);
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -23,7 +29,9 @@ export const reducer = (state = initialState, action) => {
       return state.merge({
         loading: false,
         logged: true,
+        token: action.token,
         user: {
+          id: action.id,
           name: action.name,
           username: action.username,
           email: action.email
@@ -33,7 +41,9 @@ export const reducer = (state = initialState, action) => {
       return state.merge({
         loading: false,
         logged: false,
+        token: '',
         user: {
+          id: null,
           name: '',
           username: '',
           email: ''
