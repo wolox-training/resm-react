@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
 
-class Profile extends Component {
+class History extends Component {
   render() {
-    return <h3>Profile</h3>;
+    return <h3>History</h3>;
   }
 }
 
@@ -21,4 +21,4 @@ class Profile extends Component {
 //   mapDispatchToProps
 // )(Profile);
 
-export default Profile;
+export default History;

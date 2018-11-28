@@ -1,23 +1,15 @@
 import React, { Component } from 'react';
 import { NavLink, Redirect, Route, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 
 import style from './styles.scss';
 import Dashboard from './components/Dashboard';
-import Profile from './components/Profile';
+import History from './components/History';
 import Points from './components/Points';
 
 class Userpage extends Component {
   render() {
     return (
       <div className={style.loginLayout}>
-        <span>{`Name: ${this.props.user.name}`}</span>
-        &nbsp;
-        <span>{`Username: ${this.props.user.username}`}</span>
-        &nbsp;
-        <span>{`email: ${this.props.user.email}`}</span>
-        &nbsp;
         <h2>User page</h2>
         <div className={style.userbarNav}>
           <NavLink to="/user" exact className={style.userbarLink} activeClassName={style.userbarActive}>
@@ -32,17 +24,17 @@ class Userpage extends Component {
             Points
           </NavLink>
           <NavLink
-            to="/user/profile"
+            to="/user/history"
             exact
             className={style.userbarLink}
             activeClassName={style.userbarActive}
           >
-            Profile
+            History
           </NavLink>
         </div>
         <Switch>
           <Route path="/user/points" component={Points} />
-          <Route path="/user/profile" component={Profile} />
+          <Route path="/user/history" component={History} />
           <Route path="/user" component={Dashboard} />
           <Redirect to="/user" />
         </Switch>
@@ -51,13 +43,4 @@ class Userpage extends Component {
   }
 }
 
-Userpage.propTypes = {
-  user: PropTypes.objectOf(PropTypes.string)
-};
-
-const mapStateToProps = state => ({
-  logged: state.auth.logged,
-  user: state.auth.user
-});
-
-export default connect(mapStateToProps)(Userpage);
+export default Userpage;

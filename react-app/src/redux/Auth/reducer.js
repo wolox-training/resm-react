@@ -4,18 +4,33 @@ import { loadState } from '../localStorage';
 
 import { actionNames } from './actions';
 
+const defaultUsert = {
+  id: null,
+  email: '',
+  username: '',
+  name: '',
+  avatar: ''
+};
+
 const defaultInitialState = Immutable({
   loading: false,
   logged: false,
-  token: '',
   messageLogin: '',
-  user: {
-    id: null,
-    name: '',
-    username: '',
-    email: ''
-  }
+  user: defaultUsert
 });
+
+// const defaultInitialState = Immutable({
+//   loading: false,
+//   logged: false,
+//   token: '',
+//   messageLogin: '',
+//   user: {
+//     id: null,
+//     name: '',
+//     username: '',
+//     email: ''
+//   }
+// });
 
 const initialState = loadState('auth', defaultInitialState);
 
@@ -29,36 +44,22 @@ export const reducer = (state = initialState, action) => {
       return state.merge({
         loading: false,
         logged: true,
-        token: action.token,
-        user: {
-          id: action.id,
-          name: action.name,
-          username: action.username,
-          email: action.email
-        }
+        messageLogin: '',
+        user: action.user
       });
     case actionNames.GET_USER_FAILURE:
       return state.merge({
         loading: false,
         logged: false,
-        token: '',
-        user: {
-          id: null,
-          name: '',
-          username: '',
-          email: ''
-        },
-        messageLogin: action.messageLogin
+        messageLogin: action.messageLogin,
+        user: defaultUsert
       });
     case actionNames.LOGOUT:
       return state.merge({
         loading: false,
         logged: false,
-        user: {
-          name: '',
-          username: '',
-          email: ''
-        }
+        messageLogin: '',
+        user: defaultUsert
       });
     default:
       return state;

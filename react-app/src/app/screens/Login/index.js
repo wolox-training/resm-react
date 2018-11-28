@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import style from './styles.scss';
 import LoginForm from './components/LoginForm';
@@ -13,13 +15,22 @@ class Login extends Component {
         <h2>Login</h2>
         <Switch>
           <Route path="/login/logout" component={Logout} />
+          {this.props.logged && <Redirect to="/app" />}
           <Route path="/login" component={LoginForm} />
         </Switch>
-        {/* {`logged: ${this.props.logged}`} */}
         {/* {this.props.logged ? <Redirect to="/app" /> : <Route path="/login" component={LoginForm} />} */}
+        {/* {this.props.logged && <Redirect to="/app" /> */}
       </div>
     );
   }
 }
 
-export default Login;
+Login.propTypes = {
+  logged: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+  logged: state.auth.logged
+});
+
+export default connect(mapStateToProps)(Login);

@@ -22,3 +22,11 @@ export const saveState = (name, value) => {
     console.log(error);
   }
 };
+
+export const removeState = name => {
+  localStorage.removeItem(name);
+};
+
+export const localStorageManage = { loadState, saveState, removeState };
+
+export default localStorageManage;

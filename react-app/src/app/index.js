@@ -15,8 +15,8 @@ import Help from './screens/Help';
 // TODO: react-router-redux implementation
 class App extends Component {
   render() {
-    // TODO: delete div with sessions vars
-    // TODO: pass colors vars from colors.scss
+    // TODO: delete div with sessions vars comment
+    // TODO: pass style to Topbar from style object
     const styleTopbar = {
       backgroundColor: '#222',
       color: '#fff'
@@ -24,15 +24,15 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className={style.app}>
-          <div>
-            <span>{`Logged: ${this.props.logged}`}</span>
-            &nbsp;
-            <span>{`Name: ${this.props.user.name}`}</span>
-            &nbsp;
-            <span>{`Username: ${this.props.user.username}`}</span>
-            &nbsp;
-            <span>{`email: ${this.props.user.email}`}</span>
-          </div>
+          {/* <div>
+            <span>
+              TEMP: &gt;&gt;&gt; &nbsp;
+              {`Logged: ${this.props.logged}`} &nbsp;
+              {`Name: ${this.props.user.name}`} &nbsp;
+              {`Username: ${this.props.user.username}`} &nbsp;
+              {`email: ${this.props.user.email}`}
+            </span>
+          </div> */}
           <Topbar
             title="Tic Tac Toe"
             logo="/tictactoe-logo.png"
