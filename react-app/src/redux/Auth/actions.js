@@ -15,9 +15,18 @@ const responseBad = (message, dispatch) => {
 
 const responseOk = (data, dispatch) => {
   if (data.length > 0) {
+    const d = data[0];
+    authService.setTokenInHeader(d.token);
     dispatch({
-      type: actionNames.GET_USER_SUCCESS
+      type: actionNames.GET_USER_SUCCESS,
+      id: d.id,
+      name: d.name,
+      username: d.username,
+      email: d.username,
+      token: d.token
     });
+    // TODO: calculate date and time with EXPIRATION_INTERVALE_MIN from .env and send to tokenExpireDateTime
+    authService.setUser(d.id, 'tokenExpireDateTime', '2018/11/29');
   } else {
     responseBad('Username or password incorrect.', dispatch);
   }

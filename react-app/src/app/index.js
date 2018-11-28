@@ -6,9 +6,11 @@ import store from '../redux/store';
 import logo from '../logo.svg';
 
 import style from './styles.scss';
+import RestrictRoute from './components/RestrictRoute';
 import Game from './screens/Game';
 import Login from './screens/Login';
 
+// TODO: react-router-redux implementation
 class App extends Component {
   render() {
     return (
@@ -21,7 +23,7 @@ class App extends Component {
             </header>
             <Switch>
               <Route path="/login" component={Login} />
-              <Route path="/app" component={Game} />
+              <RestrictRoute path="/app" component={Game} />
               <Redirect to="/login" />
             </Switch>
           </div>
