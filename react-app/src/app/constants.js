@@ -1,0 +1,5 @@
+export const TOKEN_EXPIRATION_MILISECONDS = 15 * 24 * 60 * 60 * 1000;
+
+export const CONSTANTS = { TOKEN_EXPIRATION_MILISECONDS };
+
+export default CONSTANTS;

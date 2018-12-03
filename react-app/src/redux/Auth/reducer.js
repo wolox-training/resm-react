@@ -4,10 +4,15 @@ import { loadState } from '../localStorage';
 
 import { actionNames } from './actions';
 
-const defaultInitialState = Immutable({
+const token = loadState('token', '');
+const tokenExpireDateTime = loadState('tokenExpireDateTime', '');
+const logged = token && new Date().getTime() <= tokenExpireDateTime && true;
+
+const initialState = Immutable({
   loading: false,
-  logged: false,
-  token: '',
+  logged,
+  token,
+  tokenExpireDateTime,
   messageLogin: '',
   user: {
     id: null,
@@ -16,8 +21,6 @@ const defaultInitialState = Immutable({
     email: ''
   }
 });
-
-const initialState = loadState('auth', defaultInitialState);
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -30,6 +33,8 @@ export const reducer = (state = initialState, action) => {
         loading: false,
         logged: true,
         token: action.token,
+        tokenExpireDateTime: action.tokenExpireDateTime,
+        messageLogin: '',
         user: {
           id: action.id,
           name: action.name,
@@ -42,13 +47,14 @@ export const reducer = (state = initialState, action) => {
         loading: false,
         logged: false,
         token: '',
+        tokenExpireDateTime: '',
+        messageLogin: action.messageLogin,
         user: {
           id: null,
           name: '',
           username: '',
           email: ''
-        },
-        messageLogin: action.messageLogin
+        }
       });
     default:
       return state;

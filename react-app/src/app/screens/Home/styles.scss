@@ -1,8 +1,11 @@
 @import '../scss/colors.scss';
 
-.login-layout {
+.home {
   align-items: center;
+  border: solid 1px $dusty-gray;
+  border-radius: 25px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  margin: 60px;
+  padding: 60px;
 }

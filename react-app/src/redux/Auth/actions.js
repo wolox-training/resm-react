@@ -1,4 +1,5 @@
 import { authService } from '../../services/authService';
+import { TOKEN_EXPIRATION_MILISECONDS } from '../../app/constants';
 
 export const actionNames = {
   GET_USER: 'GET_USER',
@@ -6,42 +7,61 @@ export const actionNames = {
   GET_USER_FAILURE: 'GET_USER_FAILURE'
 };
 
-const responseBad = (message, dispatch) => {
-  dispatch({
-    type: actionNames.GET_USER_FAILURE,
-    messageLogin: message
-  });
-};
-
-const responseOk = (data, dispatch) => {
-  if (data.length > 0) {
-    const d = data[0];
-    authService.setTokenInHeader(d.token);
+const getUserActions = {
+  getUserSuccess: (data, token, dispatch) => {
+    const tokenExpireDateTime = new Date().getTime() + TOKEN_EXPIRATION_MILISECONDS;
     dispatch({
       type: actionNames.GET_USER_SUCCESS,
-      id: d.id,
-      name: d.name,
-      username: d.username,
-      email: d.username,
-      token: d.token
+      id: data.id,
+      name: data.name,
+      username: data.username,
+      email: data.username,
+      token: data.token,
+      tokenExpireDateTime
     });
-    // TODO: calculate date and time with EXPIRATION_INTERVALE_MIN from .env and send to tokenExpireDateTime
-    authService.setUser(d.id, 'tokenExpireDateTime', '2018/11/29');
-  } else {
-    responseBad('Username or password incorrect.', dispatch);
+    if (!token) {
+      authService.setTokenInHeader(data.token);
+      authService.setUser(data.id, {
+        tokenIsValid: true,
+        tokenExpireDateTime
+      });
+    }
+  },
+  getUserFailure: (message, dispatch) => {
+    dispatch({
+      type: actionNames.GET_USER_FAILURE,
+      messageLogin: message
+    });
   }
 };
 
-export const getUser = (email, pass) => async dispatch => {
+export const getUser = obj => async dispatch => {
   dispatch({ type: actionNames.GET_USER });
-  const response = await authService.getUser(email, pass);
-  if (response.ok) {
-    responseOk(response.data, dispatch);
+  let message;
+  let response;
+  const dataNow = new Date().getTime();
+  if (obj.token) {
+    response = await authService.getUser({ token: obj.token });
+  } else if (obj.email && obj.pass) {
+    response = await authService.getUser({ email: obj.email, pass: obj.pass });
+  } else if (obj.id) {
+    response = await authService.getUser({ id: obj.id });
   } else {
-    responseBad('Problem to query user or password from api.', dispatch);
+    message = 'Problem to query user info.';
+  }
+  if (response && response.ok) {
+    if (response.data.length > 0) {
+      const data = response.data[0];
+      if ((obj.email && obj.pass) || (obj.token && dataNow <= data.tokenExpireDateTime)) {
+        getUserActions.getUserSuccess(data, obj.token, dispatch);
+      } else {
+        message = 'You must login back';
+      }
+    } else {
+      message = obj.token ? 'Data access incorrect.' : 'Username or password incorrect.';
+    }
+  }
+  if (message) {
+    getUserActions.getUserFailure(message, dispatch);
   }
 };
-
-export const actionCreators = { getUser };
-
-export default actionCreators;

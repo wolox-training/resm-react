@@ -1,21 +1,18 @@
-import Immutable from 'seamless-immutable';
-
-export const loadState = (name, defaultInitialState) => {
+export const loadState = (name, defaultValue) => {
   try {
-    const serializedData = localStorage.getItem(name);
-    if (serializedData === null) {
-      return defaultInitialState;
+    const value = localStorage.getItem(name);
+    if (!value) {
+      return defaultValue;
     }
-    return Immutable(JSON.parse(serializedData));
+    return value;
   } catch (error) {
-    return defaultInitialState;
+    return defaultValue;
   }
 };
 
 export const saveState = (name, value) => {
   try {
-    const serializedData = JSON.stringify(value);
-    localStorage.setItem(name, serializedData);
+    localStorage.setItem(name, value);
   } catch (error) {
     // TODO: delete console.log
     // eslint-disable-next-line
