@@ -19,7 +19,8 @@ const store = createStore(
 );
 
 const saveToLocalStorage = () => {
-  saveState('auth', store.getState().auth);
+  saveState('token', store.getState().auth.token);
+  saveState('tokenExpireDateTime', store.getState().auth.tokenExpireDateTime);
 };
 
 store.subscribe(saveToLocalStorage);

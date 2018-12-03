@@ -12,14 +12,18 @@ const defaultUser = {
   avatar: ''
 };
 
-const defaultInitialState = Immutable({
+const token = loadState('token', '');
+const tokenExpireDateTime = loadState('tokenExpireDateTime', null);
+const logged = token && !!(new Date().getTime() <= tokenExpireDateTime);
+
+const initialState = Immutable({
   loading: false,
-  logged: false,
+  logged,
+  token,
+  tokenExpireDateTime,
   messageLogin: '',
   user: defaultUser
 });
-
-const initialState = loadState('auth', defaultInitialState);
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -31,6 +35,8 @@ export const reducer = (state = initialState, action) => {
       return state.merge({
         loading: false,
         logged: true,
+        token: action.token,
+        tokenExpireDateTime: action.tokenExpireDateTime,
         messageLogin: '',
         user: action.user
       });
@@ -38,6 +44,8 @@ export const reducer = (state = initialState, action) => {
       return state.merge({
         loading: false,
         logged: false,
+        token: '',
+        tokenExpireDateTime: null,
         messageLogin: action.messageLogin,
         user: defaultUser
       });
@@ -45,6 +53,8 @@ export const reducer = (state = initialState, action) => {
       return state.merge({
         loading: false,
         logged: false,
+        token: '',
+        tokenExpireDateTime: null,
         messageLogin: '',
         user: defaultUser
       });

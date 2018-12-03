@@ -8,7 +8,9 @@ import { logout } from '../redux/Auth/actions';
 import { LINKS } from './constants';
 import style from './styles.scss';
 import Topbar from './components/Topbar';
+import PublicRoute from './components/PublicRoute';
 import RestrictRoute from './components/RestrictRoute';
+import Home from './screens/Home';
 import Game from './screens/Game';
 import Login from './screens/Login';
 import User from './screens/User';
@@ -29,11 +31,12 @@ class App extends Component {
             user={this.props.user}
           />
           <Switch>
-            <Route path="/login" component={Login} />
+            <Route path="/" exact component={Home} />
+            <PublicRoute path="/login" component={Login} />
+            <PublicRoute path="/help" component={Help} />
             <RestrictRoute path="/app" component={Game} />
             <RestrictRoute path="/user" component={User} />
-            <Route path="/help" component={Help} />
-            <Redirect to="/login" />
+            <Redirect to="/" />
           </Switch>
         </div>
       </BrowserRouter>
