@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
 
+// TODO: implementate history user
 class History extends Component {
   render() {
     return <h3>History</h3>;

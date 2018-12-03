@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
 
+// TODO: implementate help user
 class Help extends Component {
   render() {
     return <h3>Help</h3>;

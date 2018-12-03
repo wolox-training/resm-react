@@ -15,6 +15,7 @@ class Topbar extends Component {
           exact
           activeClassName={style.topbarActive}
           className={style.topbarLink}
+          onClick={link.isLogout && this.props.logout}
         >
           <FontAwesomeIcon icon={link.icon} />
           &nbsp;
@@ -26,13 +27,15 @@ class Topbar extends Component {
   };
 
   render() {
-    const links = this.props.links.map((link, i) => this.renderLink(link, i));
+    const links = this.props.links.map(this.renderLink);
     return (
-      <header className={style.topbar} style={this.props.style}>
-        <img src={this.props.logo} className={style.topbarLogo} alt="logo" />
-        <h1 className={style.topbarTitle}>{this.props.title}</h1>
-        <nav className={style.topbarNav}>{links}</nav>
-        {this.props.logged && <div className={style.topbarUser}>{this.props.user.name.substring(0, 1)}</div>}
+      <header className={this.props.className}>
+        <div className={style.topbar}>
+          <img src={this.props.logo} className={style.topbarLogo} alt="logo" />
+          <h1 className={style.topbarTitle}>{this.props.title}</h1>
+          <nav className={style.topbarNav}>{links}</nav>
+          {this.props.logged && <div className={style.topbarUser}>{this.props.user.name[0]}</div>}
+        </div>
       </header>
     );
   }
@@ -42,8 +45,9 @@ Topbar.propTypes = {
   title: PropTypes.string,
   logo: PropTypes.string,
   links: PropTypes.arrayOf(PropTypes.object),
-  style: PropTypes.objectOf(PropTypes.string),
+  className: PropTypes.element,
   logged: PropTypes.bool,
+  logout: PropTypes.func,
   user: PropTypes.objectOf(PropTypes.string)
 };
 

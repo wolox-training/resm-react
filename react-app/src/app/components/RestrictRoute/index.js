@@ -3,8 +3,6 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-// TODO: if the current date is greater than the date tokenExpireDateTime then invalidate token and redirect to login
-// TODO: delete eslint-disable-next-line
 class RestrictRoute extends Component {
   render() {
     if (!this.props.logged) {
@@ -16,8 +14,7 @@ class RestrictRoute extends Component {
 
 RestrictRoute.propTypes = {
   logged: PropTypes.bool,
-  // eslint-disable-next-line
-  component: PropTypes.object
+  component: PropTypes.element
 };
 
 const mapStateToProps = state => ({

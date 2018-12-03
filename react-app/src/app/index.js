@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { logout } from '../redux/Auth/actions';
+
 import { LINKS } from './constants';
 import style from './styles.scss';
 import Topbar from './components/Topbar';
@@ -12,33 +14,18 @@ import Login from './screens/Login';
 import User from './screens/User';
 import Help from './screens/Help';
 
-// TODO: react-router-redux implementation
 class App extends Component {
   render() {
-    // TODO: delete div with sessions vars comment
-    // TODO: pass style to Topbar from style object
-    const styleTopbar = {
-      backgroundColor: '#222',
-      color: '#fff'
-    };
     return (
       <BrowserRouter>
         <div className={style.app}>
-          {/* <div>
-            <span>
-              TEMP: &gt;&gt;&gt; &nbsp;
-              {`Logged: ${this.props.logged}`} &nbsp;
-              {`Name: ${this.props.user.name}`} &nbsp;
-              {`Username: ${this.props.user.username}`} &nbsp;
-              {`email: ${this.props.user.email}`}
-            </span>
-          </div> */}
           <Topbar
             title="Tic Tac Toe"
             logo="/tictactoe-logo.png"
             links={LINKS}
-            style={styleTopbar}
+            className={style.appTopbar}
             logged={this.props.logged}
+            logout={this.props.logout}
             user={this.props.user}
           />
           <Switch>
@@ -56,7 +43,8 @@ class App extends Component {
 
 App.propTypes = {
   logged: PropTypes.bool,
-  user: PropTypes.objectOf(PropTypes.string)
+  user: PropTypes.objectOf(PropTypes.string),
+  logout: PropTypes.func
 };
 
 const mapStateToProps = state => ({
@@ -64,4 +52,13 @@ const mapStateToProps = state => ({
   user: state.auth.user
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  logout: () => {
+    dispatch(logout());
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

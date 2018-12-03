@@ -7,7 +7,7 @@ export const LINKS = [
   { name: 'Home', to: '/', icon: 'home', restrict: false },
   { name: 'Tic-Tac-Toe', to: '/app', icon: 'dice-one', restrict: true },
   { name: 'Dashboard', to: '/user', icon: 'user', restrict: true },
-  { name: 'Logout', to: '/login/logout', icon: 'sign-out-alt', restrict: true },
+  { name: 'Logout', to: '#', icon: 'sign-out-alt', restrict: true, isLogout: true },
   { name: 'Help', to: '/help', icon: 'question', restrict: false }
 ];
 

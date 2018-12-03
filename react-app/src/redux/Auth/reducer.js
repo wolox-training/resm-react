@@ -4,7 +4,7 @@ import { loadState } from '../localStorage';
 
 import { actionNames } from './actions';
 
-const defaultUsert = {
+const defaultUser = {
   id: null,
   email: '',
   username: '',
@@ -16,21 +16,8 @@ const defaultInitialState = Immutable({
   loading: false,
   logged: false,
   messageLogin: '',
-  user: defaultUsert
+  user: defaultUser
 });
-
-// const defaultInitialState = Immutable({
-//   loading: false,
-//   logged: false,
-//   token: '',
-//   messageLogin: '',
-//   user: {
-//     id: null,
-//     name: '',
-//     username: '',
-//     email: ''
-//   }
-// });
 
 const initialState = loadState('auth', defaultInitialState);
 
@@ -52,14 +39,14 @@ export const reducer = (state = initialState, action) => {
         loading: false,
         logged: false,
         messageLogin: action.messageLogin,
-        user: defaultUsert
+        user: defaultUser
       });
     case actionNames.LOGOUT:
       return state.merge({
         loading: false,
         logged: false,
         messageLogin: '',
-        user: defaultUsert
+        user: defaultUser
       });
     default:
       return state;
