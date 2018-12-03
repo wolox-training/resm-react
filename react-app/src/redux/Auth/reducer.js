@@ -6,7 +6,7 @@ import { actionNames } from './actions';
 
 const token = loadState('token', '');
 const tokenExpireDateTime = loadState('tokenExpireDateTime', '');
-const logged = token && new Date().getTime() <= tokenExpireDateTime && true;
+const logged = token && !!(new Date().getTime() <= tokenExpireDateTime);
 
 const initialState = Immutable({
   loading: false,
