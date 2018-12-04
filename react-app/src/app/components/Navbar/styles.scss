@@ -1,0 +1,38 @@
+@import '../scss/colors.scss';
+
+.navbar {
+  align-self: center;
+  color: $black;
+  display: flex;
+  flex-direction: row;
+  grid-area: nav;
+  justify-self: flex-end;
+}
+
+.navbar-active {
+  color: $white;
+}
+
+.navbar-link {
+  background: $mercury;
+  color: $black;
+  padding: 10px;
+  text-decoration: none;
+
+  &:hover {
+    background: $black;
+    color: $white;
+  }
+}
+
+.navbar-active {
+  background: $malibu;
+}
+
+
+@media only screen and (max-width: 1024px) {
+  .navbar,
+   {
+    justify-self: center;
+  }
+}

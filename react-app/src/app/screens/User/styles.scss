@@ -1,35 +1,36 @@
 @import '../scss/colors.scss';
 @import '../scss/fonts.scss';
 
-.userbar-nav {
-  align-self: center;
+.user {
+  align-items: center;
+  border: 1px solid $dusty-gray;
+  border-radius: 25px;
   display: flex;
-  flex-direction: row;
-  grid-area: nav;
-  justify-content: center;
-  justify-self: flex-end;
-  margin-right: 10px;
+  flex-direction: column;
+  margin: 25px 150px 25px;
+  padding: 10px;
 }
 
-.userbar-link {
-  background: $white;
-  border: solid 0.5px $dusty-gray;
-  height: 35px;
-  padding: 12px 12px 0;
-  text-decoration: none;
+.user-title {
+  font-size: $font-dashboard-title;
+  font-weight: normal;
+}
 
-  &:hover {
-    background: $black;
-    color: $white;
+.user-avatar {
+  border: 5px solid $malibu;
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+}
+
+.user-info {
+  list-style-type: none;
+
+  & li {
+    text-align: left;
   }
-}
 
-.userbar-active {
-  background: $malibu;
-  color: $white;
-}
-
-.userbar-nav,
-.userbar-link {
-  color: $black;
+  & li span {
+    font-weight: bold;
+  }
 }

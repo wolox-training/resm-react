@@ -1,46 +1,37 @@
 import React, { Component } from 'react';
-import { NavLink, Redirect, Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import style from './styles.scss';
-import Dashboard from './components/Dashboard';
-import History from './components/History';
-import Points from './components/Points';
 
-class Userpage extends Component {
+class User extends Component {
   render() {
     return (
-      <div className={style.loginLayout}>
-        <h2>User page</h2>
-        <div className={style.userbarNav}>
-          <NavLink to="/user" exact className={style.userbarLink} activeClassName={style.userbarActive}>
-            Dashboard
-          </NavLink>
-          <NavLink
-            to="/user/points"
-            exact
-            className={style.userbarLink}
-            activeClassName={style.userbarActive}
-          >
-            Points
-          </NavLink>
-          <NavLink
-            to="/user/history"
-            exact
-            className={style.userbarLink}
-            activeClassName={style.userbarActive}
-          >
-            History
-          </NavLink>
-        </div>
-        <Switch>
-          <Route path="/user/points" component={Points} />
-          <Route path="/user/history" component={History} />
-          <Route path="/user" component={Dashboard} />
-          <Redirect to="/user" />
-        </Switch>
+      <div className={style.user}>
+        <h3 className={style.userTitle}>Dashboard</h3>
+        <img className={style.uservatar} src={this.props.user.avatar} alt="avatar" />
+        <ul className={style.userInfo}>
+          <li>
+            <span>Name: </span> {this.props.user.name}
+          </li>
+          <li>
+            <span>Username: </span> {this.props.user.username}
+          </li>
+          <li>
+            <span>Email: </span> {this.props.user.email}
+          </li>
+        </ul>
       </div>
     );
   }
 }
 
-export default Userpage;
+User.propTypes = {
+  user: PropTypes.objectOf(PropTypes.object)
+};
+
+const mapStateToProps = state => ({
+  user: state.auth.user
+});
+
+export default connect(mapStateToProps)(User);

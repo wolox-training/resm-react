@@ -11,3 +11,13 @@
   background-color: $mine-shaft;
   color: $white;
 }
+
+.app-userbar {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  grid-area: nav;
+  justify-content: center;
+  justify-self: flex-end;
+  margin: 10px;
+}

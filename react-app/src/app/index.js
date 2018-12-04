@@ -3,18 +3,19 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { logout } from '../redux/Auth/actions';
-
-import { LINKS } from './constants';
+import { LINKS, ROUTES } from './constants';
 import style from './styles.scss';
-import Topbar from './components/Topbar';
 import PublicRoute from './components/PublicRoute';
 import RestrictRoute from './components/RestrictRoute';
+import Topbar from './components/Topbar';
+import Navbar from './components/Navbar';
 import Home from './screens/Home';
 import Game from './screens/Game';
 import Login from './screens/Login';
-import User from './screens/User';
 import Help from './screens/Help';
+import User from './screens/User';
+import History from './screens/User/components/History';
+import Points from './screens/User/components/Points';
 
 class App extends Component {
   render() {
@@ -24,19 +25,26 @@ class App extends Component {
           <Topbar
             title="Tic Tac Toe"
             logo="/tictactoe-logo.png"
-            links={LINKS}
+            links={LINKS.topBar}
             className={style.appTopbar}
             logged={this.props.logged}
-            logout={this.props.logout}
             user={this.props.user}
           />
+          <div className={style.appUserbar}>
+            <Navbar links={LINKS.user} logged={this.props.logged} />
+          </div>
           <Switch>
-            <Route path="/" exact component={Home} />
-            <PublicRoute path="/login" component={Login} />
-            <PublicRoute path="/help" component={Help} />
-            <RestrictRoute path="/app" component={Game} />
-            <RestrictRoute path="/user" component={User} />
-            <Redirect to="/" />
+            <Route path={ROUTES.home.route} exact component={Home} />
+            <PublicRoute path={ROUTES.login.route} component={Login} />
+            <PublicRoute path={ROUTES.help.route} component={Help} />
+            <RestrictRoute path={ROUTES.app.route} component={Game} />
+            <Switch>
+              <RestrictRoute path={ROUTES.user.route} exact component={User} />
+              <RestrictRoute path={ROUTES.points.route} component={Points} />
+              <RestrictRoute path={ROUTES.history.route} component={History} />
+              <Redirect to={ROUTES.user.route} />
+            </Switch>
+            <Redirect to={ROUTES.home.route} />
           </Switch>
         </div>
       </BrowserRouter>
@@ -46,8 +54,7 @@ class App extends Component {
 
 App.propTypes = {
   logged: PropTypes.bool,
-  user: PropTypes.objectOf(PropTypes.string),
-  logout: PropTypes.func
+  user: PropTypes.objectOf(PropTypes.string)
 };
 
 const mapStateToProps = state => ({
@@ -55,13 +62,4 @@ const mapStateToProps = state => ({
   user: state.auth.user
 });
 
-const mapDispatchToProps = dispatch => ({
-  logout: () => {
-    dispatch(logout());
-  }
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default connect(mapStateToProps)(App);
