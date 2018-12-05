@@ -1,0 +1,18 @@
+@import '../scss/colors.scss';
+
+.link {
+  background: $mercury;
+  color: $black;
+  padding: 10px;
+  text-decoration: none;
+
+  &:hover {
+    background: $black;
+    color: $white;
+  }
+}
+
+.link-active {
+  background: $malibu;
+  color: $white;
+}

@@ -1,5 +1,5 @@
 import { authService } from '../../services/authService';
-// import { removeState } from '../localStorage';
+import { removeState } from '../localStorage';
 import { TOKEN_EXPIRATION_MILISECONDS } from '../../app/constants';
 
 export const actionNames = {
@@ -73,8 +73,8 @@ export const getUser = obj => async dispatch => {
 };
 
 export const logout = () => async dispatch => {
-  // removeState('token');
-  // removeState('tokenExpireDateTime');
+  removeState('token');
+  removeState('tokenExpireDateTime');
   dispatch({ type: actionNames.LOGOUT });
 };
 

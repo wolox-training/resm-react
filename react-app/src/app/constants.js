@@ -1,18 +1,23 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faHome, faDiceOne, faUser, faSignOutAlt, faQuestion } from '@fortawesome/free-solid-svg-icons';
+import {
+  faHome,
+  faDiceOne,
+  faUser,
+  faSignOutAlt,
+  faQuestion,
+  faHistory,
+  faDice
+} from '@fortawesome/free-solid-svg-icons';
 
-import { removeState } from '../redux/localStorage';
+import store from '../redux/store';
 import { logout } from '../redux/Auth/actions';
 
 // eslint-disable-next-line
 const handleLogout = () => {
-  removeState('token');
-  removeState('tokenExpireDateTime');
-  // TODO: why does not work?
-  logout();
+  store.dispatch(logout());
 };
 
-library.add(faHome, faDiceOne, faUser, faSignOutAlt, faQuestion);
+library.add(faHome, faDiceOne, faUser, faSignOutAlt, faQuestion, faHistory, faDice);
 
 export const ROUTES = [];
 ROUTES.home = { name: 'Home', route: '/' };
@@ -27,14 +32,13 @@ export const LINKS = {
   topBar: [
     { name: ROUTES.home.name, to: ROUTES.home.route, icon: 'home', restrict: false },
     { name: ROUTES.app.name, to: ROUTES.app.route, icon: 'dice-one', restrict: true },
-    // { name: ROUTES.user.name, to: ROUTES.user.route, icon: 'user', restrict: true },
-    { name: 'Logout', to: ROUTES.login.route, icon: 'sign-out-alt', restrict: true, onClick: handleLogout },
+    { name: 'Logout', icon: 'sign-out-alt', restrict: true, onClick: handleLogout },
     { name: ROUTES.help.name, to: ROUTES.help.route, icon: 'question', restrict: false }
   ],
   user: [
     { name: ROUTES.user.name, to: ROUTES.user.route, icon: 'user', restrict: true },
-    { name: ROUTES.points.name, to: ROUTES.points.route, icon: 'user', restrict: true },
-    { name: ROUTES.history.name, to: ROUTES.history.route, icon: 'user', restrict: true }
+    { name: ROUTES.points.name, to: ROUTES.points.route, icon: 'dice', restrict: true },
+    { name: ROUTES.history.name, to: ROUTES.history.route, icon: 'history', restrict: true }
   ]
 };
 
