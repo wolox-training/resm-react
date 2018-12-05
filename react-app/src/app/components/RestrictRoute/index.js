@@ -3,12 +3,16 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { getUser } from '../../../redux/Auth/actions';
-
 class RestrictRoute extends Component {
   render() {
-    this.props.getUser(this.props.token);
-    if (this.props.logged) {
+    // TODO: where should this be done?
+    // this.props.getUser(this.props.token);
+    if (this.props.logged && this.props.path === '/login') {
+      return <Redirect to="/" />;
+    }
+    if (this.props.isPrivate && this.props.logged) {
+      return <Route component={this.props.component} />;
+    } else if (!this.props.isPrivate) {
       return <Route component={this.props.component} />;
     }
     return <Redirect to="/login" />;
@@ -17,8 +21,8 @@ class RestrictRoute extends Component {
 
 RestrictRoute.propTypes = {
   logged: PropTypes.bool,
-  token: PropTypes.string,
-  getUser: PropTypes.func,
+  path: PropTypes.string,
+  isPrivate: PropTypes.bool,
   component: PropTypes.element
 };
 
@@ -27,13 +31,4 @@ const mapStateToProps = state => ({
   token: state.auth.token
 });
 
-const mapDispatchToProps = dispatch => ({
-  getUser: token => {
-    dispatch(getUser({ token }));
-  }
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(RestrictRoute);
+export default connect(mapStateToProps)(RestrictRoute);

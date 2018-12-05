@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Switch, Redirect, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
 
 import logo from '../logo.svg';
 
 import style from './styles.scss';
-import PublicRoute from './components/PublicRoute';
 import RestrictRoute from './components/RestrictRoute';
-import Home from './screens/Home';
 import Game from './screens/Game';
 import Login from './screens/Login';
 
@@ -20,9 +18,8 @@ class App extends Component {
             <h1 className={style.appTitle}>Tic Tac Toe</h1>
           </header>
           <Switch>
-            <Route path="/" exact component={Home} />
-            <PublicRoute path="/login" component={Login} />
-            <RestrictRoute path="/app" component={Game} />
+            <RestrictRoute path="/login" component={Login} />
+            <RestrictRoute path="/" component={Game} isPrivate />
             <Redirect to="/" />
           </Switch>
         </div>
