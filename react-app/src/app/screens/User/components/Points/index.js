@@ -1,33 +1,47 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-// TODO: implementate points logic
+import { getUserPoints } from '../../../../../redux/Game/actions';
+
+import style from './styles.scss';
+import Statistical from './Statistical';
+
 class Points extends Component {
+  componentDidMount() {
+    this.props.getUserPoints(this.props.token);
+  }
   render() {
+    const renderStatisticsPoints = (
+      <Fragment>
+        <Statistical title="Points" number={this.props.points} />
+        <Statistical title="Num. of games" number={this.props.gameCount} />
+        <Statistical title="Points by game" number={Math.round(this.props.points / this.props.gameCount)} />
+      </Fragment>
+    );
+    const renderRules = (
+      <ul>
+        <li>
+          Obtain <b>10 points</b> winning with 3 moves
+        </li>
+        <li>
+          Obtain <b>8 points</b> winning with 4 moves
+        </li>
+        <li>
+          Obtain <b>6 points</b> winning with 5 moves
+        </li>
+      </ul>
+    );
     return (
-      <div>
-        <h3>Points</h3>
-        <span>{`gameCount: ${this.props.gameCount}`}</span>
-        <br />
-        <span>{`points: ${this.props.points}`}</span>
-        <br />
-        <span>{`historyPoints: ${this.props.historyPoints}`}</span>
-        <br />
-        <p>
-          <h4>Rules:</h4>
-          <ul>
-            <li>
-              Obtain <b>10 points</b> winning with 3 moves
-            </li>
-            <li>
-              Obtain <b>8 points</b> winning with 4 moves
-            </li>
-            <li>
-              Obtain <b>6 points</b> winning with 5 moves
-            </li>
-          </ul>
-        </p>
+      <div className={style.points}>
+        <div className={style.pointsStatistics}>
+          <h3>Points</h3>
+          {renderStatisticsPoints}
+        </div>
+        <div className={style.pointsRules}>
+          <h3>Rules</h3>
+          {renderRules}
+        </div>
       </div>
     );
   }
@@ -36,18 +50,24 @@ class Points extends Component {
 Points.propTypes = {
   gameCount: PropTypes.number,
   points: PropTypes.number,
-  historyPoints: PropTypes.arrayOf(PropTypes.object)
+  token: PropTypes.string,
+  getUserPoints: PropTypes.func
 };
 
 const mapStateToProps = state => ({
   gameCount: state.game.gameCount,
   points: state.game.points,
-  historyPoints: state.game.historyPoints
+  token: state.auth.token,
+  getUserPoints: PropTypes.func
 });
 
-// const mapDispatchToProps = dispatch => ({
-// });
+const mapDispatchToProps = dispatch => ({
+  getUserPoints: token => {
+    dispatch(getUserPoints({ token }));
+  }
+});
 
-export default connect(mapStateToProps)(Points);
-
-// export default Points;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Points);

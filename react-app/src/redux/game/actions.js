@@ -5,7 +5,11 @@ export const actionNames = {
   JUMP_TO: 'JUMP_TO',
   TOGGLE_MARK: 'TOGGLE_ARK',
   UPDATE_STATUS: 'UPDATE_STATUS',
-  UPDATE_POINTS: 'UPDATE_POINTS'
+  LOADING: 'LOADING',
+  UPDATE_GAME_SUCCESS: 'UPDATE_GAME_SUCCESS',
+  UPDATE_GAME_FAILURE: 'UPDATE_GAME_FAILURE',
+  GET_USER_POINT_SUCCESS: 'GET_USER_POINT_SUCCESS',
+  GET_USER_POINT_FAILURE: 'GET_USER_POINT_FAILURE'
 };
 
 export const jumpTo = (stepNumber, xIsNext, winner) => ({
@@ -40,37 +44,66 @@ const updateGameActions = {
     }
     authService.setUser(id, objUpdate);
     dispatch({
-      type: actionNames.UPDATE_POINTS,
+      type: actionNames.UPDATE_GAME_SUCCESS,
+      loading: false,
       ...objUpdate
     });
   },
   updateGameFailure: (message, dispatch) => {
     dispatch({
-      type: actionNames.GET_USER_FAILURE,
-      messageLogin: message
+      type: actionNames.UPDATE_GAME_FAILURE,
+      loading: false,
+      message
+    });
+  }
+};
+
+const getUserPointsActions = {
+  getUserPointsSuccess: (data, dispatch) => {
+    const gameCount = Number(data.gameCount);
+    const points = Number(data.points);
+    const historyPoints = data.historyPoints;
+    dispatch({
+      type: actionNames.GET_USER_POINT_SUCCESS,
+      loading: false,
+      gameCount,
+      points,
+      historyPoints
+    });
+  },
+  getUserPointsFailure: (message, dispatch) => {
+    dispatch({
+      type: actionNames.GET_USER_POINT_FAILURE,
+      loading: false,
+      message
     });
   }
 };
 
 export const updateGame = obj => async dispatch => {
+  dispatch({
+    type: actionNames.LOADING
+  });
   dispatch(toggleMark(obj.history, obj.stepNumber, obj.xIsNext, obj.winner));
   if (obj.winner || obj.stepNumber === 9) {
     const response = await authService.getUser({ token: obj.token });
     if (response && response.ok && response.data.length > 0) {
       updateGameActions.updateGameSuccess(response.data[0], obj, dispatch);
-      // const data = response.data[0];
-      // const id = data.id;
-      // const gameCount = Number(data.gameCount) + 1;
-      // let objUpdate = { gameCount };
-      // if (obj.winner && obj.winner === USER_PLAYER_MARK) {
-      //   const points = Number(data.points) + obj.points;
-      //   const historyPoints = { ...data.historyPoints, [new Date().getTime()]: obj.points };
-      //   objUpdate = { ...objUpdate, points, historyPoints };
-      // }
-      // authService.setUser(id, objUpdate);
     } else {
-      updateGameActions.updateGameFailure('Problem get data.', dispatch);
+      updateGameActions.updateGameFailure('Problem get points.', dispatch);
     }
+  }
+};
+
+export const getUserPoints = obj => async dispatch => {
+  dispatch({
+    type: actionNames.LOADING
+  });
+  const response = await authService.getUser({ token: obj.token });
+  if (response && response.ok && response.data.length > 0) {
+    getUserPointsActions.getUserPointsSuccess(response.data[0], dispatch);
+  } else {
+    getUserPointsActions.getUserPointsFailure('Problem get points.', dispatch);
   }
 };
 

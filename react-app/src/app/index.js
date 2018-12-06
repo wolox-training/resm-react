@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { getUser } from '../redux/Auth/actions';
+
 import { LINKS, ROUTES } from './constants';
 import style from './styles.scss';
 import PublicRoute from './components/PublicRoute';
@@ -18,6 +20,9 @@ import History from './screens/User/components/History';
 import Points from './screens/User/components/Points';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.getUser(this.props.token);
+  }
   render() {
     return (
       <BrowserRouter>
@@ -54,12 +59,24 @@ class App extends Component {
 
 App.propTypes = {
   logged: PropTypes.bool,
-  user: PropTypes.objectOf(PropTypes.string)
+  user: PropTypes.objectOf(PropTypes.string),
+  token: PropTypes.string,
+  getUser: PropTypes.func
 };
 
 const mapStateToProps = state => ({
   logged: state.auth.logged,
-  user: state.auth.user
+  user: state.auth.user,
+  token: state.auth.token
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  getUser: token => {
+    dispatch(getUser({ token }));
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

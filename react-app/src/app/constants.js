@@ -6,18 +6,18 @@ import {
   faSignOutAlt,
   faQuestion,
   faHistory,
-  faDice
+  faDice,
+  faClock
 } from '@fortawesome/free-solid-svg-icons';
 
 import store from '../redux/store';
 import { logout } from '../redux/Auth/actions';
 
-// eslint-disable-next-line
 const handleLogout = () => {
   store.dispatch(logout());
 };
 
-library.add(faHome, faDiceOne, faUser, faSignOutAlt, faQuestion, faHistory, faDice);
+library.add(faHome, faDiceOne, faUser, faSignOutAlt, faQuestion, faHistory, faDice, faClock);
 
 export const ROUTES = [];
 ROUTES.home = { name: 'Home', route: '/' };

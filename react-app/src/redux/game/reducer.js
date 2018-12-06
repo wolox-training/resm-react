@@ -8,6 +8,8 @@ const initialState = Immutable({
   xIsNext: true,
   status: '',
   winner: null,
+  loading: false,
+  message: '',
   gameCount: 0,
   points: 0,
   historyPoints: null
@@ -28,14 +30,36 @@ export const reducer = (state = initialState, action) => {
         xIsNext: action.xIsNext,
         winner: action.winner
       });
-    case actionNames.UPDATE_POINTS:
+    case actionNames.UPDATE_STATUS:
+      return state.merge({ status: action.status });
+    case actionNames.LOADING:
+      return state.merge({ loading: true });
+    case actionNames.UPDATE_GAME_SUCCESS:
       return state.merge({
+        loading: false,
+        message: '',
         gameCount: action.gameCount,
         points: action.points,
         historyPoints: action.historyPoints
       });
-    case actionNames.UPDATE_STATUS:
-      return state.merge({ status: action.status });
+    case actionNames.UPDATE_GAME_FAILURE:
+      return state.merge({
+        loading: false,
+        message: action.message
+      });
+    case actionNames.GET_USER_POINT_SUCCESS:
+      return state.merge({
+        loading: false,
+        message: '',
+        gameCount: action.gameCount,
+        points: action.points,
+        historyPoints: action.historyPoints
+      });
+    case actionNames.GET_USER_POINT_FAILURE:
+      return state.merge({
+        loading: false,
+        message: action.message
+      });
     default:
       return state;
   }

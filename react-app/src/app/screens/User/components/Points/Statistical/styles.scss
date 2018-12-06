@@ -1,0 +1,24 @@
+@import '../scss/colors.scss';
+@import '../scss/fonts.scss';
+
+.statistical-data {
+  align-items: center;
+  background: $white;
+  border: solid 3px $san-marino;
+  border-radius: 50%;
+  color: $san-marino;
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  justify-content: space-evenly;
+  padding: 15px 10px 10px;
+  width: 80px;
+}
+
+.statistical-data-title {
+  font-size: $font-points-data-title;
+}
+
+.statistical-data-number {
+  font-size: $font-points-data-number;
+}
