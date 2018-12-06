@@ -7,6 +7,7 @@ import logo from '../logo.svg';
 import { getUser } from '../redux/Auth/actions';
 
 import style from './styles.scss';
+import { ROUTES } from './constants';
 import RestrictRoute from './components/RestrictRoute';
 import Game from './screens/Game';
 import Login from './screens/Login';
@@ -24,9 +25,9 @@ class App extends Component {
             <h1 className={style.appTitle}>Tic Tac Toe</h1>
           </header>
           <Switch>
-            <RestrictRoute path="/login" component={Login} />
-            <RestrictRoute path="/" component={Game} isPrivate />
-            <Redirect to="/" />
+            <RestrictRoute path={ROUTES.login.route} component={Login} />
+            <RestrictRoute path={ROUTES.app.route} component={Game} isPrivate />
+            <Redirect to={ROUTES.app.route} />
           </Switch>
         </div>
       </BrowserRouter>
