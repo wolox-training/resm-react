@@ -44,6 +44,16 @@ export const LINKS = {
 
 export const TOKEN_EXPIRATION_MILISECONDS = 15 * 24 * 60 * 60 * 1000;
 
-export const CONSTANTS = { LINKS, ROUTES, TOKEN_EXPIRATION_MILISECONDS };
+export const USER_PLAYER_MARK = 'X';
+export const OPONENT_PLAYER_MARK = 'O';
+export const MAX_POINTS_BY_GAME = 10;
+
+export const CONSTANTS = {
+  LINKS,
+  ROUTES,
+  TOKEN_EXPIRATION_MILISECONDS,
+  USER_PLAYER_MARK,
+  OPONENT_PLAYER_MARK
+};
 
 export default CONSTANTS;

@@ -7,7 +7,10 @@ const initialState = Immutable({
   stepNumber: 0,
   xIsNext: true,
   status: '',
-  winner: null
+  winner: null,
+  gameCount: 0,
+  points: 0,
+  historyPoints: null
 });
 
 export const reducer = (state = initialState, action) => {
@@ -24,6 +27,12 @@ export const reducer = (state = initialState, action) => {
         stepNumber: action.stepNumber,
         xIsNext: action.xIsNext,
         winner: action.winner
+      });
+    case actionNames.UPDATE_POINTS:
+      return state.merge({
+        gameCount: action.gameCount,
+        points: action.points,
+        historyPoints: action.historyPoints
       });
     case actionNames.UPDATE_STATUS:
       return state.merge({ status: action.status });

@@ -7,7 +7,7 @@ import { getUser } from '../../../redux/Auth/actions';
 
 class RestrictRoute extends Component {
   render() {
-    this.props.getUser(this.props.token);
+    // this.props.getUser(this.props.token);
     if (this.props.logged) {
       return <Route component={this.props.component} />;
     }
@@ -17,8 +17,8 @@ class RestrictRoute extends Component {
 
 RestrictRoute.propTypes = {
   logged: PropTypes.bool,
-  token: PropTypes.string,
-  getUser: PropTypes.func,
+  // token: PropTypes.string,
+  // getUser: PropTypes.func,
   component: PropTypes.element
 };
 

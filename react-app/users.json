@@ -8,8 +8,22 @@
       "pass": "rsuescunpass",
       "token": "rsuescun@rsuescunpass",
       "avatar": "http://placeimg.com/200/200/animals",
-      "tokenExpireDateTime": 1545252163633,
-      "tokenIsValid": true
+      "tokenExpireDateTime": 1545398561363,
+      "tokenIsValid": true,
+      "gameCount": 8,
+      "points": 50,
+      "historyPoints": {
+        "1545337944146": 10,
+        "1545337944147": 10,
+        "1545337944148": 10,
+        "1544051799553": 10,
+        "1544051878140": 6,
+        "1544051898445": 10,
+        "1544051908792": 6,
+        "1544052029612": 10,
+        "1544055219217": 8,
+        "1544055294329": 10
+      }
     },
     {
       "id": 2,
@@ -20,7 +34,12 @@
       "token": "pperez@pperezpass",
       "avatar": "http://placeimg.com/200/200/arch",
       "tokenExpireDateTime": null,
-      "tokenIsValid": false
+      "tokenIsValid": false,
+      "points": 20,
+      "historyPoints": {
+        "1545337944146": 10,
+        "1545337944147": 10
+      }
     },
     {
       "id": 3,
@@ -31,7 +50,12 @@
       "token": "mmontoya@mmontoyapass",
       "avatar": "http://placeimg.com/200/200/nature",
       "tokenExpireDateTime": null,
-      "tokenIsValid": false
+      "tokenIsValid": false,
+      "points": 20,
+      "historyPoints": {
+        "1545337944146": 10,
+        "1545337944147": 10
+      }
     },
     {
       "id": 4,
@@ -42,7 +66,12 @@
       "token": "mmarin@mmarinpass",
       "avatar": "http://placeimg.com/200/200/people",
       "tokenExpireDateTime": null,
-      "tokenIsValid": false
+      "tokenIsValid": false,
+      "points": 20,
+      "historyPoints": {
+        "1545337944146": 10,
+        "1545337944147": 10
+      }
     }
   ]
 }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { jumpTo } from '../../../../../../../redux/Game/actions';
-import calculateWinner from '../../../../utils';
+import { calculateWinner } from '../../../../utils';
 
 import style from './styles.scss';
 
