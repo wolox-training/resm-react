@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { getUser } from '../redux/Auth/actions';
+
 import { LINKS, ROUTES } from './constants';
 import style from './styles.scss';
-import PublicRoute from './components/PublicRoute';
 import RestrictRoute from './components/RestrictRoute';
 import Topbar from './components/Topbar';
 import Navbar from './components/Navbar';
-import Home from './screens/Home';
 import Game from './screens/Game';
 import Login from './screens/Login';
 import Help from './screens/Help';
@@ -18,6 +18,9 @@ import History from './screens/User/components/History';
 import Points from './screens/User/components/Points';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.getUser(this.props.token);
+  }
   render() {
     return (
       <BrowserRouter>
@@ -34,17 +37,16 @@ class App extends Component {
             <Navbar links={LINKS.user} logged={this.props.logged} />
           </div>
           <Switch>
-            <Route path={ROUTES.home.route} exact component={Home} />
-            <PublicRoute path={ROUTES.login.route} component={Login} />
-            <PublicRoute path={ROUTES.help.route} component={Help} />
-            <RestrictRoute path={ROUTES.app.route} component={Game} />
+            <RestrictRoute path={ROUTES.app.route} exact component={Game} isPrivate />
+            <RestrictRoute path={ROUTES.login.route} component={Login} />
+            <RestrictRoute path={ROUTES.help.route} component={Help} />
             <Switch>
-              <RestrictRoute path={ROUTES.user.route} exact component={User} />
-              <RestrictRoute path={ROUTES.points.route} component={Points} />
-              <RestrictRoute path={ROUTES.history.route} component={History} />
+              <RestrictRoute path={ROUTES.user.route} exact component={User} isPrivate />
+              <RestrictRoute path={ROUTES.points.route} component={Points} isPrivate />
+              <RestrictRoute path={ROUTES.history.route} component={History} isPrivate />
               <Redirect to={ROUTES.user.route} />
             </Switch>
-            <Redirect to={ROUTES.home.route} />
+            <Redirect to="/" />
           </Switch>
         </div>
       </BrowserRouter>
@@ -54,12 +56,24 @@ class App extends Component {
 
 App.propTypes = {
   logged: PropTypes.bool,
-  user: PropTypes.objectOf(PropTypes.string)
+  token: PropTypes.string,
+  user: PropTypes.objectOf(PropTypes.string),
+  getUser: PropTypes.func
 };
 
 const mapStateToProps = state => ({
   logged: state.auth.logged,
+  token: state.auth.token,
   user: state.auth.user
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  getUser: token => {
+    dispatch(getUser({ token }));
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
