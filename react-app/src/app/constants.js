@@ -20,8 +20,7 @@ const handleLogout = () => {
 library.add(faHome, faDiceOne, faUser, faSignOutAlt, faQuestion, faHistory, faDice, faClock);
 
 export const ROUTES = [];
-ROUTES.home = { name: 'Home', route: '/' };
-ROUTES.app = { name: 'Game', route: '/app' };
+ROUTES.app = { name: 'Game', route: '/' };
 ROUTES.login = { name: 'Login', route: '/login' };
 ROUTES.help = { name: 'Help', route: '/help' };
 ROUTES.user = { name: 'Dashboard', route: '/user' };
@@ -30,7 +29,6 @@ ROUTES.history = { name: 'History', route: '/user/history' };
 
 export const LINKS = {
   topBar: [
-    { name: ROUTES.home.name, to: ROUTES.home.route, icon: 'home', restrict: false },
     { name: ROUTES.app.name, to: ROUTES.app.route, icon: 'dice-one', restrict: true },
     { name: 'Logout', icon: 'sign-out-alt', restrict: true, onClick: handleLogout },
     { name: ROUTES.help.name, to: ROUTES.help.route, icon: 'question', restrict: false }
