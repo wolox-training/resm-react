@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "rsuescun@gmail.com",
+      "username": "rsuescun",
+      "name": "Raul Suescun",
+      "pass": "rsuescunpass",
+      "token": "rsuescun@rsuescunpass",
+      "tokenExpireDateTime": 1545335261576,
+      "tokenIsValid": true
+    },
+    {
+      "id": 2,
+      "email": "pperez@gmail.com",
+      "username": "pperez",
+      "name": "Pedro Perez",
+      "pass": "pperezpass",
+      "token": "pperez@pperezpass",
+      "tokenExpireDateTime": null,
+      "tokenIsValid": false
+    },
+    {
+      "id": 3,
+      "email": "mmontoya@outlook.com",
+      "username": "mmontoya",
+      "name": "Maria Montoya",
+      "pass": "mmontoyapass",
+      "token": "mmontoya@mmontoyapass",
+      "tokenExpireDateTime": null,
+      "tokenIsValid": false
+    },
+    {
+      "id": 4,
+      "email": "mmarin@hotmail.com",
+      "username": "mmarin",
+      "name": "Viviana Marin",
+      "pass": "mmarinpass",
+      "token": "mmarin@mmarinpass",
+      "tokenExpireDateTime": null,
+      "tokenIsValid": false
+    }
+  ]
+}

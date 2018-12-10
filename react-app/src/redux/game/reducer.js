@@ -12,20 +12,20 @@ const initialState = Immutable({
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionNames.jumpTo:
+    case actionNames.JUMP_TO:
       return state.merge({
         stepNumber: action.stepNumber,
         xIsNext: action.xIsNext,
         winner: action.winner
       });
-    case actionNames.toggleMark:
+    case actionNames.TOGGLE_MARK:
       return state.merge({
         history: action.history,
         stepNumber: action.stepNumber,
         xIsNext: action.xIsNext,
         winner: action.winner
       });
-    case actionNames.updateStatus:
+    case actionNames.UPDATE_STATUS:
       return state.merge({ status: action.status });
     default:
       return state;

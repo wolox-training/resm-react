@@ -1,26 +1,56 @@
 import React, { Component } from 'react';
-import { Provider } from 'react-redux';
+import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import store from '../redux/store';
 import logo from '../logo.svg';
+import { getUser } from '../redux/Auth/actions';
 
 import style from './styles.scss';
+import { ROUTES } from './constants';
+import RestrictRoute from './components/RestrictRoute';
 import Game from './screens/Game';
+import Login from './screens/Login';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.getUser(this.props.token);
+  }
   render() {
     return (
-      <Provider store={store}>
+      <BrowserRouter>
         <div className={style.app}>
           <header className={style.appHeader}>
             <img src={logo} className={style.appLogo} alt="logo" />
             <h1 className={style.appTitle}>Tic Tac Toe</h1>
           </header>
-          <Game />
+          <Switch>
+            <RestrictRoute path={ROUTES.login.route} component={Login} />
+            <RestrictRoute path={ROUTES.app.route} component={Game} isPrivate />
+            <Redirect to={ROUTES.app.route} />
+          </Switch>
         </div>
-      </Provider>
+      </BrowserRouter>
     );
   }
 }
 
-export default App;
+App.propTypes = {
+  token: PropTypes.string,
+  getUser: PropTypes.func
+};
+
+const mapStateToProps = state => ({
+  token: state.auth.token
+});
+
+const mapDispatchToProps = dispatch => ({
+  getUser: token => {
+    dispatch(getUser({ token }));
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
