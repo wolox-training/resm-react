@@ -3,7 +3,7 @@ import Immutable from 'seamless-immutable';
 import { loadState } from '../localStorage';
 
 // TODO: why not working with './actions'
-import { actionNames } from './types';
+import { actionNames } from './actionTypes';
 
 const defaultUser = {
   id: null,

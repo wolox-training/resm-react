@@ -2,12 +2,7 @@ import { authService } from '../../services/authService';
 import { removeState } from '../localStorage';
 import { TOKEN_EXPIRATION_MILISECONDS } from '../../app/constants';
 
-export const actionNames = {
-  GET_USER: 'GET_USER',
-  GET_USER_SUCCESS: 'GET_USER_SUCCESS',
-  GET_USER_FAILURE: 'GET_USER_FAILURE',
-  LOGOUT: 'LOGOUT'
-};
+import { actionNames } from './actionTypes';
 
 const getUserActions = {
   getUserSuccess: (data, token, dispatch) => {
@@ -57,7 +52,6 @@ export const getUser = obj => async dispatch => {
   if (response && response.ok) {
     if (response.data.length > 0) {
       const data = response.data[0];
-      // const dataNow = new Date().getTime();
       if ((obj.email && obj.pass) || (obj.token && new Date().getTime() <= data.tokenExpireDateTime)) {
         getUserActions.getUserSuccess(data, obj.token, dispatch);
       } else {

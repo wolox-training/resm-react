@@ -21,11 +21,12 @@ library.add(faHome, faDiceOne, faUser, faSignOutAlt, faQuestion, faHistory, faDi
 
 export const ROUTES = [];
 ROUTES.app = { name: 'Game', route: '/' };
-ROUTES.login = { name: 'Login', route: '/login' };
+ROUTES.login = { name: 'Login', route: '/login', restrictLogged: true };
 ROUTES.help = { name: 'Help', route: '/help' };
 ROUTES.user = { name: 'Dashboard', route: '/user' };
 ROUTES.points = { name: 'Points', route: '/user/points' };
 ROUTES.history = { name: 'History', route: '/user/history' };
+ROUTES.register = { name: 'Registro', route: '/register', restrictLogged: true };
 
 export const LINKS = {
   topBar: [

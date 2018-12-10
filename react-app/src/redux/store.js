@@ -1,4 +1,4 @@
-import { combineReducers, createStore, applyMiddleware } from 'redux';
+import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
 import { reducer as form } from 'redux-form';
 import thunk from 'redux-thunk';
 
@@ -12,11 +12,12 @@ const rootReducer = combineReducers({
   form
 });
 
-const store = createStore(
-  rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), // eslint-disable-line no-underscore-dangle
-  applyMiddleware(thunk)
-);
+const enhancers = [
+  applyMiddleware(thunk),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() // eslint-disable-line no-underscore-dangle
+];
+
+const store = createStore(rootReducer, compose(...enhancers));
 
 const saveToLocalStorage = () => {
   saveState('token', store.getState().auth.token);
