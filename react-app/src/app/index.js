@@ -46,7 +46,7 @@ class App extends Component {
               <RestrictRoute path={ROUTES.history.route} component={History} isPrivate />
               <Redirect to={ROUTES.user.route} />
             </Switch>
-            <Redirect to="/" />
+            <Redirect to={ROUTES.app.route} />
           </Switch>
         </div>
       </BrowserRouter>

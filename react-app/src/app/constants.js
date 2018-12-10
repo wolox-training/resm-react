@@ -26,6 +26,7 @@ ROUTES.help = { name: 'Help', route: '/help' };
 ROUTES.user = { name: 'Dashboard', route: '/user' };
 ROUTES.points = { name: 'Points', route: '/user/points' };
 ROUTES.history = { name: 'History', route: '/user/history' };
+ROUTES.register = { name: 'Registro', route: '/register', restrictLogged: true };
 
 export const LINKS = {
   topBar: [
