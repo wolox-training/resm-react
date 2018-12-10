@@ -45,13 +45,16 @@ export const TOKEN_EXPIRATION_MILISECONDS = 15 * 24 * 60 * 60 * 1000;
 export const USER_PLAYER_MARK = 'X';
 export const OPONENT_PLAYER_MARK = 'O';
 export const MAX_POINTS_BY_GAME = 10;
+export const POINTS_RULES = [{ points: 10, moves: 3 }, { points: 8, moves: 4 }, { points: 6, moves: 5 }];
 
 export const CONSTANTS = {
   LINKS,
   ROUTES,
   TOKEN_EXPIRATION_MILISECONDS,
   USER_PLAYER_MARK,
-  OPONENT_PLAYER_MARK
+  OPONENT_PLAYER_MARK,
+  MAX_POINTS_BY_GAME,
+  POINTS_RULES
 };
 
 export default CONSTANTS;

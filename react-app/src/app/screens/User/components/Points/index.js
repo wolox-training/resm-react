@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { getUserPoints } from '../../../../../redux/Game/actions';
+import { POINTS_RULES } from '../../../../constants';
 
 import style from './styles.scss';
 import Statistical from './Statistical';
@@ -12,35 +13,41 @@ class Points extends Component {
     this.props.getUserPoints(this.props.token);
   }
   render() {
-    const renderStatisticsPoints = (
-      <Fragment>
-        <Statistical title="Points" number={this.props.points} />
-        <Statistical title="Num. of games" number={this.props.gameCount} />
-        <Statistical title="Points by game" number={Math.round(this.props.points / this.props.gameCount)} />
-      </Fragment>
-    );
-    const renderRules = (
-      <ul>
-        <li>
-          Obtain <b>10 points</b> winning with 3 moves
+    const renderStatisticsPoints = () => {
+      if (this.props.gamePoints) {
+        const points = this.props.gamePoints.points ? this.props.gamePoints.points : 0;
+        const count = this.props.gamePoints.count ? this.props.gamePoints.count : 0;
+        const pointsByGame =
+          this.props.gamePoints.count && this.props.gamePoints.count > 0
+            ? Math.round(this.props.gamePoints.points / this.props.gamePoints.count)
+            : 0;
+        return (
+          <Fragment>
+            <Statistical title="Points" number={points} />
+            <Statistical title="Num. of games" number={count} />
+            <Statistical title="Points by game" number={pointsByGame} />
+          </Fragment>
+        );
+      }
+      return null;
+    };
+    const renderRules = () => {
+      const rules = POINTS_RULES.map((rule, i) => (
+        <li key={i.toString()}>
+          Obtain <b>{rule.points} points</b> winning with {rule.moves} moves
         </li>
-        <li>
-          Obtain <b>8 points</b> winning with 4 moves
-        </li>
-        <li>
-          Obtain <b>6 points</b> winning with 5 moves
-        </li>
-      </ul>
-    );
+      ));
+      return <ul>{rules}</ul>;
+    };
     return (
       <div className={style.points}>
         <div className={style.pointsStatistics}>
           <h3>Points</h3>
-          {renderStatisticsPoints}
+          {renderStatisticsPoints()}
         </div>
         <div className={style.pointsRules}>
           <h3>Rules</h3>
-          {renderRules}
+          {renderRules()}
         </div>
       </div>
     );
@@ -48,16 +55,14 @@ class Points extends Component {
 }
 
 Points.propTypes = {
-  gameCount: PropTypes.number,
-  points: PropTypes.number,
   token: PropTypes.string,
+  gamePoints: PropTypes.objectOf(PropTypes.object),
   getUserPoints: PropTypes.func
 };
 
 const mapStateToProps = state => ({
-  gameCount: state.game.gameCount,
-  points: state.game.points,
   token: state.auth.token,
+  gamePoints: state.game.gamePoints,
   getUserPoints: PropTypes.func
 });
 

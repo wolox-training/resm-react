@@ -6,23 +6,30 @@ import style from './styles.scss';
 
 class User extends Component {
   render() {
-    return (
-      <div className={style.user}>
-        <h3 className={style.userTitle}>Dashboard</h3>
-        <img className={style.uservatar} src={this.props.user.avatar} alt="avatar" />
-        <ul className={style.userInfo}>
-          <li>
-            <span>Name: </span> {this.props.user.name}
-          </li>
-          <li>
-            <span>Username: </span> {this.props.user.username}
-          </li>
-          <li>
-            <span>Email: </span> {this.props.user.email}
-          </li>
-        </ul>
-      </div>
-    );
+    const renderUser = user => {
+      if (user) {
+        return (
+          <div className={style.user}>
+            <h3 className={style.userTitle}>Dashboard</h3>
+            <img className={style.uservatar} src={user && user.avatar} alt="avatar" />
+            <ul className={style.userInfo}>
+              <li>
+                <span>Name: </span> {user.name}
+              </li>
+              <li>
+                <span>Username: </span> {user.username}
+              </li>
+              <li>
+                <span>Email: </span> {user.email}
+              </li>
+            </ul>
+          </div>
+        );
+      }
+      return null;
+    };
+
+    return renderUser(this.props.user);
   }
 }
 

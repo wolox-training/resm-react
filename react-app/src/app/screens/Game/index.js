@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { USER_PLAYER_MARK, OPONENT_PLAYER_MARK } from '../../constants';
-import { updateStatus, updateGame } from '../../../redux/Game/actions';
+import { actionCreators as gameActions } from '../../../redux/Game/actions';
 
 import { calculateWinner, calculatePoints } from './utils';
 import Board from './components/Board';
@@ -81,10 +81,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateGame: (history, stepNumber, xIsNext, winner, points, token) => {
-    dispatch(updateGame({ history, stepNumber, xIsNext, winner, points, token }));
+    dispatch(gameActions.updateGame({ history, stepNumber, xIsNext, winner, points, token }));
   },
   updateStatus: status => {
-    dispatch(updateStatus(status));
+    dispatch(gameActions.updateStatus(status));
   }
 });
 

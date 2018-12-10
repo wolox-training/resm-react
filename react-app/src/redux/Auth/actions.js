@@ -1,76 +1,63 @@
+import { createTypes, completeTypes, withPostFailure, withSuccess } from 'redux-recompose';
+
 import { authService } from '../../services/authService';
 import { removeState } from '../localStorage';
 import { TOKEN_EXPIRATION_MILISECONDS } from '../../app/constants';
 
-export const actionNames = {
-  GET_USER: 'GET_USER',
-  GET_USER_SUCCESS: 'GET_USER_SUCCESS',
-  GET_USER_FAILURE: 'GET_USER_FAILURE',
-  LOGOUT: 'LOGOUT'
-};
+export const actionNames = createTypes(completeTypes(['GET_USER'], ['SET_TOKEN', 'LOGOUT']), '@@AUTH');
 
-const getUserActions = {
-  getUserSuccess: (data, token, dispatch) => {
-    const tokenExpireDateTime = new Date().getTime() + TOKEN_EXPIRATION_MILISECONDS;
-    const user = {
-      id: data.id,
-      email: data.email,
-      username: data.username,
-      name: data.name,
-      avatar: data.avatar
-    };
-    dispatch({
-      type: actionNames.GET_USER_SUCCESS,
-      token: data.token,
-      tokenExpireDateTime,
-      user
-    });
-    if (!token) {
-      authService.setTokenInHeader(data.token);
-      authService.setUser(data.id, {
-        tokenIsValid: true,
-        tokenExpireDateTime
-      });
-    }
-  },
-  getUserFailure: (message, dispatch) => {
-    dispatch({
-      type: actionNames.GET_USER_FAILURE,
-      messageLogin: message
-    });
-  }
-};
-
-export const getUser = obj => async dispatch => {
-  dispatch({ type: actionNames.GET_USER });
-  let message;
-  let response;
-  if (obj.token) {
-    response = await authService.getUser({ token: obj.token });
-  } else if (obj.email && obj.pass) {
-    response = await authService.getUser({ email: obj.email, pass: obj.pass });
-  } else if (obj.id) {
-    response = await authService.getUser({ id: obj.id });
-  } else {
-    message = 'Problem to query user info.';
-  }
-  if (response && response.ok) {
-    if (response.data.length > 0) {
-      const data = response.data[0];
-      // const dataNow = new Date().getTime();
-      if ((obj.email && obj.pass) || (obj.token && new Date().getTime() <= data.tokenExpireDateTime)) {
-        getUserActions.getUserSuccess(data, obj.token, dispatch);
+export const getUser = obj => ({
+  type: actionNames.GET_USER,
+  service: authService.getUser,
+  target: 'user',
+  payload: obj,
+  injections: [
+    withSuccess((dispatch, response) => {
+      if (response.data && response.data.length) {
+        const data = response.data[0];
+        const token = data.token;
+        const tokenExpireDateTime = new Date().getTime() + TOKEN_EXPIRATION_MILISECONDS;
+        const email = data.email;
+        const user = data.user && data.user;
+        let success = false;
+        if (obj.token || (obj.email && obj.pass) || obj.id) {
+          success = true;
+        }
+        if (obj.token) {
+          authService.setTokenInHeader(token);
+        }
+        if (obj.email && obj.pass) {
+          dispatch({
+            type: actionNames.SET_TOKEN,
+            payload: { token, tokenExpireDateTime }
+          });
+          authService.setUser(data.id, { tokenIsValid: true, tokenExpireDateTime });
+        }
+        if (success) {
+          dispatch({
+            type: actionNames.GET_USER_SUCCESS,
+            target: 'user',
+            payload: { email, ...user }
+          });
+        }
       } else {
-        message = 'You must login back';
+        dispatch({
+          type: actionNames.GET_USER_FAILURE,
+          target: 'user',
+          payload: 'Invalid access data.'
+        });
       }
-    } else {
-      message = obj.token ? 'Data access incorrect.' : 'Username or password incorrect.';
-    }
-  }
-  if (message) {
-    getUserActions.getUserFailure(message, dispatch);
-  }
-};
+    }),
+    withPostFailure(dispatch => {
+      dispatch({
+        type: actionNames.GET_USER_FAILURE,
+        target: 'user',
+        payload: 'Problem when obtaining user data.'
+      });
+    })
+  ],
+  successSelector: response => response.data[0].user
+});
 
 export const logout = () => async dispatch => {
   removeState('token');
@@ -78,6 +65,6 @@ export const logout = () => async dispatch => {
   dispatch({ type: actionNames.LOGOUT });
 };
 
-export const actionCreators = { getUser, logout };
+export const actionCreators = { actionNames, getUser, logout };
 
 export default actionCreators;

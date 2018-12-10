@@ -1,3 +1,4 @@
+import { createReducer, completeReducer } from 'redux-recompose';
 import Immutable from 'seamless-immutable';
 
 import { loadState } from '../localStorage';
@@ -6,7 +7,6 @@ import { loadState } from '../localStorage';
 import { actionNames } from './types';
 
 const defaultUser = {
-  id: null,
   email: '',
   username: '',
   name: '',
@@ -18,50 +18,31 @@ const tokenExpireDateTime = loadState('tokenExpireDateTime', null);
 const logged = token && !!(new Date().getTime() <= tokenExpireDateTime);
 
 const initialState = Immutable({
-  loading: false,
   logged,
   token,
   tokenExpireDateTime,
-  messageLogin: '',
-  user: defaultUser
+  user: defaultUser,
+  userLoading: false,
+  userError: null
 });
 
-export const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case actionNames.GET_USER:
-      return state.merge({
-        loading: true
-      });
-    case actionNames.GET_USER_SUCCESS:
-      return state.merge({
-        loading: false,
+const reducerDescription = {
+  primaryActions: [actionNames.GET_USER],
+  override: {
+    [actionNames.SET_TOKEN]: (state, action) =>
+      state.merge({
         logged: true,
-        token: action.token,
-        tokenExpireDateTime: action.tokenExpireDateTime,
-        messageLogin: '',
-        user: action.user
-      });
-    case actionNames.GET_USER_FAILURE:
-      return state.merge({
-        loading: false,
+        token: action.payload.token,
+        tokenExpireDateTime: action.payload.tokenExpireDateTime
+      }),
+    [actionNames.LOGOUT]: state =>
+      state.merge({
         logged: false,
         token: '',
         tokenExpireDateTime: null,
-        messageLogin: action.messageLogin,
         user: defaultUser
-      });
-    case actionNames.LOGOUT:
-      return state.merge({
-        loading: false,
-        logged: false,
-        token: '',
-        tokenExpireDateTime: null,
-        messageLogin: '',
-        user: defaultUser
-      });
-    default:
-      return state;
+      })
   }
 };
 
-export default reducer;
+export default createReducer(initialState, completeReducer(reducerDescription));
