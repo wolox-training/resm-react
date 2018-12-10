@@ -7,7 +7,8 @@
       "name": "Raul Suescun",
       "pass": "rsuescunpass",
       "token": "rsuescun@rsuescunpass",
-      "tokenExpireDateTime": 1545335261576,
+      "avatar": "http://placeimg.com/200/200/animals",
+      "tokenExpireDateTime": 1545252163633,
       "tokenIsValid": true
     },
     {
@@ -17,6 +18,7 @@
       "name": "Pedro Perez",
       "pass": "pperezpass",
       "token": "pperez@pperezpass",
+      "avatar": "http://placeimg.com/200/200/arch",
       "tokenExpireDateTime": null,
       "tokenIsValid": false
     },
@@ -27,6 +29,7 @@
       "name": "Maria Montoya",
       "pass": "mmontoyapass",
       "token": "mmontoya@mmontoyapass",
+      "avatar": "http://placeimg.com/200/200/nature",
       "tokenExpireDateTime": null,
       "tokenIsValid": false
     },
@@ -37,6 +40,7 @@
       "name": "Viviana Marin",
       "pass": "mmarinpass",
       "token": "mmarin@mmarinpass",
+      "avatar": "http://placeimg.com/200/200/people",
       "tokenExpireDateTime": null,
       "tokenIsValid": false
     }

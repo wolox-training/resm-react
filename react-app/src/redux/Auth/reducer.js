@@ -2,10 +2,19 @@ import Immutable from 'seamless-immutable';
 
 import { loadState } from '../localStorage';
 
-import { actionNames } from './actions';
+// TODO: why not working with './actions'
+import { actionNames } from './actionTypes';
+
+const defaultUser = {
+  id: null,
+  email: '',
+  username: '',
+  name: '',
+  avatar: ''
+};
 
 const token = loadState('token', '');
-const tokenExpireDateTime = loadState('tokenExpireDateTime', '');
+const tokenExpireDateTime = loadState('tokenExpireDateTime', null);
 const logged = token && !!(new Date().getTime() <= tokenExpireDateTime);
 
 const initialState = Immutable({
@@ -14,12 +23,7 @@ const initialState = Immutable({
   token,
   tokenExpireDateTime,
   messageLogin: '',
-  user: {
-    id: null,
-    name: '',
-    username: '',
-    email: ''
-  }
+  user: defaultUser
 });
 
 export const reducer = (state = initialState, action) => {
@@ -35,26 +39,25 @@ export const reducer = (state = initialState, action) => {
         token: action.token,
         tokenExpireDateTime: action.tokenExpireDateTime,
         messageLogin: '',
-        user: {
-          id: action.id,
-          name: action.name,
-          username: action.username,
-          email: action.email
-        }
+        user: action.user
       });
     case actionNames.GET_USER_FAILURE:
       return state.merge({
         loading: false,
         logged: false,
         token: '',
-        tokenExpireDateTime: '',
+        tokenExpireDateTime: null,
         messageLogin: action.messageLogin,
-        user: {
-          id: null,
-          name: '',
-          username: '',
-          email: ''
-        }
+        user: defaultUser
+      });
+    case actionNames.LOGOUT:
+      return state.merge({
+        loading: false,
+        logged: false,
+        token: '',
+        tokenExpireDateTime: null,
+        messageLogin: '',
+        user: defaultUser
       });
     default:
       return state;

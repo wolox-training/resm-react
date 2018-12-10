@@ -1,23 +1,24 @@
 import { authService } from '../../services/authService';
+import { removeState } from '../localStorage';
 import { TOKEN_EXPIRATION_MILISECONDS } from '../../app/constants';
 
-export const actionNames = {
-  GET_USER: 'GET_USER',
-  GET_USER_SUCCESS: 'GET_USER_SUCCESS',
-  GET_USER_FAILURE: 'GET_USER_FAILURE'
-};
+import { actionNames } from './actionTypes';
 
 const getUserActions = {
   getUserSuccess: (data, token, dispatch) => {
     const tokenExpireDateTime = new Date().getTime() + TOKEN_EXPIRATION_MILISECONDS;
+    const user = {
+      id: data.id,
+      email: data.email,
+      username: data.username,
+      name: data.name,
+      avatar: data.avatar
+    };
     dispatch({
       type: actionNames.GET_USER_SUCCESS,
-      id: data.id,
-      name: data.name,
-      username: data.username,
-      email: data.username,
       token: data.token,
-      tokenExpireDateTime
+      tokenExpireDateTime,
+      user
     });
     if (!token) {
       authService.setTokenInHeader(data.token);
@@ -39,7 +40,6 @@ export const getUser = obj => async dispatch => {
   dispatch({ type: actionNames.GET_USER });
   let message;
   let response;
-  const dataNow = new Date().getTime();
   if (obj.token) {
     response = await authService.getUser({ token: obj.token });
   } else if (obj.email && obj.pass) {
@@ -52,7 +52,7 @@ export const getUser = obj => async dispatch => {
   if (response && response.ok) {
     if (response.data.length > 0) {
       const data = response.data[0];
-      if ((obj.email && obj.pass) || (obj.token && dataNow <= data.tokenExpireDateTime)) {
+      if ((obj.email && obj.pass) || (obj.token && new Date().getTime() <= data.tokenExpireDateTime)) {
         getUserActions.getUserSuccess(data, obj.token, dispatch);
       } else {
         message = 'You must login back';
@@ -65,3 +65,13 @@ export const getUser = obj => async dispatch => {
     getUserActions.getUserFailure(message, dispatch);
   }
 };
+
+export const logout = () => async dispatch => {
+  removeState('token');
+  removeState('tokenExpireDateTime');
+  dispatch({ type: actionNames.LOGOUT });
+};
+
+export const actionCreators = { getUser, logout };
+
+export default actionCreators;
