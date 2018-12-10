@@ -1,10 +1,10 @@
-import { createTypes, completeTypes, withPostFailure, withSuccess } from 'redux-recompose';
+import { withPostFailure, withSuccess } from 'redux-recompose';
 
 import { authService } from '../../services/authService';
 import { removeState } from '../localStorage';
 import { TOKEN_EXPIRATION_MILISECONDS } from '../../app/constants';
 
-export const actionNames = createTypes(completeTypes(['GET_USER'], ['SET_TOKEN', 'LOGOUT']), '@@AUTH');
+import { actionNames } from './actionTypes';
 
 export const getUser = obj => ({
   type: actionNames.GET_USER,
