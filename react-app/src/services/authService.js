@@ -1,6 +1,10 @@
 import api from '../config/api';
 
-export const getUser = obj => api.get('/users', obj);
+// Implemented for simulate latency of response
+export const getUserTrue = obj => api.get('/users', obj);
+
+// export const getUser = obj => api.get('/users', obj);
+export const getUser = async obj => new Promise(resolve => setTimeout(() => resolve(getUserTrue(obj)), 5000));
 
 export const setUser = (id, obj) => api.patch(`/users/${id}`, obj);
 
