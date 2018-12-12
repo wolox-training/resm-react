@@ -21,6 +21,9 @@ describe('01 - matchers', () => {
     expect(pow([5, 3], [10, 5], [7, 4])).toEqual([125, 100000, 2401]);
     expect(pow([5, 3], [10, 5], [7, 4], [8, 8])).toEqual([125, 100000, 2401, 16777216]);
   });
-  xit('pow returns undefined in the right position of the result array if pair is not as expected', () => {
+  it('pow returns undefined in the right position of the result array if pair is not as expected', () => {
+    expect(pow([9, 3], [-9])).toEqual([729, undefined]);
+    expect(pow(5, [10, 5], [7, 4])).toEqual([undefined, 100000, 2401]);
+    expect(pow([5, 3], [10, 5], [], [8, 8])).toEqual([125, 100000, undefined, 16777216]);
   });
 });
