@@ -8,7 +8,9 @@ import App from './App';
 
 configure({ adapter: new Adapter() });
 describe('App', () => {
-  xit('renders without crashing', () => {
+  it('renders without crashing', () => {
+    const wrapper = mount(<App />);
+    expect(wrapper.exists('.App')).toBe(true);
   });
 
   xit('matches the snapshot', () => {
