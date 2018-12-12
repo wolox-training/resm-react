@@ -20,6 +20,12 @@ describe('02 - async', () => {
       expect(e).toEqual(new Error('error'));
     }
   });
-  xit('getData throws error if false is sent as argument (avoid async/await)', () => {
+  it('getData throws error if false is sent as argument (avoid async/await)', () => {
+    expect.assertions(1);
+    try {
+      return expect(getData(false)).rejects.toEqual(new Error('error'));
+    } catch (e) {
+      return e;
+    }
   });
 });
