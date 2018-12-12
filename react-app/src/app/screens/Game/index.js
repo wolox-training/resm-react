@@ -66,8 +66,8 @@ Game.propTypes = {
   status: PropTypes.string,
   winner: PropTypes.string,
   token: PropTypes.string,
-  updateGame: PropTypes.func,
-  updateStatus: PropTypes.func
+  updateGame: PropTypes.func.isRequired,
+  updateStatus: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

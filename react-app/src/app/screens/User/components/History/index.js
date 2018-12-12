@@ -11,28 +11,28 @@ class History extends Component {
   componentDidMount() {
     this.props.getUserPoints(this.props.token);
   }
+  renderHistoryPoints = () => {
+    if (this.props.historyPoints) {
+      const keysSnapshots = Object.keys(this.props.historyPoints);
+      const snapshots = keysSnapshots.map((key, i) => {
+        const date = new Date(Number(key));
+        return (
+          <Snapshot
+            key={i.toString()}
+            date={date.toLocaleDateString()}
+            points={this.props.historyPoints[key]}
+          />
+        );
+      });
+      return snapshots;
+    }
+    return null;
+  };
   render() {
-    const renderHistoryPoints = () => {
-      if (this.props.historyPoints) {
-        const keysSnapshots = Object.keys(this.props.historyPoints);
-        const snapshots = keysSnapshots.map((key, i) => {
-          const date = new Date(Number(key));
-          return (
-            <Snapshot
-              key={i.toString()}
-              date={date.toLocaleDateString()}
-              points={this.props.historyPoints[key]}
-            />
-          );
-        });
-        return snapshots;
-      }
-      return null;
-    };
     return (
       <div className={style.history}>
         <h3>History</h3>
-        <div className={style.historySnapshots}>{renderHistoryPoints()}</div>
+        <div className={style.historySnapshots}>{this.renderHistoryPoints()}</div>
       </div>
     );
   }
@@ -41,7 +41,7 @@ class History extends Component {
 History.propTypes = {
   token: PropTypes.string,
   historyPoints: PropTypes.arrayOf(PropTypes.object),
-  getUserPoints: PropTypes.func
+  getUserPoints: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

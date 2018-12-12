@@ -1,5 +1,5 @@
 import { authService } from '../../services/authService';
-import { USER_PLAYER_MARK } from '../../app/constants';
+import { USER_PLAYER_MARK, SQUARES_NUMBER } from '../../app/constants';
 
 export const actionNames = {
   JUMP_TO: 'JUMP_TO',
@@ -14,96 +14,87 @@ export const actionNames = {
 
 export const jumpTo = (stepNumber, xIsNext, winner) => ({
   type: actionNames.JUMP_TO,
-  stepNumber,
-  xIsNext,
-  winner
+  payload: {
+    stepNumber,
+    xIsNext,
+    winner
+  }
 });
 
-export const toggleMark = (history, stepNumber, xIsNext, winner) => ({
+export const toggleMark = obj => ({
   type: actionNames.TOGGLE_MARK,
-  history,
-  stepNumber,
-  xIsNext,
-  winner
+  payload: obj
 });
 
 export const updateStatus = status => ({
   type: actionNames.UPDATE_STATUS,
-  status
+  payload: status
+});
+
+const loading = () => ({
+  type: actionNames.LOADING
 });
 
 const updateGameActions = {
-  updateGameSuccess: (data, obj, dispatch) => {
+  updateGameSuccess: (data, obj) => {
     const id = data.id;
     const gameCount = Number(data.gameCount) + 1;
-    let objUpdate = { gameCount };
+    const payload = { gameCount };
     if (obj.winner && obj.winner === USER_PLAYER_MARK) {
-      const points = Number(data.points) + obj.points;
-      const historyPoints = { ...data.historyPoints, [new Date().getTime()]: obj.points };
-      objUpdate = { ...objUpdate, points, historyPoints };
+      payload.points = Number(data.points) + obj.points;
+      payload.historyPoints = { ...data.historyPoints, [new Date().getTime()]: obj.points };
     }
-    authService.setUser(id, objUpdate);
-    dispatch({
+    authService.setUser(id, payload);
+    return {
       type: actionNames.UPDATE_GAME_SUCCESS,
       loading: false,
-      ...objUpdate
-    });
+      payload
+    };
   },
-  updateGameFailure: (message, dispatch) => {
-    dispatch({
-      type: actionNames.UPDATE_GAME_FAILURE,
-      loading: false,
-      message
-    });
-  }
+  updateGameFailure: message => ({
+    type: actionNames.UPDATE_GAME_FAILURE,
+    loading: false,
+    payload: message
+  })
 };
 
 const getUserPointsActions = {
-  getUserPointsSuccess: (data, dispatch) => {
-    const gameCount = Number(data.gameCount);
-    const points = Number(data.points);
-    const historyPoints = data.historyPoints;
-    dispatch({
-      type: actionNames.GET_USER_POINT_SUCCESS,
-      loading: false,
-      gameCount,
-      points,
-      historyPoints
-    });
-  },
-  getUserPointsFailure: (message, dispatch) => {
-    dispatch({
-      type: actionNames.GET_USER_POINT_FAILURE,
-      loading: false,
-      message
-    });
-  }
+  getUserPointsSuccess: data => ({
+    type: actionNames.GET_USER_POINT_SUCCESS,
+    loading: false,
+    payload: {
+      gameCount: Number(data.gameCount),
+      points: Number(data.points),
+      historyPoints: data.historyPoints
+    }
+  }),
+  getUserPointsFailure: message => ({
+    type: actionNames.GET_USER_POINT_FAILURE,
+    loading: false,
+    payload: message
+  })
 };
 
 export const updateGame = obj => async dispatch => {
-  dispatch({
-    type: actionNames.LOADING
-  });
-  dispatch(toggleMark(obj.history, obj.stepNumber, obj.xIsNext, obj.winner));
-  if (obj.winner || obj.stepNumber === 9) {
+  dispatch(loading());
+  dispatch(toggleMark(obj));
+  if (obj.winner || obj.stepNumber === SQUARES_NUMBER) {
     const response = await authService.getUser({ token: obj.token });
     if (response && response.ok && response.data.length > 0) {
-      updateGameActions.updateGameSuccess(response.data[0], obj, dispatch);
+      dispatch(updateGameActions.updateGameSuccess(response.data[0], obj));
     } else {
-      updateGameActions.updateGameFailure('Problem get points.', dispatch);
+      dispatch(updateGameActions.updateGameFailure('Problem get points.'));
     }
   }
 };
 
 export const getUserPoints = obj => async dispatch => {
-  dispatch({
-    type: actionNames.LOADING
-  });
+  dispatch(loading());
   const response = await authService.getUser({ token: obj.token });
   if (response && response.ok && response.data.length > 0) {
-    getUserPointsActions.getUserPointsSuccess(response.data[0], dispatch);
+    dispatch(getUserPointsActions.getUserPointsSuccess(response.data[0]));
   } else {
-    getUserPointsActions.getUserPointsFailure('Problem get points.', dispatch);
+    dispatch(getUserPointsActions.getUserPointsFailure('Problem get points.'));
   }
 };
 

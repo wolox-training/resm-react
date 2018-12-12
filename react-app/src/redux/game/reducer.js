@@ -19,46 +19,46 @@ export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionNames.JUMP_TO:
       return state.merge({
-        stepNumber: action.stepNumber,
-        xIsNext: action.xIsNext,
-        winner: action.winner
+        stepNumber: action.payload.stepNumber,
+        xIsNext: action.payload.xIsNext,
+        winner: action.payload.winner
       });
     case actionNames.TOGGLE_MARK:
       return state.merge({
-        history: action.history,
-        stepNumber: action.stepNumber,
-        xIsNext: action.xIsNext,
-        winner: action.winner
+        history: action.payload.history,
+        stepNumber: action.payload.stepNumber,
+        xIsNext: action.payload.xIsNext,
+        winner: action.payload.winner
       });
     case actionNames.UPDATE_STATUS:
-      return state.merge({ status: action.status });
+      return state.merge({ status: action.payload });
     case actionNames.LOADING:
       return state.merge({ loading: true });
     case actionNames.UPDATE_GAME_SUCCESS:
       return state.merge({
         loading: false,
         message: '',
-        gameCount: action.gameCount,
-        points: action.points,
-        historyPoints: action.historyPoints
+        gameCount: action.payload.gameCount,
+        points: action.payload.points,
+        historyPoints: action.payload.historyPoints
       });
     case actionNames.UPDATE_GAME_FAILURE:
       return state.merge({
         loading: false,
-        message: action.message
+        message: action.payload
       });
     case actionNames.GET_USER_POINT_SUCCESS:
       return state.merge({
         loading: false,
         message: '',
-        gameCount: action.gameCount,
-        points: action.points,
-        historyPoints: action.historyPoints
+        gameCount: action.payload.gameCount,
+        points: action.payload.points,
+        historyPoints: action.payload.historyPoints
       });
     case actionNames.GET_USER_POINT_FAILURE:
       return state.merge({
         loading: false,
-        message: action.message
+        message: action.payload
       });
     default:
       return state;
