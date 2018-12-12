@@ -1,8 +1,9 @@
 import getData from '.';
 
 describe('02 - async', () => {
-  xit('getData resolves the data if true is sent as argument (use async/await)', async () => {
-    getData();
+  it('getData resolves the data if true is sent as argument (use async/await)', async () => {
+    const data = await getData(true);
+    expect(data).toMatch('data');
   });
   xit('getData resolves the data if true is sent as argument (avoid async/await)', () => {
   });
