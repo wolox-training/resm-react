@@ -7,7 +7,8 @@ describe('01 - matchers', () => {
     expect(pow(1, 3)).toBe(1);
     expect(pow(10, 5)).toBe(100000);
   });
-  xit('pow returns undefined if there is no arguments', () => {
+  it('pow returns undefined if there is no arguments', () => {
+    expect(pow()).toBeUndefined();
   });
   xit('pow returns undefined if there is just one argument', () => {
   });
