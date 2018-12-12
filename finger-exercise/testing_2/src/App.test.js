@@ -13,7 +13,8 @@ describe('App', () => {
     expect(wrapper.exists('.App')).toBe(true);
   });
 
-  xit('matches the snapshot', () => {
+  it('matches the snapshot', () => {
     const tree = mount(<App />);
+    expect(toJson(tree)).toMatchSnapshot();
   });
 });
