@@ -1,8 +1,11 @@
 import pow from '.';
 
 describe('01 - matchers', () => {
-  xit('pow returns the power based on two numeric arguments', () => {
-    pow();
+  it('pow returns the power based on two numeric arguments', () => {
+    expect(pow(9, 3)).toBe(729);
+    expect(pow(-9, 3)).toBe(-729);
+    expect(pow(1, 3)).toBe(1);
+    expect(pow(10, 5)).toBe(100000);
   });
   xit('pow returns undefined if there is no arguments', () => {
   });
