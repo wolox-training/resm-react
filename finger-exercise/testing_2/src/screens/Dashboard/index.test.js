@@ -17,6 +17,9 @@ describe('Dashboard', () => {
     const wrapper = shallow(<Dashboard />);
     expect(wrapper.find('.App-logo').parent().name()).toBe('header');
   });
-  xit('componentDidMount is called once', () => {
+  it('componentDidMount is called once', () => {
+    jest.spyOn(Dashboard.prototype, 'componentDidMount');
+    const wrapper = shallow(<Dashboard />);
+    expect(Dashboard.prototype.componentDidMount.mock.calls.length).toBe(1);
   })
 });
