@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { getUserPoints } from '../../../../../redux/Game/actions';
 
 import style from './styles.scss';
-import Snapshot from './Snapshot';
+import Snapshot from './components/Snapshot';
 
 class History extends Component {
   componentDidMount() {
@@ -32,7 +32,9 @@ class History extends Component {
     return (
       <div className={style.history}>
         <h3>History</h3>
-        <div className={style.historySnapshots}>{this.renderHistoryPoints()}</div>
+        {this.props.historyPoints && (
+          <div className={style.historySnapshots}>{this.renderHistoryPoints()}</div>
+        )}
       </div>
     );
   }

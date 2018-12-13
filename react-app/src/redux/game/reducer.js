@@ -18,18 +18,9 @@ const initialState = Immutable({
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionNames.JUMP_TO:
-      return state.merge({
-        stepNumber: action.payload.stepNumber,
-        xIsNext: action.payload.xIsNext,
-        winner: action.payload.winner
-      });
+      return state.merge({ ...action.payload });
     case actionNames.TOGGLE_MARK:
-      return state.merge({
-        history: action.payload.history,
-        stepNumber: action.payload.stepNumber,
-        xIsNext: action.payload.xIsNext,
-        winner: action.payload.winner
-      });
+      return state.merge({ ...action.payload });
     case actionNames.UPDATE_STATUS:
       return state.merge({ status: action.payload });
     case actionNames.LOADING:
@@ -38,9 +29,7 @@ export const reducer = (state = initialState, action) => {
       return state.merge({
         loading: false,
         message: '',
-        gameCount: action.payload.gameCount,
-        points: action.payload.points,
-        historyPoints: action.payload.historyPoints
+        ...action.payload
       });
     case actionNames.UPDATE_GAME_FAILURE:
       return state.merge({
@@ -51,9 +40,7 @@ export const reducer = (state = initialState, action) => {
       return state.merge({
         loading: false,
         message: '',
-        gameCount: action.payload.gameCount,
-        points: action.payload.points,
-        historyPoints: action.payload.historyPoints
+        ...action.payload
       });
     case actionNames.GET_USER_POINT_FAILURE:
       return state.merge({

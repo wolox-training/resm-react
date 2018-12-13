@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { getUserPoints } from '../../../../../redux/Game/actions';
 
 import style from './styles.scss';
-import Statistics from './Statistics';
-import Rules from './Rules';
+import Statistics from './components/Statistics';
+import Rules from './components/Rules';
 
 class Points extends Component {
   componentDidMount() {

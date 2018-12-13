@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Statistical from './Statistical';
+import Statistical from './components/Statistical';
 
 class Statistics extends Component {
   render() {
