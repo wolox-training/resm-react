@@ -60,7 +60,7 @@ App.propTypes = {
   logged: PropTypes.bool,
   token: PropTypes.string,
   user: PropTypes.objectOf(PropTypes.string),
-  getUser: PropTypes.func
+  getUser: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

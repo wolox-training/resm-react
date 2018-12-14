@@ -20,20 +20,15 @@ const reducerDescription = {
   override: {
     [actionNames.JUMP_TO]: (state, action) =>
       state.merge({
-        stepNumber: action.stepNumber,
-        xIsNext: action.xIsNext,
-        winner: action.winner
+        ...action.payload
       }),
     [actionNames.TOGGLE_MARK]: (state, action) =>
       state.merge({
-        history: action.history,
-        stepNumber: action.stepNumber,
-        xIsNext: action.xIsNext,
-        winner: action.winner
+        ...action.payload
       }),
     [actionNames.UPDATE_STATUS]: (state, action) =>
       state.merge({
-        status: action.status
+        status: action.payload
       })
   }
 };

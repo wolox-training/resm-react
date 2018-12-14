@@ -44,7 +44,7 @@ class Move extends Component {
 
 Move.propTypes = {
   move: PropTypes.number,
-  jumpTo: PropTypes.func
+  jumpTo: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = dispatch => ({

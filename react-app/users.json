@@ -5,7 +5,7 @@
       "email": "rsuescun@gmail.com",
       "pass": "rsuescunpass",
       "token": "rsuescun@rsuescunpass",
-      "tokenExpireDateTime": 1545768700331,
+      "tokenExpireDateTime": 1546092139999,
       "tokenIsValid": true,
       "user": {
         "username": "rsuescun",
@@ -13,8 +13,8 @@
         "avatar": "http://placeimg.com/200/200/animals"
       },
       "gamePoints": {
-        "count": 24,
-        "points": 204,
+        "count": 39,
+        "points": 350,
         "history": {
           "1544051878140": 6,
           "1544051898445": 10,
@@ -37,7 +37,22 @@
           "1544468536150": 10,
           "1544468543131": 10,
           "1544470303278": 10,
-          "1544470310671": 10
+          "1544470310671": 10,
+          "1544792629027": 10,
+          "1544792643862": 10,
+          "1544792885803": 10,
+          "1544792898936": 10,
+          "1544792905033": 10,
+          "1544792915389": 10,
+          "1544794148801": 10,
+          "1544794565018": 10,
+          "1544794727710": 10,
+          "1544794861796": 10,
+          "1544794902046": 10,
+          "1544795271657": 10,
+          "1544795307453": 10,
+          "1544795314035": 8,
+          "1544796150621": 8
         }
       }
     },
@@ -46,8 +61,8 @@
       "email": "pperez@gmail.com",
       "pass": "pperezpass",
       "token": "pperez@pperezpass",
-      "tokenExpireDateTime": null,
-      "tokenIsValid": false,
+      "tokenExpireDateTime": 1546092122834,
+      "tokenIsValid": true,
       "user": {
         "username": "pperez",
         "name": "Pedro Perez",
