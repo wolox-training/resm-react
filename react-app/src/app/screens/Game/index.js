@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { toggleMark, updateStatus } from '../../../redux/Game/actions';
+import { USER_PLAYER_MARK, OPONENT_PLAYER_MARK } from '../../constants';
+import { updateGame } from '../../../redux/Game/actions';
 
-import calculateWinner from './utils';
+import { calculateWinner, calculatePoints } from './utils';
 import Board from './components/Board';
 import Moves from './components/Moves';
 import style from './styles.scss';
@@ -14,31 +15,25 @@ class Game extends Component {
     const history = this.props.history.slice(0, this.props.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.asMutable().slice();
+    const stepNumber = history.length;
     if (this.props.winner || squares[i]) {
       return;
     }
-    squares[i] = this.props.xIsNext ? 'X' : 'O';
-    this.props.toggleMark(
+    squares[i] = this.props.xIsNext ? USER_PLAYER_MARK : OPONENT_PLAYER_MARK;
+    const userMoveCount = squares.filter(item => item === USER_PLAYER_MARK).length;
+    this.props.updateGame(
       history.concat([{ squares }]),
-      history.length,
+      stepNumber,
       !this.props.xIsNext,
-      calculateWinner(squares)
+      calculateWinner(squares),
+      calculatePoints(userMoveCount),
+      this.props.token
     );
   };
-
-  updateStatus() {
-    if (this.props.winner) {
-      this.props.updateStatus(`Winner: ${this.props.winner}`);
-    } else {
-      this.props.updateStatus(`Next player: ${this.props.xIsNext ? 'X' : 'O'}`);
-    }
-  }
 
   render() {
     const history = this.props.history;
     const current = history[this.props.stepNumber];
-
-    this.updateStatus();
 
     return (
       <div className={style.game}>
@@ -60,8 +55,8 @@ Game.propTypes = {
   xIsNext: PropTypes.bool,
   status: PropTypes.string,
   winner: PropTypes.string,
-  toggleMark: PropTypes.func,
-  updateStatus: PropTypes.func
+  token: PropTypes.string,
+  updateGame: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -69,15 +64,13 @@ const mapStateToProps = state => ({
   stepNumber: state.game.stepNumber,
   xIsNext: state.game.xIsNext,
   status: state.game.status,
-  winner: state.game.winner
+  winner: state.game.winner,
+  token: state.auth.token
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleMark: (history, stepNumber, xIsNext, winner) => {
-    dispatch(toggleMark(history, stepNumber, xIsNext, winner));
-  },
-  updateStatus: status => {
-    dispatch(updateStatus(status));
+  updateGame: (history, stepNumber, xIsNext, winner, points, token) => {
+    dispatch(updateGame({ history, stepNumber, xIsNext, winner, points, token }));
   }
 });
 

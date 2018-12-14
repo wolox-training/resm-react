@@ -1,4 +1,6 @@
-const calculateWinner = squares => {
+import { MAX_POINTS_BY_GAME } from '../../constants';
+
+export const calculateWinner = squares => {
   const lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
   for (let i = 0; i < lines.length; i += 1) {
     const [a, b, c] = lines[i];
@@ -9,4 +11,8 @@ const calculateWinner = squares => {
   return null;
 };
 
-export default calculateWinner;
+export const calculatePoints = numMoves => MAX_POINTS_BY_GAME - (numMoves - 3) * 2;
+
+const utils = { calculateWinner, calculatePoints };
+
+export default utils;

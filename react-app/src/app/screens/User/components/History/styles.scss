@@ -1,0 +1,19 @@
+@import '../scss/colors.scss';
+@import '../scss/fonts.scss';
+
+.history {
+  align-items: center;
+  background: $malibu;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  margin: 25px 150px 25px;
+  padding: 10px;
+}
+
+.history-snapshots {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}

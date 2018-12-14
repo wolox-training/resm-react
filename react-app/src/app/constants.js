@@ -6,22 +6,22 @@ import {
   faSignOutAlt,
   faQuestion,
   faHistory,
-  faDice
+  faDice,
+  faClock
 } from '@fortawesome/free-solid-svg-icons';
 
 import store from '../redux/store';
 import { logout } from '../redux/Auth/actions';
 
-// eslint-disable-next-line
 const handleLogout = () => {
   store.dispatch(logout());
 };
 
-library.add(faHome, faDiceOne, faUser, faSignOutAlt, faQuestion, faHistory, faDice);
+library.add(faHome, faDiceOne, faUser, faSignOutAlt, faQuestion, faHistory, faDice, faClock);
 
 export const ROUTES = [];
 ROUTES.app = { name: 'Game', route: '/' };
-ROUTES.login = { name: 'Login', route: '/login' };
+ROUTES.login = { name: 'Login', route: '/login', restrictLogged: true };
 ROUTES.help = { name: 'Help', route: '/help' };
 ROUTES.user = { name: 'Dashboard', route: '/user' };
 ROUTES.points = { name: 'Points', route: '/user/points' };
@@ -43,6 +43,18 @@ export const LINKS = {
 
 export const TOKEN_EXPIRATION_MILISECONDS = 15 * 24 * 60 * 60 * 1000;
 
-export const CONSTANTS = { LINKS, ROUTES, TOKEN_EXPIRATION_MILISECONDS };
+export const USER_PLAYER_MARK = 'X';
+export const OPONENT_PLAYER_MARK = 'O';
+export const MAX_POINTS_BY_GAME = 10;
+export const POINTS_RULES = [{ points: 10, moves: 3 }, { points: 8, moves: 4 }, { points: 6, moves: 5 }];
+export const SQUARES_NUMBER = 9;
+
+export const CONSTANTS = {
+  LINKS,
+  ROUTES,
+  TOKEN_EXPIRATION_MILISECONDS,
+  USER_PLAYER_MARK,
+  OPONENT_PLAYER_MARK
+};
 
 export default CONSTANTS;
