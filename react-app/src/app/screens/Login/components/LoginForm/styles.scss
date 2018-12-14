@@ -1,0 +1,28 @@
+@import '../scss/colors.scss';
+@import '../scss/fonts.scss';
+
+.login-form {
+  border: 1px solid $dusty-gray;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 30px;
+  width: 250px;
+}
+
+.login-message {
+  border: solid 1px $dusty-gray;
+  border-radius: 5px;
+  color: $red;
+  font-size: $font-login-message;
+  margin-bottom: 25px;
+  padding: 0 5px;
+  text-align: center;
+}
+.login-submit {
+  background: $malibu;
+  border: 0;
+  border-radius: 5px;
+  color: $white;
+  font-size: $font-login-submit;
+  padding: 5px;
+}

@@ -1,6 +1,9 @@
 @import '../scss/colors.scss';
+@import '../scss/fonts.scss';
 
 .app {
+  font: $font-body-size $century-gothic;
+  padding: 0;
   text-align: center;
 }
 
@@ -17,11 +20,7 @@
 }
 
 .app-title {
-  font-size: 1.5em;
-}
-
-.app-intro {
-  font-size: large;
+  font-size: $font-title-app-size;
 }
 
 @keyframes app-logo-spin {
