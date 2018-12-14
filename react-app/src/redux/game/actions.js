@@ -8,6 +8,11 @@ export const actionNames = createTypes(
   '@@AUTH'
 );
 
+export const toggleMark = obj => ({
+  type: actionNames.TOGGLE_MARK,
+  payload: obj
+});
+
 export const jumpTo = (stepNumber, xIsNext, winner) => ({
   type: actionNames.JUMP_TO,
   payload: {
@@ -15,11 +20,6 @@ export const jumpTo = (stepNumber, xIsNext, winner) => ({
     xIsNext,
     winner
   }
-});
-
-export const toggleMark = obj => ({
-  type: actionNames.TOGGLE_MARK,
-  payload: obj
 });
 
 export const updateStatus = (winner, xIsNext) => {
