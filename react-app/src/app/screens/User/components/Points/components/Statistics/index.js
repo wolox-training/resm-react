@@ -44,16 +44,6 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-// Statistics.propTypes = {
-//   gameCount: PropTypes.number,
-//   points: PropTypes.number
-// };
-
-// const mapStateToProps = state => ({
-//   gameCount: state.game.gameCount,
-//   points: state.game.points
-// });
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps

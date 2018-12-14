@@ -22,10 +22,16 @@ export const toggleMark = obj => ({
   payload: obj
 });
 
-export const updateStatus = status => ({
-  type: actionNames.UPDATE_STATUS,
-  payload: status
-});
+export const updateStatus = (winner, xIsNext) => {
+  let status = `Next player: ${xIsNext ? USER_PLAYER_MARK : OPONENT_PLAYER_MARK}`;
+  if (winner) {
+    status = `Winner: ${winner}`;
+  }
+  return {
+    type: actionNames.UPDATE_STATUS,
+    payload: status
+  };
+};
 
 export const getUserPoints = obj => ({
   type: actionNames.GET_USER_POINT,
@@ -42,11 +48,7 @@ export const updateGame = obj => ({
   payload: obj.token,
   injections: [
     withPrefetch(dispatch => {
-      let status = `Next player: ${obj.xIsNext ? USER_PLAYER_MARK : OPONENT_PLAYER_MARK}`;
-      if (obj.winner) {
-        status = `Winner: ${obj.winner}`;
-      }
-      dispatch(updateStatus(status));
+      dispatch(updateStatus(obj.winner, obj.xIsNext));
       dispatch(
         toggleMark({
           history: obj.history,
