@@ -17,9 +17,9 @@ const initialState = Immutable({
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionNames.JUMP_TO:
-      return state.merge({ ...action.payload });
     case actionNames.TOGGLE_MARK:
+      return state.merge({ ...action.payload });
+    case actionNames.JUMP_TO:
       return state.merge({ ...action.payload });
     case actionNames.UPDATE_STATUS:
       return state.merge({ status: action.payload });

@@ -1,5 +1,5 @@
 import { authService } from '../../services/authService';
-import { USER_PLAYER_MARK, SQUARES_NUMBER } from '../../app/constants';
+import { USER_PLAYER_MARK, OPONENT_PLAYER_MARK, SQUARES_NUMBER } from '../../app/constants';
 
 export const actionNames = {
   JUMP_TO: 'JUMP_TO',
@@ -12,6 +12,11 @@ export const actionNames = {
   GET_USER_POINT_FAILURE: 'GET_USER_POINT_FAILURE'
 };
 
+export const toggleMark = obj => ({
+  type: actionNames.TOGGLE_MARK,
+  payload: obj
+});
+
 export const jumpTo = (stepNumber, xIsNext, winner) => ({
   type: actionNames.JUMP_TO,
   payload: {
@@ -21,15 +26,16 @@ export const jumpTo = (stepNumber, xIsNext, winner) => ({
   }
 });
 
-export const toggleMark = obj => ({
-  type: actionNames.TOGGLE_MARK,
-  payload: obj
-});
-
-export const updateStatus = status => ({
-  type: actionNames.UPDATE_STATUS,
-  payload: status
-});
+export const updateStatus = (winner, xIsNext) => {
+  let status = `Next player: ${xIsNext ? USER_PLAYER_MARK : OPONENT_PLAYER_MARK}`;
+  if (winner) {
+    status = `Winner: ${winner}`;
+  }
+  return {
+    type: actionNames.UPDATE_STATUS,
+    payload: status
+  };
+};
 
 const loading = () => ({
   type: actionNames.LOADING
@@ -78,6 +84,7 @@ const getUserPointsActions = {
 export const updateGame = obj => async dispatch => {
   dispatch(loading());
   dispatch(toggleMark(obj));
+  dispatch(updateStatus(obj.winner, obj.xIsNext));
   if (obj.winner || obj.stepNumber === SQUARES_NUMBER) {
     const response = await authService.getUser({ token: obj.token });
     if (response && response.ok && response.data.length > 0) {
