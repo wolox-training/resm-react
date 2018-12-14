@@ -1,0 +1,563 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App matches the snapshot 1`] = `
+<App>
+  <Dashboard>
+    <div
+      className="App"
+    >
+      <header
+        className="App-header"
+      >
+        <img
+          alt="logo"
+          className="App-logo"
+          src="logo.svg"
+        />
+        <h1
+          className="App-title"
+        >
+          Welcome to React
+        </h1>
+        <h1
+          className="App-title"
+        >
+          This is a finger exercise
+        </h1>
+      </header>
+      <p
+        className="App-intro"
+      >
+        To get started, edit 
+        <code>
+          src/App.js
+        </code>
+         and save to reload.
+      </p>
+      <UserList
+        users={
+          Array [
+            Object {
+              "active": true,
+              "id": 1,
+              "name": "Jane",
+            },
+            Object {
+              "active": true,
+              "id": 2,
+              "name": "John",
+            },
+            Object {
+              "active": false,
+              "id": 3,
+              "name": "Sean",
+            },
+            Object {
+              "active": true,
+              "id": 4,
+              "name": "Mike",
+            },
+            Object {
+              "active": true,
+              "id": 5,
+              "name": "Peter",
+            },
+            Object {
+              "active": false,
+              "id": 6,
+              "name": "Dave",
+            },
+            Object {
+              "active": true,
+              "id": 7,
+              "name": "Craig",
+            },
+            Object {
+              "active": false,
+              "id": 8,
+              "name": "Robert",
+            },
+            Object {
+              "active": true,
+              "id": 9,
+              "name": "William",
+            },
+            Object {
+              "active": false,
+              "id": 10,
+              "name": "David",
+            },
+            Object {
+              "active": false,
+              "id": 11,
+              "name": "James",
+            },
+            Object {
+              "active": true,
+              "id": 12,
+              "name": "Charles",
+            },
+            Object {
+              "active": true,
+              "id": 13,
+              "name": "Joseph",
+            },
+            Object {
+              "active": false,
+              "id": 14,
+              "name": "Daniel",
+            },
+            Object {
+              "active": false,
+              "id": 15,
+              "name": "Paul",
+            },
+            Object {
+              "active": true,
+              "id": 16,
+              "name": "Brian",
+            },
+          ]
+        }
+      >
+        <div
+          className="user-list"
+        >
+          <UserRow
+            key="1"
+            user={
+              Object {
+                "active": true,
+                "id": 1,
+                "name": "Jane",
+              }
+            }
+          >
+            <div
+              className="user-row "
+            >
+              <h3>
+                Jane
+              </h3>
+              <div
+                className="toggle"
+              >
+                <button
+                  onClick={[Function]}
+                >
+                  Desactivar
+                </button>
+              </div>
+            </div>
+          </UserRow>
+          <UserRow
+            key="2"
+            user={
+              Object {
+                "active": true,
+                "id": 2,
+                "name": "John",
+              }
+            }
+          >
+            <div
+              className="user-row "
+            >
+              <h3>
+                John
+              </h3>
+              <div
+                className="toggle"
+              >
+                <button
+                  onClick={[Function]}
+                >
+                  Desactivar
+                </button>
+              </div>
+            </div>
+          </UserRow>
+          <UserRow
+            key="3"
+            user={
+              Object {
+                "active": false,
+                "id": 3,
+                "name": "Sean",
+              }
+            }
+          >
+            <div
+              className="user-row toggle-off"
+            >
+              <h3>
+                Sean
+              </h3>
+              <div
+                className="toggle"
+              >
+                <button
+                  onClick={[Function]}
+                >
+                  Activar
+                </button>
+              </div>
+            </div>
+          </UserRow>
+          <UserRow
+            key="4"
+            user={
+              Object {
+                "active": true,
+                "id": 4,
+                "name": "Mike",
+              }
+            }
+          >
+            <div
+              className="user-row "
+            >
+              <h3>
+                Mike
+              </h3>
+              <div
+                className="toggle"
+              >
+                <button
+                  onClick={[Function]}
+                >
+                  Desactivar
+                </button>
+              </div>
+            </div>
+          </UserRow>
+          <UserRow
+            key="5"
+            user={
+              Object {
+                "active": true,
+                "id": 5,
+                "name": "Peter",
+              }
+            }
+          >
+            <div
+              className="user-row "
+            >
+              <h3>
+                Peter
+              </h3>
+              <div
+                className="toggle"
+              >
+                <button
+                  onClick={[Function]}
+                >
+                  Desactivar
+                </button>
+              </div>
+            </div>
+          </UserRow>
+          <UserRow
+            key="6"
+            user={
+              Object {
+                "active": false,
+                "id": 6,
+                "name": "Dave",
+              }
+            }
+          >
+            <div
+              className="user-row toggle-off"
+            >
+              <h3>
+                Dave
+              </h3>
+              <div
+                className="toggle"
+              >
+                <button
+                  onClick={[Function]}
+                >
+                  Activar
+                </button>
+              </div>
+            </div>
+          </UserRow>
+          <UserRow
+            key="7"
+            user={
+              Object {
+                "active": true,
+                "id": 7,
+                "name": "Craig",
+              }
+            }
+          >
+            <div
+              className="user-row "
+            >
+              <h3>
+                Craig
+              </h3>
+              <div
+                className="toggle"
+              >
+                <button
+                  onClick={[Function]}
+                >
+                  Desactivar
+                </button>
+              </div>
+            </div>
+          </UserRow>
+          <UserRow
+            key="8"
+            user={
+              Object {
+                "active": false,
+                "id": 8,
+                "name": "Robert",
+              }
+            }
+          >
+            <div
+              className="user-row toggle-off"
+            >
+              <h3>
+                Robert
+              </h3>
+              <div
+                className="toggle"
+              >
+                <button
+                  onClick={[Function]}
+                >
+                  Activar
+                </button>
+              </div>
+            </div>
+          </UserRow>
+          <UserRow
+            key="9"
+            user={
+              Object {
+                "active": true,
+                "id": 9,
+                "name": "William",
+              }
+            }
+          >
+            <div
+              className="user-row "
+            >
+              <h3>
+                William
+              </h3>
+              <div
+                className="toggle"
+              >
+                <button
+                  onClick={[Function]}
+                >
+                  Desactivar
+                </button>
+              </div>
+            </div>
+          </UserRow>
+          <UserRow
+            key="10"
+            user={
+              Object {
+                "active": false,
+                "id": 10,
+                "name": "David",
+              }
+            }
+          >
+            <div
+              className="user-row toggle-off"
+            >
+              <h3>
+                David
+              </h3>
+              <div
+                className="toggle"
+              >
+                <button
+                  onClick={[Function]}
+                >
+                  Activar
+                </button>
+              </div>
+            </div>
+          </UserRow>
+          <UserRow
+            key="11"
+            user={
+              Object {
+                "active": false,
+                "id": 11,
+                "name": "James",
+              }
+            }
+          >
+            <div
+              className="user-row toggle-off"
+            >
+              <h3>
+                James
+              </h3>
+              <div
+                className="toggle"
+              >
+                <button
+                  onClick={[Function]}
+                >
+                  Activar
+                </button>
+              </div>
+            </div>
+          </UserRow>
+          <UserRow
+            key="12"
+            user={
+              Object {
+                "active": true,
+                "id": 12,
+                "name": "Charles",
+              }
+            }
+          >
+            <div
+              className="user-row "
+            >
+              <h3>
+                Charles
+              </h3>
+              <div
+                className="toggle"
+              >
+                <button
+                  onClick={[Function]}
+                >
+                  Desactivar
+                </button>
+              </div>
+            </div>
+          </UserRow>
+          <UserRow
+            key="13"
+            user={
+              Object {
+                "active": true,
+                "id": 13,
+                "name": "Joseph",
+              }
+            }
+          >
+            <div
+              className="user-row "
+            >
+              <h3>
+                Joseph
+              </h3>
+              <div
+                className="toggle"
+              >
+                <button
+                  onClick={[Function]}
+                >
+                  Desactivar
+                </button>
+              </div>
+            </div>
+          </UserRow>
+          <UserRow
+            key="14"
+            user={
+              Object {
+                "active": false,
+                "id": 14,
+                "name": "Daniel",
+              }
+            }
+          >
+            <div
+              className="user-row toggle-off"
+            >
+              <h3>
+                Daniel
+              </h3>
+              <div
+                className="toggle"
+              >
+                <button
+                  onClick={[Function]}
+                >
+                  Activar
+                </button>
+              </div>
+            </div>
+          </UserRow>
+          <UserRow
+            key="15"
+            user={
+              Object {
+                "active": false,
+                "id": 15,
+                "name": "Paul",
+              }
+            }
+          >
+            <div
+              className="user-row toggle-off"
+            >
+              <h3>
+                Paul
+              </h3>
+              <div
+                className="toggle"
+              >
+                <button
+                  onClick={[Function]}
+                >
+                  Activar
+                </button>
+              </div>
+            </div>
+          </UserRow>
+          <UserRow
+            key="16"
+            user={
+              Object {
+                "active": true,
+                "id": 16,
+                "name": "Brian",
+              }
+            }
+          >
+            <div
+              className="user-row "
+            >
+              <h3>
+                Brian
+              </h3>
+              <div
+                className="toggle"
+              >
+                <button
+                  onClick={[Function]}
+                >
+                  Desactivar
+                </button>
+              </div>
+            </div>
+          </UserRow>
+        </div>
+      </UserList>
+    </div>
+  </Dashboard>
+</App>
+`;
