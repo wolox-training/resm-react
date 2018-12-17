@@ -5,29 +5,31 @@ import { connect } from 'react-redux';
 import { getUserPoints } from '../../../../../redux/Game/actions';
 
 import style from './styles.scss';
-import Snapshot from './Snapshot';
+import Snapshot from './components/Snapshot';
 
 class History extends Component {
   componentDidMount() {
     this.props.getUserPoints(this.props.token);
   }
+  renderHistoryPoints = () => {
+    const history = this.props.gamePoints && this.props.gamePoints.history;
+    if (history) {
+      const keysSnapshots = Object.keys(history);
+      const snapshots = keysSnapshots.map((key, i) => {
+        const date = new Date(Number(key));
+        return <Snapshot key={i.toString()} date={date.toLocaleDateString()} points={history[key]} />;
+      });
+      return snapshots;
+    }
+    return null;
+  };
   render() {
-    const renderHistoryPoints = () => {
-      const history = this.props.gamePoints && this.props.gamePoints.history;
-      if (history) {
-        const keysSnapshots = Object.keys(history);
-        const snapshots = keysSnapshots.map((key, i) => {
-          const date = new Date(Number(key));
-          return <Snapshot key={i.toString()} date={date.toLocaleDateString()} points={history[key]} />;
-        });
-        return snapshots;
-      }
-      return null;
-    };
     return (
       <div className={style.history}>
         <h3>History</h3>
-        <div className={style.historySnapshots}>{renderHistoryPoints()}</div>
+        {this.props.gamePoints && this.props.gamePoints.history && (
+          <div className={style.historySnapshots}>{this.renderHistoryPoints()}</div>
+        )}
       </div>
     );
   }

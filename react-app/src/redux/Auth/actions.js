@@ -6,6 +6,23 @@ import { TOKEN_EXPIRATION_MILISECONDS } from '../../app/constants';
 
 import { actionNames } from './actionTypes';
 
+const setToken = (token, tokenExpireDateTime) => ({
+  type: actionNames.SET_TOKEN,
+  payload: { token, tokenExpireDateTime }
+});
+
+const getUserSuccess = obj => ({
+  type: actionNames.GET_USER_SUCCESS,
+  target: 'user',
+  payload: obj
+});
+
+const getUserFailure = message => ({
+  type: actionNames.GET_USER_FAILURE,
+  target: 'user',
+  payload: message
+});
+
 export const getUser = obj => ({
   type: actionNames.GET_USER,
   service: authService.getUser,
@@ -27,33 +44,18 @@ export const getUser = obj => ({
           authService.setTokenInHeader(token);
         }
         if (obj.email && obj.pass) {
-          dispatch({
-            type: actionNames.SET_TOKEN,
-            payload: { token, tokenExpireDateTime }
-          });
+          dispatch(setToken(token, tokenExpireDateTime));
           authService.setUser(data.id, { tokenIsValid: true, tokenExpireDateTime });
         }
         if (success) {
-          dispatch({
-            type: actionNames.GET_USER_SUCCESS,
-            target: 'user',
-            payload: { email, ...user }
-          });
+          dispatch(getUserSuccess({ email, ...user }));
         }
       } else {
-        dispatch({
-          type: actionNames.GET_USER_FAILURE,
-          target: 'user',
-          payload: 'Invalid access data.'
-        });
+        dispatch(getUserFailure('Invalid access data.'));
       }
     }),
     withPostFailure(dispatch => {
-      dispatch({
-        type: actionNames.GET_USER_FAILURE,
-        target: 'user',
-        payload: 'Problem when obtaining user data.'
-      });
+      dispatch(getUserFailure('Problem when obtaining user data.'));
     })
   ],
   successSelector: response => response.data[0].user

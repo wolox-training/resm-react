@@ -75,7 +75,7 @@ App.propTypes = {
   token: PropTypes.string,
   user: PropTypes.objectOf(PropTypes.string),
   userLoading: PropTypes.bool,
-  getUser: PropTypes.func
+  getUser: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

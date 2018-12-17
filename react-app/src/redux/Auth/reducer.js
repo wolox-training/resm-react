@@ -32,8 +32,7 @@ const reducerDescription = {
     [actionNames.SET_TOKEN]: (state, action) =>
       state.merge({
         logged: true,
-        token: action.payload.token,
-        tokenExpireDateTime: action.payload.tokenExpireDateTime
+        ...action.payload
       }),
     [actionNames.LOGOUT]: state =>
       state.merge({

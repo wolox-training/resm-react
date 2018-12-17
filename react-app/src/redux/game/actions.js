@@ -1,32 +1,37 @@
 import { createTypes, completeTypes, withPrefetch, withSuccess } from 'redux-recompose';
 
 import { authService } from '../../services/authService';
-import { USER_PLAYER_MARK } from '../../app/constants';
+import { USER_PLAYER_MARK, OPONENT_PLAYER_MARK, SQUARES_NUMBER } from '../../app/constants';
 
 export const actionNames = createTypes(
   completeTypes(['UPDATE_GAME', 'GET_USER_POINT'], ['JUMP_TO', 'TOGGLE_MARK', 'UPDATE_STATUS', 'LOADING']),
   '@@AUTH'
 );
 
+export const toggleMark = obj => ({
+  type: actionNames.TOGGLE_MARK,
+  payload: obj
+});
+
 export const jumpTo = (stepNumber, xIsNext, winner) => ({
   type: actionNames.JUMP_TO,
-  stepNumber,
-  xIsNext,
-  winner
+  payload: {
+    stepNumber,
+    xIsNext,
+    winner
+  }
 });
 
-export const toggleMark = (history, stepNumber, xIsNext, winner) => ({
-  type: actionNames.TOGGLE_MARK,
-  history,
-  stepNumber,
-  xIsNext,
-  winner
-});
-
-export const updateStatus = status => ({
-  type: actionNames.UPDATE_STATUS,
-  status
-});
+export const updateStatus = (winner, xIsNext) => {
+  let status = `Next player: ${xIsNext ? USER_PLAYER_MARK : OPONENT_PLAYER_MARK}`;
+  if (winner) {
+    status = `Winner: ${winner}`;
+  }
+  return {
+    type: actionNames.UPDATE_STATUS,
+    payload: status
+  };
+};
 
 export const getUserPoints = obj => ({
   type: actionNames.GET_USER_POINT,
@@ -43,19 +48,26 @@ export const updateGame = obj => ({
   payload: obj.token,
   injections: [
     withPrefetch(dispatch => {
-      dispatch(toggleMark(obj.history, obj.stepNumber, obj.xIsNext, obj.winner));
+      dispatch(updateStatus(obj.winner, obj.xIsNext));
+      dispatch(
+        toggleMark({
+          history: obj.history,
+          stepNumber: obj.stepNumber,
+          xIsNext: obj.xIsNext,
+          winner: obj.winner
+        })
+      );
     }),
     withSuccess((dispatch, response) => {
-      if (obj.winner || obj.stepNumber === 9) {
+      if (obj.winner || obj.stepNumber === SQUARES_NUMBER) {
         const data = response.data[0];
         const id = data.id;
         const oldGamePoints = data.gamePoints;
         const count = Number(oldGamePoints.count) + 1;
-        let gamePoints = { count };
+        const gamePoints = { count };
         if (obj.winner && obj.winner === USER_PLAYER_MARK) {
-          const points = Number(oldGamePoints.points) + obj.points;
-          const history = { ...oldGamePoints.history, [new Date().getTime()]: obj.points };
-          gamePoints = { ...gamePoints, points, history };
+          gamePoints.points = Number(oldGamePoints.points) + obj.points;
+          gamePoints.history = { ...oldGamePoints.history, [new Date().getTime()]: obj.points };
         }
         authService.setUser(id, { gamePoints });
         dispatch({
