@@ -11,8 +11,8 @@ class Statistics extends Component {
     this.props.getUserPoints(this.props.token);
   }
   render() {
-    if (this.props.gamePoints) {
-      return (
+    return (
+      this.props.gamePoints && (
         <Fragment>
           <Statistical title="Points" number={this.props.gamePoints.points} />
           <Statistical title="Num. of games" number={this.props.gamePoints.count} />
@@ -21,9 +21,8 @@ class Statistics extends Component {
             number={Math.round(this.props.gamePoints.points / this.props.gamePoints.count)}
           />
         </Fragment>
-      );
-    }
-    return null;
+      )
+    );
   }
 }
 
