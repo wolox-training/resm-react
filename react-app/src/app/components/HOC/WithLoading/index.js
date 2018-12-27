@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import style from './styles.scss';
 
@@ -7,14 +7,14 @@ function WithLoading(WrappedComponent, isLoading) {
     static displayName = WrappedComponent.displayName || WrappedComponent.name || 'Component';
     render() {
       const spinner = (
-        <div>
+        <Fragment>
           <span>Loading...</span>
           <div className={style.spinner}>
             <div className={style.bounce1} />
             <div className={style.bounce2} />
             <div className={style.bounce3} />
           </div>
-        </div>
+        </Fragment>
       );
       return isLoading ? spinner : <WrappedComponent {...this.props} />;
     }
