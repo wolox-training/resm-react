@@ -13,7 +13,11 @@ class Topbar extends Component {
           <img src={this.props.logo} className={style.topbarLogo} alt="logo" />
           <h1 className={style.topbarTitle}>{this.props.title}</h1>
           <Navbar links={this.props.links} logged={this.props.logged} />
-          {this.props.logged && <div className={style.topbarUser}>{this.props.user.name[0]}</div>}
+          {this.props.logged && (
+            <div className={style.topbarUser}>
+              {this.props.user && this.props.user.name && this.props.user.name[0]}
+            </div>
+          )}
         </div>
       </header>
     );

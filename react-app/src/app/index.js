@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getUser } from '../redux/Auth/actions';
+import { actionCreators as authActions } from '../redux/Auth/actions';
 
 import { LINKS, ROUTES } from './constants';
 import style from './styles.scss';
@@ -19,7 +19,9 @@ import Points from './screens/User/components/Points';
 
 class App extends Component {
   componentDidMount() {
-    this.props.getUser(this.props.token);
+    if (this.props.token) {
+      this.props.getUser(this.props.token);
+    }
   }
   render() {
     return (
@@ -69,7 +71,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getUser: token => {
-    dispatch(getUser({ token }));
+    dispatch(authActions.getUser({ token }));
   }
 });
 

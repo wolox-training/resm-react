@@ -12,17 +12,12 @@ class History extends Component {
     this.props.getUserPoints(this.props.token);
   }
   renderHistoryPoints = () => {
-    if (this.props.historyPoints) {
-      const keysSnapshots = Object.keys(this.props.historyPoints);
+    const history = this.props.gamePoints && this.props.gamePoints.history;
+    if (history) {
+      const keysSnapshots = Object.keys(history);
       const snapshots = keysSnapshots.map((key, i) => {
         const date = new Date(Number(key));
-        return (
-          <Snapshot
-            key={i.toString()}
-            date={date.toLocaleDateString()}
-            points={this.props.historyPoints[key]}
-          />
-        );
+        return <Snapshot key={i.toString()} date={date.toLocaleDateString()} points={history[key]} />;
       });
       return snapshots;
     }
@@ -32,7 +27,7 @@ class History extends Component {
     return (
       <div className={style.history}>
         <h3>History</h3>
-        {this.props.historyPoints && (
+        {this.props.gamePoints && this.props.gamePoints.history && (
           <div className={style.historySnapshots}>{this.renderHistoryPoints()}</div>
         )}
       </div>
@@ -42,15 +37,13 @@ class History extends Component {
 
 History.propTypes = {
   token: PropTypes.string,
-  historyPoints: PropTypes.arrayOf(PropTypes.object),
-  getUserPoints: PropTypes.func.isRequired
+  gamePoints: PropTypes.objectOf(PropTypes.object),
+  getUserPoints: PropTypes.func
 };
 
 const mapStateToProps = state => ({
-  logged: state.auth.logged,
-  user: state.auth.user,
   token: state.auth.token,
-  historyPoints: state.game.historyPoints
+  gamePoints: state.game.gamePoints
 });
 
 const mapDispatchToProps = dispatch => ({

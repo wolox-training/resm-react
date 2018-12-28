@@ -1,3 +1,4 @@
+import { createReducer, completeReducer } from 'redux-recompose';
 import Immutable from 'seamless-immutable';
 
 import { actionNames } from './actions';
@@ -8,48 +9,28 @@ const initialState = Immutable({
   xIsNext: true,
   status: '',
   winner: null,
-  loading: false,
   message: '',
-  gameCount: 0,
-  points: 0,
-  historyPoints: null
+  gamePoints: null,
+  gamePointsLoading: false,
+  gamePointsError: null
 });
 
-export const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case actionNames.TOGGLE_MARK:
-      return state.merge({ ...action.payload });
-    case actionNames.JUMP_TO:
-      return state.merge({ ...action.payload });
-    case actionNames.UPDATE_STATUS:
-      return state.merge({ status: action.payload });
-    case actionNames.LOADING:
-      return state.merge({ loading: true });
-    case actionNames.UPDATE_GAME_SUCCESS:
-      return state.merge({
-        loading: false,
-        message: '',
+const reducerDescription = {
+  primaryActions: [actionNames.UPDATE_GAME, actionNames.GET_USER_POINT],
+  override: {
+    [actionNames.JUMP_TO]: (state, action) =>
+      state.merge({
         ...action.payload
-      });
-    case actionNames.UPDATE_GAME_FAILURE:
-      return state.merge({
-        loading: false,
-        message: action.payload
-      });
-    case actionNames.GET_USER_POINT_SUCCESS:
-      return state.merge({
-        loading: false,
-        message: '',
+      }),
+    [actionNames.TOGGLE_MARK]: (state, action) =>
+      state.merge({
         ...action.payload
-      });
-    case actionNames.GET_USER_POINT_FAILURE:
-      return state.merge({
-        loading: false,
-        message: action.payload
-      });
-    default:
-      return state;
+      }),
+    [actionNames.UPDATE_STATUS]: (state, action) =>
+      state.merge({
+        status: action.payload
+      })
   }
 };
 
-export default reducer;
+export default createReducer(initialState, completeReducer(reducerDescription));

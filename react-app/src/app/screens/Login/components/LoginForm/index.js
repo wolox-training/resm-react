@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getUser } from '../../../../../redux/Auth/actions';
+import { actionCreators as authActions } from '../../../../../redux/Auth/actions';
 
 import LoginFormLayout from './layout';
 
@@ -21,12 +21,12 @@ LoginForm.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  messageLogin: state.auth.messageLogin
+  messageLogin: state.auth.userError
 });
 
 const mapDispatchToProps = dispatch => ({
   getUser: (email, pass) => {
-    dispatch(getUser({ email, pass }));
+    dispatch(authActions.getUser({ email, pass }));
   }
 });
 

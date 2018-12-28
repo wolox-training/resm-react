@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-
-import { getUserPoints } from '../../../../../redux/Game/actions';
 
 import style from './styles.scss';
 import Statistics from './components/Statistics';
 import Rules from './components/Rules';
 
 class Points extends Component {
-  componentDidMount() {
-    this.props.getUserPoints(this.props.token);
-  }
   render() {
     return (
       <div className={style.points}>
@@ -28,22 +21,4 @@ class Points extends Component {
   }
 }
 
-Points.propTypes = {
-  token: PropTypes.string,
-  getUserPoints: PropTypes.func.isRequired
-};
-
-const mapStateToProps = state => ({
-  token: state.auth.token
-});
-
-const mapDispatchToProps = dispatch => ({
-  getUserPoints: token => {
-    dispatch(getUserPoints({ token }));
-  }
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Points);
+export default Points;
