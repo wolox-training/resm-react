@@ -7,6 +7,7 @@ import { actionCreators as authActions } from '../redux/Auth/actions';
 
 import { LINKS, ROUTES } from './constants';
 import style from './styles.scss';
+import withLoading from './components/HOC/WithLoading';
 import RestrictRoute from './components/RestrictRoute';
 import Topbar from './components/Topbar';
 import Navbar from './components/Navbar';
@@ -43,9 +44,22 @@ class App extends Component {
             <RestrictRoute path={ROUTES.login.route} component={Login} />
             <RestrictRoute path={ROUTES.help.route} component={Help} />
             <Switch>
-              <RestrictRoute path={ROUTES.user.route} exact component={User} isPrivate />
-              <RestrictRoute path={ROUTES.points.route} component={Points} isPrivate />
-              <RestrictRoute path={ROUTES.history.route} component={History} isPrivate />
+              <RestrictRoute
+                exact
+                path={ROUTES.user.route}
+                component={withLoading(User, this.props.userLoading)}
+                isPrivate
+              />
+              <RestrictRoute
+                path={ROUTES.points.route}
+                component={withLoading(Points, this.props.userLoading)}
+                isPrivate
+              />
+              <RestrictRoute
+                path={ROUTES.history.route}
+                component={withLoading(History, this.props.userLoading)}
+                isPrivate
+              />
               <Redirect to={ROUTES.user.route} />
             </Switch>
             <Redirect to={ROUTES.app.route} />
@@ -60,13 +74,15 @@ App.propTypes = {
   logged: PropTypes.bool,
   token: PropTypes.string,
   user: PropTypes.objectOf(PropTypes.string),
+  userLoading: PropTypes.bool,
   getUser: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   logged: state.auth.logged,
   token: state.auth.token,
-  user: state.auth.user
+  user: state.auth.user,
+  userLoading: state.auth.userLoading
 });
 
 const mapDispatchToProps = dispatch => ({

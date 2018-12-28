@@ -31,8 +31,7 @@ RestrictRoute.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  logged: state.auth.logged,
-  token: state.auth.token
+  logged: state.auth.logged
 });
 
 export default connect(mapStateToProps)(RestrictRoute);
