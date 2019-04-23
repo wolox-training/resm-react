@@ -1,0 +1,115 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "rsuescun@gmail.com",
+      "pass": "rsuescunpass",
+      "token": "rsuescun@rsuescunpass",
+      "tokenExpireDateTime": 1546092139999,
+      "tokenIsValid": true,
+      "user": {
+        "username": "rsuescun",
+        "name": "Raul Suescun",
+        "avatar": "http://placeimg.com/200/200/animals"
+      },
+      "gamePoints": {
+        "count": 40,
+        "points": 360,
+        "history": {
+          "1544051878140": 6,
+          "1544051898445": 10,
+          "1544051908792": 6,
+          "1544052029612": 10,
+          "1544055219217": 6,
+          "1544055294329": 10,
+          "1544116347018": 6,
+          "1544116469466": 10,
+          "1544116676915": 10,
+          "1544116714682": 10,
+          "1544119567170": 10,
+          "1544121527653": 10,
+          "1544127431302": 10,
+          "1544459842874": 10,
+          "1544460012623": 10,
+          "1544460092289": 10,
+          "1544460219685": 10,
+          "1544460329962": 10,
+          "1544468536150": 10,
+          "1544468543131": 10,
+          "1544470303278": 10,
+          "1544470310671": 10,
+          "1544792629027": 10,
+          "1544792643862": 10,
+          "1544792885803": 10,
+          "1544792898936": 10,
+          "1544792905033": 10,
+          "1544792915389": 10,
+          "1544794148801": 10,
+          "1544794565018": 10,
+          "1544794727710": 10,
+          "1544794861796": 10,
+          "1544794902046": 10,
+          "1544795271657": 10,
+          "1544795307453": 10,
+          "1544795314035": 8,
+          "1544796150621": 8,
+          "1544797927677": 10
+        }
+      }
+    },
+    {
+      "id": 2,
+      "email": "pperez@gmail.com",
+      "pass": "pperezpass",
+      "token": "pperez@pperezpass",
+      "tokenExpireDateTime": 1546092122834,
+      "tokenIsValid": true,
+      "user": {
+        "username": "pperez",
+        "name": "Pedro Perez",
+        "avatar": "http://placeimg.com/200/200/arch"
+      },
+      "gamePoints": {
+        "count": 0,
+        "points": 0,
+        "history": {}
+      }
+    },
+    {
+      "id": 3,
+      "email": "mmontoya@outlook.com",
+      "pass": "mmontoyapass",
+      "token": "mmontoya@mmontoyapass",
+      "tokenExpireDateTime": null,
+      "tokenIsValid": false,
+      "user": {
+        "username": "mmontoya",
+        "name": "Maria Montoya",
+        "avatar": "http://placeimg.com/200/200/nature"
+      },
+      "gamePoints": {
+        "count": 0,
+        "points": 0,
+        "history": {}
+      }
+    },
+    {
+      "id": 4,
+      "email": "mmarin@hotmail.com",
+      "pass": "mmarinpass",
+      "token": "mmarin@mmarinpass",
+      "tokenExpireDateTime": null,
+      "tokenIsValid": false,
+      "user": {
+        "username": "mmarin",
+        "name": "Viviana Marin",
+        "avatar": "http://placeimg.com/200/200/people"
+      },
+      "gamePoints": {
+        "count": 0,
+        "points": 0,
+        "history": {}
+      }
+    }
+  ]
+}

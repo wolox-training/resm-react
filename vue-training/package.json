@@ -32,6 +32,7 @@
   },
   "homepage": "https://github.com/Wolox/frontend-bootstrap",
   "dependencies": {
+    "apisauce": "^1.0.2",
     "eslint": "^5.9.0",
     "eslint-plugin-vue": "^5.0.0-beta.4",
     "vue": "^2.5.17",
@@ -91,7 +92,7 @@
     "vue-loader": "^15.4.2",
     "vue-pug-lint-loader": "0.0.1",
     "vue-template-compiler": "^2.5.17",
-    "webpack": "^4.4.1",
+    "webpack": "^4.30.0",
     "webpack-bundle-analyzer": "^2.11.1",
     "webpack-cli": "^3.1.2",
     "webpack-dashboard": "^1.1.1",
