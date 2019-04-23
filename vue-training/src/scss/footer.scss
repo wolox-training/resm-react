@@ -25,7 +25,7 @@
   font-size: $text-small;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: $desktop-device-width) {
   .foot {
     padding: 40px;
   }

@@ -1,0 +1,45 @@
+<template lang="pug">
+  h2.title {{ title }}
+</template>
+<script>
+export default {
+  props: {
+    title: {
+      type: String,
+      required: true
+    }
+  }
+}
+</script>
+<style lang="scss" scoped>
+  @import '../scss/variables/colors';
+  @import '../scss/variables/fonts';
+
+  $title-decoration-height: 90px;
+  $title-decoration-width: 70px;
+
+  .title {
+    align-items: center;
+    color: $black;
+    display: flex;
+    font-size: $font-title-size;
+    margin: 80px;
+    padding: 0 50px;
+    position: relative;
+
+    &::before{
+      content: url('http://localhost:3000/assets/triangle.svg');
+      height: $title-decoration-height;
+      left: 0px;
+      position: absolute;
+      width: $title-decoration-width;
+      z-index: -1;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .title {
+      margin: 60px 40px 20px 80px;
+    }
+  }
+</style>
