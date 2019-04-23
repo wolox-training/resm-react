@@ -1,0 +1,41 @@
+.foot {
+  align-items: center;
+  background: $blue;
+  display: flex;
+  flex-direction: column;
+  grid-row: 3;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.foot-text {
+  color: $white;
+  font-size: $text-medium;
+  text-transform: uppercase;
+}
+
+.foot-logo {
+  height: 45px;
+  margin: 15px;
+}
+
+.foot-copy {
+  align-self: flex-end;
+  color: $white;
+  font-size: $text-small;
+}
+
+@media only screen and (max-width: 1024px) {
+  .foot {
+    padding: 40px;
+  }
+
+  .foot-logo {
+    height: 45px;
+    margin: 15px 15px 45px;
+  }
+
+  .foot-copy {
+    align-self: center;
+  }
+}
