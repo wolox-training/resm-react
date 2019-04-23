@@ -1,19 +1,19 @@
-$nav-height: 90px;
-$nav-logo-height: 30px;
-
 .navbar {
-  align-items: center;
   background: $white;
-  border-bottom: 3px solid $grey;
-  display: flex;
-  height: $nav-height;
-  justify-content: space-between;
-  padding: 20px;
   position: fixed;
   right: 0;
   top: 0;
   width: 100%;
   z-index: 1;
+}
+
+.navbar-header {
+  align-items: center;
+  border-bottom: 3px solid $grey;
+  display: flex;
+  height: $nav-height;
+  justify-content: space-between;
+  padding: 20px;
 }
 
 .navbar-logo {
@@ -22,6 +22,21 @@ $nav-logo-height: 30px;
 
 .navbar-text {
   font-size: $text-big;
+}
+
+.filter-container {
+  display: flex;
+  flex-direction: row;
+  height: $filter-height;
+  justify-content: flex-end;
+  padding: 10px;
+  width: 100%;
+}
+
+.input-filter {
+  border-bottom: 1px solid $wolox-green;
+  padding: 10px;
+  width: 250px;
 }
 
 @media only screen and (max-width: $desktop-device-width) {

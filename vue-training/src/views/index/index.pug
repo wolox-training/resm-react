@@ -9,30 +9,37 @@ html(lang='en')
     link(rel='preload' href='styles.index.css' as='style')
     link(rel='stylesheet' href='styles.index.css')
     script(src='./vendor.js')
-  body.app-container
-    nav.navbar
-      img.navbar-logo(
-        src='/assets/wolox_logo.svg'
-        alt='logo'
-      )
-      h1.navbar-text Developer Tools
-    #app.main(v-cloak)
-      div.tech-list(
-        v-for="techGroup in techs"
-        :key="techGroup.id"
-      )
-        tech-title(:title="techGroup.title")
-        div.tech-box-list
-          tech-box(
-            v-for="tech in techGroup.techsList"
-            :key="tech.id"
-            :tech="tech"
+  body
+    #app.app-container(v-cloak)
+      nav.navbar
+        .navbar-header
+          img.navbar-logo(
+            src='/assets/wolox_logo.svg'
+            alt='logo'
           )
-    footer.foot
-      span.foot-text We are game changers
-      img.foot-logo(
-        src='/assets/wolox_logo_white.svg'
-        alt='White app logo'
-      )
-      span.foot-copy Copyright 2018. Wolox. All right reserved.
+          h1.navbar-text {{ navTitle }}
+        .filter-container
+          form
+            input.input-filter(type="text" :placeholder="filterPlaceholder" v-model="filter") 
+      .main
+        .no-data-text(v-if="!haveData") {{ noDataText }}
+        div(v-else)
+          .tech-list(
+            v-for="techGroup in filterTechs"
+            :key="techGroup.id"
+          )
+            tech-title {{ techGroup.title }}
+            .tech-box-list
+              tech-box(
+                v-for="tech in techGroup.techsList"
+                :key="tech.id"
+                :tech="tech"
+              )
+      footer.foot
+        span.foot-text {{ footerText }}
+        img.foot-logo(
+          src='/assets/wolox_logo_white.svg'
+          alt='White app logo'
+        )
+        span.foot-copy {{ footerCopyright }}
     script(src='./index.js')

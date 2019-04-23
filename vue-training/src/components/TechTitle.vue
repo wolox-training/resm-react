@@ -1,14 +1,10 @@
 <template lang="pug">
-  h2.title {{ title }}
+  h2.title
+    slot
 </template>
 <script>
 export default {
-  props: {
-    title: {
-      type: String,
-      required: true
-    }
-  }
+
 }
 </script>
 <style lang="scss" scoped>
@@ -28,7 +24,7 @@ export default {
     position: relative;
 
     &::before{
-      content: url('http://localhost:3000/assets/triangle.svg');
+      content: url('/assets/triangle.svg');
       height: $title-decoration-height;
       left: 0px;
       position: absolute;
