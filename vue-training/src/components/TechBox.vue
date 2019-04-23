@@ -2,7 +2,7 @@
   div.tech-box
     img.tech-box-logo(
       :src="tech.logo"
-      :alt="tech.title"
+      alt="tech logo"
     )
     h3.tech-box-title {{ tech.title }}
     span.tech-box-launch Release: {{ tech.launch }}
@@ -12,13 +12,17 @@
 <script>
 export default {
   props: {
-    tech: Object
+    tech: {
+      type: Object,
+      required: true,
+      validator: value => value && value.title && value.launch && value.description && value.logo
+    }
   }
 }
 </script>
 <style lang="scss" scoped>
-  @import '../scss/colors';
-  @import '../scss/fonts';
+  @import '../scss/variables/colors';
+  @import '../scss/variables/fonts';
 
   $tech-logo-size: 100px;
   $tech-text-margin: 10px;
@@ -32,7 +36,7 @@ export default {
     text-align: center;
 
     &:first-child {
-      border-right: 2px solid $green; 
+      border-right: 2px solid $wolox-green; 
       grid-column: 1;
       grid-row: 1 / 3;
       height: 100%;
@@ -73,7 +77,7 @@ export default {
 
   @media only screen and (max-width: 1024px) {
     .tech-box {
-      border-bottom: 2px solid $green; 
+      border-bottom: 2px solid $wolox-green; 
       margin: 20px 60px;
     }
 

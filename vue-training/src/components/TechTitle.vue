@@ -4,13 +4,16 @@
 <script>
 export default {
   props: {
-    title: String
+    title: {
+      type: String,
+      required: true
+    }
   }
 }
 </script>
 <style lang="scss" scoped>
-  @import '../scss/colors';
-  @import '../scss/fonts';
+  @import '../scss/variables/colors';
+  @import '../scss/variables/fonts';
 
   $title-decoration-height: 90px;
   $title-decoration-width: 70px;
