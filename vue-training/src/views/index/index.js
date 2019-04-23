@@ -18,7 +18,6 @@ const vm = new Vue({
     TechTitle
   },
   data: {
-    titulo: 'Developer Tools',
     techs: []
   },
   created() {
