@@ -2,19 +2,30 @@ import Vue from 'vue'
 
 import { installServiceWorker } from '../../serviceWorkerInstaller'
 
-const Example = () => import(/* webpackChunkName: "example" */ '../../components/Example')
+import TechService from '../../services/techsService.js'
+
+const TechTitle = () => import('../../components/TechTitle')
+const TechBox = () => import('../../components/TechBox')
+
 
 import './index.pug'
 import './index.scss'
 
-// eslint-disable-next-line
 const vm = new Vue({
   el: '#app',
   components: {
-    Example
+    TechTitle,
+    TechBox
   },
   data: {
-    title: 'Welcome to Frontend Bootstrap!'
+    titulo: 'Developer Tools',
+    techs: []
+  },
+  created() {
+    TechService.getTechs()
+      .then(response => {
+        vm.techs = response.data
+      })
   }
 })
 

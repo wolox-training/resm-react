@@ -1,0 +1,39 @@
+$nav-height: 90px;
+$nav-logo-height: 30px;
+
+.navbar {
+  align-items: center;
+  background: $white;
+  border-bottom: 3px solid $grey;
+  display: flex;
+  height: $nav-height;
+  justify-content: space-between;
+  padding: 20px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.navbar-logo {
+  height: $nav-logo-height;
+}
+
+.navbar-text {
+  font-size: $text-big;
+}
+
+@media only screen and (max-width: 1024px) {
+  .navbar {
+    height: $nav-height + 20px;
+  }
+  
+  .navbar-logo {
+    height: $nav-logo-height + 20px;
+  }
+  
+  .navbar-text {
+    visibility: hidden;
+  }
+}

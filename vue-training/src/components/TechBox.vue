@@ -1,0 +1,91 @@
+<template lang="pug">
+  div.tech-box
+    img.tech-box-logo(
+      :src="tech.logo"
+      :alt="tech.title"
+    )
+    h3.tech-box-title {{ tech.title }}
+    span.tech-box-launch Release: {{ tech.launch }}
+    p.tech-box-text
+      | {{ tech.description }}
+</template>
+<script>
+export default {
+  props: {
+    tech: Object
+  }
+}
+</script>
+<style lang="scss" scoped>
+  @import '../scss/colors';
+  @import '../scss/fonts';
+
+  $tech-logo-size: 100px;
+  $tech-text-margin: 10px;
+
+  .tech-box {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 60px;
+    position: relative;
+    text-align: center;
+
+    &:first-child {
+      border-right: 2px solid $green; 
+      grid-column: 1;
+      grid-row: 1 / 3;
+      height: 100%;
+      justify-content: center;
+      justify-self: stretch;
+    }
+  }
+
+  .tech-box-logo {
+    height: $tech-logo-size;
+    width: $tech-logo-size;
+  }
+
+  .tech-box-title {
+    font-size: $box-title-size;
+  }
+
+  .tech-box-launch {
+    font-size: $box-launch-text-size;
+    font-weight: bold;
+  }
+
+  .tech-box-text {
+    font-size: $box-text-size;
+  }
+
+  .tech-box-title, 
+  .text-box-launch, 
+  .tech-box-text { 
+    color: $black; 
+  }
+
+  .tech-box-logo,
+  .tech-box-title,
+  .tech-box-launch {
+    margin-bottom: $tech-text-margin;
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .tech-box {
+      border-bottom: 2px solid $green; 
+      margin: 20px 60px;
+    }
+
+    .tech-box:first-child {
+      border-right: 0; 
+      grid-column: auto;
+      grid-row: auto;
+      justify-content: center;
+    }
+
+    .tech-box:last-child {
+      border-bottom: 0;
+    }
+  }
+</style>
