@@ -23,10 +23,10 @@ export default {
     padding: 0 50px;
     position: relative;
 
-    &::before{
+    &::before {
       content: url('/assets/triangle.svg');
       height: $title-decoration-height;
-      left: 0px;
+      left: 0;
       position: absolute;
       width: $title-decoration-width;
       z-index: -1;

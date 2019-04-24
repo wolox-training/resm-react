@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.tech-box
+  .tech-box
     img.tech-box-logo(
       :src="tech.logo"
       alt="tech logo"
@@ -15,6 +15,7 @@ export default {
     tech: {
       type: Object,
       required: true,
+      // TODO: How I do validate schema?
       validator: value => value && value.title && value.launch && value.description && value.logo
     }
   }
@@ -26,6 +27,7 @@ export default {
 
   $tech-logo-size: 100px;
   $tech-text-margin: 10px;
+  $tech-line-height: 24px;
 
   .tech-box {
     align-items: center;
@@ -52,15 +54,19 @@ export default {
 
   .tech-box-title {
     font-size: $box-title-size;
+    line-height: $tech-line-height;
   }
 
   .tech-box-launch {
+    color: $black;
     font-size: $box-launch-text-size;
     font-weight: bold;
+    line-height: $tech-line-height;
   }
 
   .tech-box-text {
     font-size: $box-text-size;
+    line-height: $tech-line-height;
   }
 
   .tech-box-title, 
