@@ -20,7 +20,7 @@ const vm = new Vue({
   },
   data: {
     filter: '',
-    filterCountsuffix: 'Tecnología(s)',
+    filterCountSuffix: 'Tecnología(s)',
     filterPlaceholder: 'Filtrar',
     footerText: 'We are game changers',
     footerCopyright: 'Copyright 2018. Wolox. All right reserved.',
