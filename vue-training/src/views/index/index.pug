@@ -9,30 +9,31 @@ html(lang='en')
     link(rel='preload' href='styles.index.css' as='style')
     link(rel='stylesheet' href='styles.index.css')
     script(src='./vendor.js')
-  body.app-container
-    nav.navbar
-      img.navbar-logo(
-        src='/assets/wolox_logo.svg'
-        alt='logo'
-      )
-      h1.navbar-text Developer Tools
-    #app.main(v-cloak)
-      div.tech-list(
-        v-for="techGroup in techs"
-        :key="techGroup.id"
-      )
-        tech-title(:title="techGroup.title")
-        div.tech-box-list
-          tech-box(
-            v-for="tech in techGroup.techsList"
-            :key="tech.id"
-            :tech="tech"
-          )
-    footer.foot
-      span.foot-text We are game changers
-      img.foot-logo(
-        src='/assets/wolox_logo_white.svg'
-        alt='White app logo'
-      )
-      span.foot-copy Copyright 2018. Wolox. All right reserved.
+  body
+    #app.app-container(v-cloak)
+      nav.navbar
+        img.navbar-logo(
+          src='/assets/wolox_logo.svg'
+          alt='logo'
+        )
+        h1.navbar-text Developer Tools
+      .main
+        .tech-list(
+          v-for="(techGroup, index) in techs"
+          :key="index"
+        )
+          tech-title(:title="techGroup.title")
+          .tech-box-list
+            tech-box(
+              v-for="(tech, index) in techGroup.techsList"
+              :key="index"
+              :tech="tech"
+            )
+      footer.foot
+        span.foot-text We are game changers
+        img.foot-logo(
+          src='/assets/wolox_logo_white.svg'
+          alt='White app logo'
+        )
+        span.foot-copy Copyright 2018. Wolox. All right reserved.
     script(src='./index.js')
