@@ -22,7 +22,7 @@ html(lang='en')
           form
             input.input-filter(type="text" :placeholder="filterPlaceholder" v-model="filter") 
       .main
-        .no-data-text(v-if="!haveData") {{ noDataText }}
+        message-no-data(v-if="!haveData") {{ noDataText }}
         div(v-else)
           .tech-list(
             v-for="techGroup in filterTechs"

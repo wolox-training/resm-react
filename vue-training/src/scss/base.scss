@@ -20,20 +20,6 @@
   width: 100%;
 }
 
-.no-data-text {
-  background-color: $wolox-blue;
-  border: 1px solid $black;
-  border-radius: 5px;
-  color: $white;
-  display: flex;
-  flex-direction: column;
-  font-size: $no-data-text-size;
-  justify-content: center;
-  margin: 150px 50px 450px;
-  padding: 20px 15px;
-  text-align: center;
-}
-
 .tech-list {
   align-items: flex-start;
   display: flex;

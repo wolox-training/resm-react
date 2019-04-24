@@ -4,6 +4,7 @@ import { installServiceWorker } from '../../serviceWorkerInstaller'
 
 import TechService from '../../services/techsService.js'
 
+const MessageNoData = () => import('../../components/MessageNoData')
 const TechBox = () => import('../../components/TechBox')
 const TechTitle = () => import('../../components/TechTitle')
 
@@ -13,6 +14,7 @@ import './index.scss'
 const vm = new Vue({
   el: '#app',
   components: {
+    MessageNoData,
     TechBox,
     TechTitle
   },
