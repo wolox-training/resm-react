@@ -36,15 +36,19 @@ $tech-text-margin: 10px;
 
 .tech-box-title {
   font-size: $box-title-size;
+  line-height: 24px;
 }
 
 .tech-box-launch {
+  color: $black;
   font-size: $box-launch-text-size;
   font-weight: bold;
+  line-height: 24px;
 }
 
 .tech-box-text {
   font-size: $box-text-size;
+  line-height: 24px;
 }
 
 .tech-box-title, 
