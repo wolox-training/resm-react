@@ -19,7 +19,7 @@ html(lang='en')
           )
           h1.navbar-text {{ navTitle }}
         .filter-container
-          span.filter-count {{ countTechs }} {{ filterCountsuffix }}
+          span.filter-count {{ countTechs }} {{ filterCountSuffix }}
           input.filter-input(type="text" :placeholder="filterPlaceholder" v-model="filter")
       .main(v-if="haveData")
         .tech-list(
