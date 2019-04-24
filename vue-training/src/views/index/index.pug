@@ -19,8 +19,7 @@ html(lang='en')
           )
           h1.navbar-text {{ navTitle }}
         .filter-container
-          form
-            input.input-filter(type="text" :placeholder="filterPlaceholder" v-model="filter") 
+          input.input-filter(type="text" :placeholder="filterPlaceholder" v-model="filter") 
       .main
         message-no-data(v-if="!haveData") {{ noDataText }}
         div(v-else)
