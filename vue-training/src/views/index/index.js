@@ -20,6 +20,7 @@ const vm = new Vue({
   },
   data: {
     filter: '',
+    filterCountsuffix: 'Tecnología(s)',
     filterPlaceholder: 'Filtrar',
     footerText: 'We are game changers',
     footerCopyright: 'Copyright 2018. Wolox. All right reserved.',
@@ -45,13 +46,16 @@ const vm = new Vue({
 
       return newTechs
     },
-    haveData() {
+    countTechs() {
       const countOfTechs = this.filterTechs && this.filterTechs.map(techGroup => techGroup && techGroup.techsList.length)
       let countTotal = 0
       if (countOfTechs && countOfTechs.length > 0 && countOfTechs.reduce) {
         countTotal = countOfTechs.reduce((a, b) => a + b)
       }
-      return countTotal > 0
+      return countTotal
+    },
+    haveData() {
+      return this.countTechs > 0
     }
   },
   created() {

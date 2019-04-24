@@ -20,8 +20,9 @@ export default {
     flex-direction: column;
     font-size: $no-data-text-size;
     justify-content: center;
-    margin: 150px 50px 450px;
+    margin: 300px 50px 450px;
     padding: 20px 15px;
     text-align: center;
+    width: 70%;
   }
 </style>
