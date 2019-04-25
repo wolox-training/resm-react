@@ -21,7 +21,7 @@ html(lang='en')
           )
           h1.navbar-text {{ $t("navbar.title") }}
         .navbar-bottom-container
-          span.filter-count {{ countTechs }} {{ $t("navbar.filter.countSuffix") }}
+          span.filter-count {{ $tc('navbar.filter.countMessage', countTechs, { count: countTechs }) }}
           span.language-label {{ $t("navbar.language.languageLabel") }}:
           select(v-model="locale").language-select
             option(value="en" selected) {{ $t("navbar.language.english") }}

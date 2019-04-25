@@ -10,7 +10,7 @@ const TRANSLATIONS = {
         spanish: 'Spanish'
       },
       filter: {
-        countSuffix: 'Techs',
+        countMessage: 'No technologies | One technologie | {count} technologies',
         placeholder: 'Filter'
       }
     },
@@ -34,7 +34,7 @@ const TRANSLATIONS = {
         spanish: 'Español'
       },
       filter: {
-        countSuffix: 'Tecnología(s)',
+        countMessage: 'Ninguna tecnología | Una tecnología | {count} tecnologías',
         placeholder: 'Filtrar'
       }
     },
