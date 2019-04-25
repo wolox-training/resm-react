@@ -13,14 +13,12 @@ html(lang='en')
     #app.app-container(v-cloak)
       nav.navbar
         .navbar-header
-          img.navbar-logo(
-            src='/assets/wolox_logo.svg'
-            alt='logo'
-          )
-          h1.navbar-text {{ navTitle }}
+          img.navbar-logo(src='/assets/wolox_logo.svg')
+          h1.navbar-text Developer Tools
         .filter-container
           span.filter-count {{ countTechs }} {{ filterCountSuffix }}
-          input.filter-input(type="text" :placeholder="filterPlaceholder" v-model="filter") 
+          input.filter-input(type="text" :placeholder="filterPlaceholder" v-model="filter")
+          | test
       transition(name="slide-fade" mode="out-in")
         .main(v-if="haveData")
           .tech-list(
@@ -36,10 +34,7 @@ html(lang='en')
               )
         message-no-data(v-else) {{ noDataText }}
       footer.foot
-        span.foot-text {{ footerText }}
-        img.foot-logo(
-          src='/assets/wolox_logo_white.svg'
-          alt='White app logo'
-        )
-        span.foot-copy {{ footerCopyright }}
+        span.foot-text We are game changers
+        img.foot-logo(src='/assets/wolox_logo_white.svg')
+        span.foot-copy Copyright 2018. Wolox. All right reserved.
     script(src='./index.js')
