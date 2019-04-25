@@ -16,13 +16,13 @@ html(lang='en')
           img.navbar-logo(src='/assets/wolox_logo.svg')
           h1.navbar-text Developer Tools
         .filter-container
-          span.filter-count {{ countTechs }} {{ filterCountSuffix }}
-          input.filter-input(type="text" :placeholder="filterPlaceholder" v-model="filter")
-          | test
+          span.filter-count
+            | {{ countTechs }} Tecnología(s)
+          input.filter-input(type="text" placeholder="Filtrar" v-model="filter")
       transition(name="slide-fade" mode="out-in")
         .main(v-if="haveData")
           .tech-list(
-            v-for="(techGroup, index) in filterTechs"
+            v-for="(techGroup, index) in filteredTechs"
             :key="index"
           )
             tech-title {{ techGroup.title }}
@@ -32,7 +32,7 @@ html(lang='en')
                 :key="index"
                 :tech="tech"
               )
-        message-no-data(v-else) {{ noDataText }}
+        message-no-data(v-else) No se encontraron techs
       footer.foot
         span.foot-text We are game changers
         img.foot-logo(src='/assets/wolox_logo_white.svg')
