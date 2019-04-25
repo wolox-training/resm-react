@@ -17,7 +17,7 @@ html(lang='en')
         .navbar-header
           img.navbar-logo(
             src='/assets/wolox_logo.svg'
-            alt='logo'
+            :alt="$t('navbar.altLogo')"
           )
           h1.navbar-text {{ $t("navbar.title") }}
         .navbar-bottom-container
@@ -45,7 +45,7 @@ html(lang='en')
         span.foot-text {{ $t("footer.text") }}
         img.foot-logo(
           src='/assets/wolox_logo_white.svg'
-          alt='White app logo'
+          :alt="$t('footer.altLogo')"
         )
         span.foot-copy {{ $t("footer.copyright") }}
     script(src='./index.js')
