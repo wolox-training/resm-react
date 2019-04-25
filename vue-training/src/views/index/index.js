@@ -5,6 +5,8 @@ Vue.use(VueI18n)
 
 import { installServiceWorker } from '../../serviceWorkerInstaller'
 
+import { DEFAULT_LANGUAGE } from '../../constants/general.js'
+
 import TechService from '../../services/techsService.js'
 
 import TRANSLATIONS from '../../translations/i18n.js'
@@ -16,7 +18,7 @@ import './index.pug'
 import './index.scss'
 
 const i18n = new VueI18n({
-  locale: 'en',
+  locale: DEFAULT_LANGUAGE,
   preserveDirectiveContent: true,
   messages: TRANSLATIONS
 })
@@ -29,7 +31,7 @@ const vm = new Vue({
   },
   data: {
     filter: '',
-    locale: 'en',
+    locale: DEFAULT_LANGUAGE,
     jsonData: {},
     techs: []
   },
