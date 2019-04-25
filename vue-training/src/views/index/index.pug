@@ -19,6 +19,7 @@ html(lang='en')
           span.filter-count
             | {{ countTechs }} Tecnología(s)
           input.filter-input(type="text" placeholder="Filtrar" v-model="filter")
+          | test
       .main(v-if="haveData")
         .tech-list(
           v-for="(techGroup, index) in filteredTechs"
