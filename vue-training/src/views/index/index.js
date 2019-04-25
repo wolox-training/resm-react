@@ -11,7 +11,6 @@ import TRANSLATIONS from '../../translations/i18n.js'
 
 const MessageNoData = () => import('../../components/MessageNoData')
 const TechBox = () => import('../../components/TechBox')
-const TechTitle = () => import('../../components/TechTitle')
 
 import './index.pug'
 import './index.scss'
@@ -26,8 +25,7 @@ const vm = new Vue({
   i18n,
   components: {
     MessageNoData,
-    TechBox,
-    TechTitle
+    TechBox
   },
   data: {
     filter: '',
@@ -50,7 +48,6 @@ const vm = new Vue({
           return newTechGroup
         })
       }
-
       return newTechs
     },
     countTechs() {
