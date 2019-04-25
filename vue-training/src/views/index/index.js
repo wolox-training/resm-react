@@ -34,7 +34,7 @@ const vm = new Vue({
     techs: []
   },
   computed: {
-    filterTechs() {
+    filteredTechs() {
       let newTechs = this.techs
       const { filter } = this
 
@@ -51,7 +51,7 @@ const vm = new Vue({
       return newTechs
     },
     countTechs() {
-      const countOfTechs = this.filterTechs && this.filterTechs.map(techGroup => techGroup && techGroup.techsList.length)
+      const countOfTechs = this.filteredTechs && this.filteredTechs.map(techGroup => techGroup && techGroup.techsList.length)
       let countTotal = 0
       if (countOfTechs && countOfTechs.length > 0 && countOfTechs.reduce) {
         countTotal = countOfTechs.reduce((a, b) => a + b)
