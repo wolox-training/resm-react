@@ -5,7 +5,7 @@
       alt="tech logo"
     )
     h3.tech-box-title {{ tech.title }}
-    span.tech-box-launch Release: {{ tech.launch }}
+    span.tech-box-launch {{ $t('release') }}: {{ tech.launch }}
     p.tech-box-text
       | {{ tech.description }}
 </template>

@@ -1,0 +1,40 @@
+const TRANSLATIONS = {
+  en: {
+    release: 'Release',
+    navbar: {
+      title: 'Developer Tools',
+      languageLabel: 'Language',
+      filter: {
+        countSuffix: 'Techs',
+        placeholder: 'Filter'
+      }
+    },
+    footer: {
+      text: 'We are game changers',
+      copyright: 'Copyright 2018. Wolox. All right reserved.'
+    },
+    error: {
+      noDataText: 'Not found technologies'
+    }
+  },
+  es: {
+    release: 'Lanzamiento',
+    navbar: {
+      title: 'Herramientas de Desarrollo',
+      languageLabel: 'Lenguaje',
+      filter: {
+        countSuffix: 'Tecnología(s)',
+        placeholder: 'Filtrar'
+      }
+    },
+    footer: {
+      text: 'We are game changers',
+      copyright: 'Copyright 2018. Wolox. Todos los derechos reservados.'
+    },
+    error: {
+      noDataText: 'No se encontraron tecnologías'
+    }
+  }
+}
+
+export default TRANSLATIONS

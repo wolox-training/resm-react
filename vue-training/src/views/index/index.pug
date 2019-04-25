@@ -9,6 +9,8 @@ html(lang='en')
     link(rel='preload' href='styles.index.css' as='style')
     link(rel='stylesheet' href='styles.index.css')
     script(src='./vendor.js')
+    script(src='https://unpkg.com/vue/dist/vue.js')
+    script(src='https://unpkg.com/vue-i18n/dist/vue-i18n.js')
   body
     #app.app-container(v-cloak)
       nav.navbar
@@ -17,10 +19,14 @@ html(lang='en')
             src='/assets/wolox_logo.svg'
             alt='logo'
           )
-          h1.navbar-text {{ navTitle }}
-        .filter-container
-          span.filter-count {{ countTechs }} {{ filterCountSuffix }}
-          input.filter-input(type="text" :placeholder="filterPlaceholder" v-model="filter") 
+          h1.navbar-text {{ $t("navbar.title") }}
+        .navbar-bottom-container
+          span.filter-count {{ countTechs }} {{ $t("navbar.filter.countSuffix") }}
+          span.language-label {{ $t("navbar.languageLabel") }}:
+          select(v-model="locale").language-select
+            option(value="en" selected) English
+            option(value="es") Español
+          input.filter-input(type="text" :placeholder="$t('navbar.filter.placeholder')" v-model="filter") 
       transition(name="slide-fade" mode="out-in")
         .main(v-if="haveData")
           .tech-list(
@@ -34,12 +40,12 @@ html(lang='en')
                 :key="index"
                 :tech="tech"
               )
-        message-no-data(v-else) {{ noDataText }}
+        message-no-data(v-else) {{ $t("error.noDataText") }}
       footer.foot
-        span.foot-text {{ footerText }}
+        span.foot-text {{ $t("footer.text") }}
         img.foot-logo(
           src='/assets/wolox_logo_white.svg'
           alt='White app logo'
         )
-        span.foot-copy {{ footerCopyright }}
+        span.foot-copy {{ $t("footer.copyright") }}
     script(src='./index.js')

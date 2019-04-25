@@ -24,7 +24,7 @@
   font-size: $text-big;
 }
 
-.filter-container {
+.navbar-bottom-container {
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -32,6 +32,16 @@
   justify-content: flex-end;
   padding: 10px;
   width: 100%;
+}
+
+.language-label {
+  margin-left: 20px;
+}
+
+.language-select {
+  color: $wolox-green;
+  font-weight: bold;
+  margin-left: 5px;
 }
 
 .filter-input {

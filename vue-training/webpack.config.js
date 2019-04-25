@@ -46,6 +46,11 @@ module.exports = {
         loader: 'vue-loader'
       },
       {
+        resourceQuery: /blockType=i18n/,
+        type: 'javascript/auto',
+        loader: '@kazupon/vue-i18n-loader'
+      },
+      {
         enforce: 'pre',
         test: /\.pug$/,
         exclude: /node_modules/,
