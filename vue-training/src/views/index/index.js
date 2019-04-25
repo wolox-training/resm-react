@@ -6,7 +6,6 @@ import TechService from '../../services/techsService.js'
 
 const MessageNoData = () => import('../../components/MessageNoData')
 const TechBox = () => import('../../components/TechBox')
-const TechTitle = () => import('../../components/TechTitle')
 
 import './index.pug'
 import './index.scss'
@@ -15,21 +14,14 @@ const vm = new Vue({
   el: '#app',
   components: {
     MessageNoData,
-    TechBox,
-    TechTitle
+    TechBox
   },
   data: {
     filter: '',
-    filterCountSuffix: 'Tecnología(s)',
-    filterPlaceholder: 'Filtrar',
-    footerText: 'We are game changers',
-    footerCopyright: 'Copyright 2018. Wolox. All right reserved.',
-    navTitle: 'Developer Tools',
-    noDataText: 'No se encontraron techs',
     techs: []
   },
   computed: {
-    filterTechs() {
+    filteredTechs() {
       let newTechs = this.techs
       const { filter } = this
 
@@ -43,11 +35,10 @@ const vm = new Vue({
           return newTechGroup
         })
       }
-
       return newTechs
     },
     countTechs() {
-      const countOfTechs = this.filterTechs && this.filterTechs.map(techGroup => techGroup && techGroup.techsList.length)
+      const countOfTechs = this.filteredTechs && this.filteredTechs.map(techGroup => techGroup && techGroup.techsList.length)
       let countTotal = 0
       if (countOfTechs && countOfTechs.length > 0 && countOfTechs.reduce) {
         countTotal = countOfTechs.reduce((a, b) => a + b)

@@ -21,8 +21,9 @@ export default {
     font-size: $no-data-text-size;
     justify-content: center;
     margin: 300px 50px 450px;
+    max-width: 600px;
     padding: 20px 15px;
     text-align: center;
-    width: 70%;
+    width: 100%;
   }
 </style>
