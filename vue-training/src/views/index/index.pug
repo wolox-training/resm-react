@@ -22,10 +22,10 @@ html(lang='en')
           h1.navbar-text {{ $t("navbar.title") }}
         .navbar-bottom-container
           span.filter-count {{ countTechs }} {{ $t("navbar.filter.countSuffix") }}
-          span.language-label {{ $t("navbar.languageLabel") }}:
+          span.language-label {{ $t("navbar.language.languageLabel") }}:
           select(v-model="locale").language-select
-            option(value="en" selected) English
-            option(value="es") Español
+            option(value="en" selected) {{ $t("navbar.language.english") }}
+            option(value="es") {{ $t("navbar.language.spanish") }}
           input.filter-input(type="text" :placeholder="$t('navbar.filter.placeholder')" v-model="filter") 
       transition(name="slide-fade" mode="out-in")
         .main(v-if="haveData")

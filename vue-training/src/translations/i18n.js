@@ -3,7 +3,11 @@ const TRANSLATIONS = {
     release: 'Release',
     navbar: {
       title: 'Developer Tools',
-      languageLabel: 'Language',
+      language: {
+        languageLabel: 'Language',
+        english: 'English',
+        spanish: 'Spanish'
+      },
       filter: {
         countSuffix: 'Techs',
         placeholder: 'Filter'
@@ -21,7 +25,11 @@ const TRANSLATIONS = {
     release: 'Lanzamiento',
     navbar: {
       title: 'Herramientas de Desarrollo',
-      languageLabel: 'Lenguaje',
+      language: {
+        languageLabel: 'Idioma',
+        english: 'Inglés',
+        spanish: 'Español'
+      },
       filter: {
         countSuffix: 'Tecnología(s)',
         placeholder: 'Filtrar'
