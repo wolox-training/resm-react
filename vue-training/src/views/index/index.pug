@@ -25,7 +25,7 @@ html(lang='en')
             v-for="(techGroup, index) in filteredTechs"
             :key="index"
           )
-            tech-title {{ techGroup.title }}
+            .title {{ techGroup.title }}
             transition-group(name="slide-fade" tag="div").tech-box-list
               tech-box(
                 v-for="(tech, index) in techGroup.techsList"
