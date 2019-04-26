@@ -38,6 +38,22 @@
   width: 100%;
 }
 
+.no-data-text {
+  background-color: $wolox-blue;
+  border: 1px solid $black;
+  border-radius: 5px;
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  font-size: $no-data-text-size;
+  justify-content: center;
+  margin: 300px 50px 450px;
+  max-width: 600px;
+  padding: 20px 15px;
+  text-align: center;
+  width: 100%;
+}
+
 @media only screen and (max-width: $desktop-device-width) {
   .tech-box-list {
     grid-template-columns: 1fr;

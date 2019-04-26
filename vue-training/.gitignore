@@ -27,3 +27,6 @@ backstop_data
 
 #IDE files
 .vscode
+
+# enviroment 
+.env

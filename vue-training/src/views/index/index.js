@@ -2,18 +2,17 @@ import Vue from 'vue'
 
 import { installServiceWorker } from '../../serviceWorkerInstaller'
 
-import TechService from '../../services/techsService.js'
+import TechService from '../../services/techsService'
 
-const MessageNoData = () => import('../../components/MessageNoData')
 const TechBox = () => import('../../components/TechBox')
 
 import './index.pug'
 import './index.scss'
 
+// eslint-disable-next-line no-unused-vars
 const vm = new Vue({
   el: '#app',
   components: {
-    MessageNoData,
     TechBox
   },
   data: {
@@ -24,10 +23,9 @@ const vm = new Vue({
     filteredTechs() {
       let newTechs = this.techs
       const { filter } = this
-
       if (filter) {
-        newTechs = newTechs.map(techGroup => {
-          const newTechsList = techGroup && techGroup.techsList.filter(tech => tech.title.toLowerCase().includes(filter.toLowerCase()))
+        newTechs = newTechs.map((techGroup = { techsList: [] }) => {
+          const newTechsList = techGroup.techsList.filter(tech => tech.title.toLowerCase().includes(filter.toLowerCase()))
           const newTechGroup = {
             ...techGroup,
             techsList: newTechsList
@@ -38,21 +36,14 @@ const vm = new Vue({
       return newTechs
     },
     countTechs() {
-      const countOfTechs = this.filteredTechs && this.filteredTechs.map(techGroup => techGroup && techGroup.techsList.length)
-      let countTotal = 0
-      if (countOfTechs && countOfTechs.length > 0 && countOfTechs.reduce) {
-        countTotal = countOfTechs.reduce((a, b) => a + b)
-      }
-      return countTotal
-    },
-    haveData() {
-      return this.countTechs > 0
+      const countOfTechs = this.filteredTechs.map((techGroup = { techsList: [] }) => techGroup.techsList.length)
+      return countOfTechs.length > 1 ? countOfTechs.reduce((a, b) => a + b) : 0
     }
   },
   created() {
     TechService.getTechs()
       .then(response => {
-        vm.techs = response.data
+        this.techs = response.data
       })
   }
 })
