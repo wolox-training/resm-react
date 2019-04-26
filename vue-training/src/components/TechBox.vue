@@ -1,7 +1,7 @@
 <template lang="pug">
   .tech-box
     img.tech-box-logo(
-      :src='tech.logo'
+      :src="tech.logo"
       alt="tech logo"
     )
     h3.tech-box-title {{ tech.title }}
