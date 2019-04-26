@@ -5,44 +5,41 @@ Vue.use(VueI18n)
 
 import { installServiceWorker } from '../../serviceWorkerInstaller'
 
-import { DEFAULT_LANGUAGE } from '../../constants/general.js'
+import { DEFAULT_LANGUAGE as locale } from '../../constants/general'
 
-import TechService from '../../services/techsService.js'
+import TechService from '../../services/techsService'
 
-import TRANSLATIONS from '../../translations/i18n.js'
+import messages from '../../translations/i18n.js'
 
-const MessageNoData = () => import('../../components/MessageNoData')
 const TechBox = () => import('../../components/TechBox')
 
 import './index.pug'
 import './index.scss'
 
 const i18n = new VueI18n({
-  locale: DEFAULT_LANGUAGE,
+  locale,
   preserveDirectiveContent: true,
-  messages: TRANSLATIONS
+  messages
 })
 
+// eslint-disable-next-line no-unused-vars
 const vm = new Vue({
   i18n,
   components: {
-    MessageNoData,
     TechBox
   },
   data: {
     filter: '',
-    locale: DEFAULT_LANGUAGE,
+    locale,
     jsonData: {},
     techs: []
   },
   computed: {
     filteredTechs() {
-      let newTechs = this.techs
       const { filter } = this
-
       if (filter) {
-        newTechs = newTechs.map(techGroup => {
-          const newTechsList = techGroup && techGroup.techsList.filter(tech => tech.title.toLowerCase().includes(filter.toLowerCase()))
+        return this.techs.map((techGroup = { techsList: [] }) => {
+          const newTechsList = techGroup.techsList.filter(tech => tech.title.toLowerCase().includes(filter.toLowerCase()))
           const newTechGroup = {
             ...techGroup,
             techsList: newTechsList
@@ -50,18 +47,11 @@ const vm = new Vue({
           return newTechGroup
         })
       }
-      return newTechs
+      return this.techs
     },
     countTechs() {
-      const countOfTechs = this.filteredTechs && this.filteredTechs.map(techGroup => techGroup && techGroup.techsList.length)
-      let countTotal = 0
-      if (countOfTechs && countOfTechs.length > 0 && countOfTechs.reduce) {
-        countTotal = countOfTechs.reduce((a, b) => a + b)
-      }
-      return countTotal
-    },
-    haveData() {
-      return this.countTechs > 0
+      const countOfTechs = this.filteredTechs.map((techGroup = { techsList: [] }) => techGroup.techsList.length)
+      return countOfTechs.length > 1 ? countOfTechs.reduce((a, b) => a + b) : 0
     }
   },
   watch: {
@@ -73,8 +63,8 @@ const vm = new Vue({
   created() {
     TechService.getTechs()
       .then(response => {
-        vm.jsonData = response.data
-        vm.techs = response.data[this.locale]
+        this.jsonData = response.data
+        this.techs = response.data[this.locale]
       })
   }
 }).$mount('#app')

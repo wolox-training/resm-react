@@ -1,7 +1,7 @@
 import { create } from 'apisauce'
 
 const api = create({
-  baseURL: 'http://localhost:3002'
+  baseURL: process.env.API_URL
 })
 
 export default api
