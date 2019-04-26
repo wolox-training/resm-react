@@ -7,7 +7,6 @@ import TechService from '../../services/techsService'
 const TechBox = () => import('../../components/TechBox')
 const TechTitle = () => import('../../components/TechTitle')
 
-
 import './index.pug'
 import './index.scss'
 
