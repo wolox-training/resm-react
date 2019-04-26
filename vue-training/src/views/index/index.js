@@ -21,10 +21,9 @@ const vm = new Vue({
   },
   computed: {
     filteredTechs() {
-      let newTechs = this.techs
       const { filter } = this
       if (filter) {
-        newTechs = newTechs.map((techGroup = { techsList: [] }) => {
+        return this.techs.map((techGroup = { techsList: [] }) => {
           const newTechsList = techGroup.techsList.filter(tech => tech.title.toLowerCase().includes(filter.toLowerCase()))
           const newTechGroup = {
             ...techGroup,
@@ -33,7 +32,7 @@ const vm = new Vue({
           return newTechGroup
         })
       }
-      return newTechs
+      return this.techs
     },
     countTechs() {
       const countOfTechs = this.filteredTechs.map((techGroup = { techsList: [] }) => techGroup.techsList.length)
