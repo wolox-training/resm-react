@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 import { installServiceWorker } from '../../serviceWorkerInstaller'
 
-import TechService from '../../services/techsService.js'
+import TechService from '../../services/techsService'
 
 const TechBox = () => import('../../components/TechBox')
 const TechTitle = () => import('../../components/TechTitle')
