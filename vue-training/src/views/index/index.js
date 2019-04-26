@@ -11,6 +11,7 @@ const TechTitle = () => import('../../components/TechTitle')
 import './index.pug'
 import './index.scss'
 
+// eslint-disable-next-line no-unused-vars
 const vm = new Vue({
   el: '#app',
   components: {
@@ -23,7 +24,7 @@ const vm = new Vue({
   created() {
     TechService.getTechs()
       .then(response => {
-        vm.techs = response.data
+        this.techs = response.data
       })
   }
 })
