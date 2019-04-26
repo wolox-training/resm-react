@@ -21,15 +21,25 @@ html(lang='en')
         .filter-container
           span.filter-count
             | {{ countTechs }} Tecnología(s)
-          input.filter-input(type="text" placeholder="Filtrar" v-model='filter')
-      transition(name="slide-fade" mode="out-in")
+          input.filter-input(
+            type="text"
+            placeholder="Filtrar"
+            v-model='filter'
+          )
+      transition(
+        name="slide-fade"
+        mode="out-in"
+      )
         .main(v-if='countTechs')
           .tech-list(
             v-for='(techGroup, index) in filteredTechs'
             :key='index'
           )
-            .title {{ techGroup.title }}
-            transition-group.tech-box-list(name="slide-fade" tag="div")
+            h2.title {{ techGroup.title }}
+            transition-group.tech-box-list(
+              name="slide-fade"
+              tag="div"
+            )
               tech-box(
                 v-for='(tech, index) in techGroup.techsList'
                 :key='index'
