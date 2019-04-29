@@ -1,8 +1,7 @@
 <template lang="pug">
   .tech-box
-    //- TODO: resolve error when I add this :alt='tech.title'
     img.tech-box-logo(
-      :src='tech.logo'
+      :src='tech.logo', 
       :alt='tech.title'
     )
     h3.tech-box-title {{ tech.title }}
