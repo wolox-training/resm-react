@@ -3,7 +3,7 @@
     //- TODO: resolve error when I add this :alt='tech.title'
     img.tech-box-logo(
       :src='tech.logo'
-      alt="tech"
+      :alt='tech.title'
     )
     h3.tech-box-title {{ tech.title }}
     span.tech-box-launch

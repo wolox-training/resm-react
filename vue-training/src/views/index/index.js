@@ -9,7 +9,7 @@ import { DEFAULT_LANGUAGE as locale } from '../../constants/general'
 
 import TechService from '../../services/techsService'
 
-import messages from '../../translations/i18n.js'
+import { TRANSLATIONS as messages } from '../../translations/i18n.js'
 
 const TechBox = () => import('../../components/TechBox')
 

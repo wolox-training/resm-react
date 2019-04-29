@@ -1,4 +1,4 @@
-const TRANSLATIONS = {
+export const TRANSLATIONS = {
   en: {
     release: 'Release',
     navbar: {
@@ -48,5 +48,3 @@ const TRANSLATIONS = {
     }
   }
 }
-
-export default TRANSLATIONS
