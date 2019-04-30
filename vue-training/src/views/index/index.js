@@ -5,7 +5,6 @@ import { installServiceWorker } from '../../serviceWorkerInstaller'
 import TechService from '../../services/techsService'
 
 const TechBox = () => import('../../components/TechBox')
-const TechTitle = () => import('../../components/TechTitle')
 
 import './index.pug'
 import './index.scss'
@@ -14,11 +13,31 @@ import './index.scss'
 const vm = new Vue({
   el: '#app',
   components: {
-    TechBox,
-    TechTitle
+    TechBox
   },
   data: {
+    filter: '',
     techs: []
+  },
+  computed: {
+    filteredTechs() {
+      const { filter } = this
+      if (filter) {
+        return this.techs.map((techGroup = { techsList: [] }) => {
+          const newTechsList = techGroup.techsList.filter(tech => tech.title.toLowerCase().includes(filter.toLowerCase()))
+          const newTechGroup = {
+            ...techGroup,
+            techsList: newTechsList
+          }
+          return newTechGroup
+        })
+      }
+      return this.techs
+    },
+    countTechs() {
+      const countOfTechs = this.filteredTechs.map((techGroup = { techsList: [] }) => techGroup.techsList.length)
+      return countOfTechs.length > 1 ? countOfTechs.reduce((a, b) => a + b) : 0
+    }
   },
   created() {
     TechService.getTechs()

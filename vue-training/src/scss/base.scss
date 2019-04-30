@@ -16,7 +16,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: $nav-height;
+  margin-top: $nav-height + $filter-height;
   width: 100%;
 }
 
@@ -35,6 +35,22 @@
   grid-template-rows: repeat(2, 1fr);
   margin-bottom: 80px;
   max-width: $desktop-device-width;
+  width: 100%;
+}
+
+.no-data-text {
+  background-color: $wolox-blue;
+  border: 1px solid $black;
+  border-radius: 5px;
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  font-size: $no-data-text-size;
+  justify-content: center;
+  margin: 300px 50px 450px;
+  max-width: 600px;
+  padding: 20px 15px;
+  text-align: center;
   width: 100%;
 }
 
