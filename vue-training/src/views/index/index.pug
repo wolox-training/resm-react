@@ -15,17 +15,21 @@ html(lang='en')
         .navbar-header
           img.navbar-logo(
             src='/assets/wolox_logo.svg'
-            alt='logo'
+            :alt="$t('navbar.altLogo')"
           )
-          h1.navbar-text Developer Tools
-        .filter-container
+          h1.navbar-text {{ $t("navbar.title") }}
+        .navbar-bottom-container
           span.filter-count
-            | {{ countTechs }} Tecnología(s)
+            | {{ $tc('navbar.filter.countMessage', countTechs, { count: countTechs }) }}
+          span.language-label {{ $t("navbar.language.languageLabel") }}:
+          select.language-select(v-model='locale')
+            option(value="en" selected) {{ $t("navbar.language.english") }}
+            option(value="es") {{ $t("navbar.language.spanish") }}
           input.filter-input(
             type="text"
-            placeholder="Filtrar"
+            :placeholder="$t('navbar.filter.placeholder')"
             v-model='filter'
-          )
+          ) 
       transition(
         name="slide-fade"
         mode="out-in"
@@ -45,12 +49,12 @@ html(lang='en')
                 :key='index'
                 :tech='tech'
               )
-        .no-data-text(v-else) No se encontraron techs
+        .no-data-text(v-else) {{ $t("error.noDataText") }}
       footer.foot
-        span.foot-text We are game changers
+        span.foot-text {{ $t("footer.text") }}
         img.foot-logo(
           src='/assets/wolox_logo_white.svg'
-          alt='White app logo'
+          :alt="$t('footer.altLogo')"
         )
-        span.foot-copy Copyright 2018. Wolox. All right reserved.
+        span.foot-copy {{ $t("footer.copyright") }}
     script(src='./index.js')
