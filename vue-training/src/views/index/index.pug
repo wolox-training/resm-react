@@ -26,19 +26,26 @@ html(lang='en')
             placeholder="Filtrar"
             v-model='filter'
           )
-      .main(v-if='countTechs')
-        .tech-list(
-          v-for='(techGroup, index) in filteredTechs'
-          :key='index'
-        )
-          h2.title {{ techGroup.title }}
-          .tech-box-list
-            tech-box(
-              v-for='(tech, index) in techGroup.techsList'
-              :key='index'
-              :tech='tech'
+      transition(
+        name="slide-fade"
+        mode="out-in"
+      )
+        .main(v-if='countTechs')
+          .tech-list(
+            v-for='(techGroup, index) in filteredTechs'
+            :key='index'
+          )
+            h2.title {{ techGroup.title }}
+            transition-group.tech-box-list(
+              name="slide-fade"
+              tag="div"
             )
-      .no-data-text(v-else) No se encontraron techs
+              tech-box(
+                v-for='(tech, index) in techGroup.techsList'
+                :key='index'
+                :tech='tech'
+              )
+        .no-data-text(v-else) No se encontraron techs
       footer.foot
         span.foot-text We are game changers
         img.foot-logo(
