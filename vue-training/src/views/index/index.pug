@@ -9,71 +9,31 @@ html(lang='en')
     link(rel='preload' href='styles.index.css' as='style')
     link(rel='stylesheet' href='styles.index.css')
     script(src='./vendor.js')
-  body.app-container
-    nav.navbar
-      img.navbar-logo(src='assets/wolox_logo.svg' alt='Logo')
-      h1.navbar-text Developer Tools
-    #app.main(v-cloak)
-      h2.title Front-End Tools
-      .tech-box-list
-        .tech-box
-          img.tech-box-logo(src='assets/tech/react_icon.svg' alt='React')
-          h3.tech-box-title ReactJS
-          span.tech-box-launch Release: 2013
-          p.tech-box-text
-            | React is a declarative, component-based JavaScript library for building user interfaces.
-        .tech-box
-          img.tech-box-logo(src='assets/tech/angular_icon.svg' alt='Angular')
-          h3.tech-box-title AngularJS
-          span.tech-box-launch Release: 2010
-          p.tech-box-text
-            | AngularJS (commonly reffered to as AngularJS 1.X) is a JavaScript framework for building SPAs with an MVC architecture.
-        .tech-box
-          img.tech-box-logo(src='assets/tech/vue_icon.svg' alt='Vue')
-          h3.tech-box-title VueJS
-          span.tech-box-launch Release: 2014
-          p.tech-box-text
-            | Vue.js (pronounced /vju&#x2D0;/, like view) is an open-source JavaScript framework for building user interfaces.
-        .tech-box
-          img.tech-box-logo(src='assets/tech/elm_icon.svg' alt='Elm')
-          h3.tech-box-title Elm
-          span.tech-box-launch Release: 2016
-          p.tech-box-text
-            | Elm is a domain-specific programming language for declaratively creating web browser-based graphical user interfaces.
-        .tech-box
-          img.tech-box-logo(src='assets/tech/polymer_icon.svg' alt='Polymer')
-          h3.tech-box-title Polymer
-          span.tech-box-launch Release: 2015
-          p.tech-box-text
-            | Polymer is an open-source JavaScript library for building web applications using Web Components.
-      h2.title Back-End Tools
-      .tech-box-list
-        .tech-box
-          img.tech-box-logo(src='assets/tech/rails_icon.png' alt='Ruby on Rails')
-          h3.tech-box-title Ruby on Rails
-          span.tech-box-launch Release: 2015
-          p.tech-box-text
-            | Ruby on Rails, or Rails, is a server-side web application framework written in Ruby. Rails is an MVC framework, providing default structures for a database, a web service, and web pages.
-        .tech-box
-          img.tech-box-logo(src='assets/tech/express_icon.svg' alt='NodeJS')
-          h3.tech-box-title NodeJS
-          span.tech-box-launch Release: 2009
-          p.tech-box-text
-            | Node.js is a JavaScript runtime built on Chrome&apos;s V8 JavaScript engine. Uses an event-driven, non-blocking I/O model taht makes it lightweight and efficient.
-        .tech-box
-          img.tech-box-logo(src='assets/tech/aspnet_icon.png' alt='Asp.Net Core')
-          h3.tech-box-title ASP.NET Core
-          span.tech-box-launch Release: 2016
-          p.tech-box-text
-            | ASP.NET Core is the next generation of ASP.NET. It is a modular framework that runs on both the full .NET Framework, on Windows, and the cross-platform .NET Core.
-        .tech-box
-          img.tech-box-logo(src='assets/tech/django_icon.svg' alt='Django')
-          h3.tech-box-title Django
-          span.tech-box-launch Release: 2005
-          p.tech-box-text
-            | Django (/ˈdʒæŋɡoʊ/ JANG-goh)[5] is a free and open-source web framework, written in Python, which follows the model-view-template (MVT) architectural pattern.
-    footer.foot
-      span.foot-text We are game changers
-      img.foot-logo(src='assets/wolox_logo_white.svg' alt='White app logo')
-      span.foot-copy Copyright 2018. Wolox. All right reserved.
+  body
+    #app.app-container(v-cloak)
+      nav.navbar
+        img.navbar-logo(
+          src='/assets/wolox_logo.svg'
+          alt='logo'
+        )
+        h1.navbar-text Developer Tools
+      .main
+        .tech-list(
+          v-for="(techGroup, index) in techs"
+          :key="index"
+        )
+          tech-title(:title="techGroup.title")
+          .tech-box-list
+            tech-box(
+              v-for="(tech, index) in techGroup.techsList"
+              :key="index"
+              :tech="tech"
+            )
+      footer.foot
+        span.foot-text We are game changers
+        img.foot-logo(
+          src='/assets/wolox_logo_white.svg'
+          alt='White app logo'
+        )
+        span.foot-copy Copyright 2018. Wolox. All right reserved.
     script(src='./index.js')
